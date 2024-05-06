@@ -1,0 +1,11 @@
+header {
+    background-color: #464e8b;
+    color: aliceblue;
+    width: 100%;
+    height:fit-content;
+    height: 80px;
+}
+
+a {
+    text-decoration: none;
+}
