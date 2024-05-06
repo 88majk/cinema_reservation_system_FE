@@ -1,0 +1,18 @@
+<form class="form-container">
+    <p-card header="Login" [style]="{'width': '560px', 'border-radius': '25px', 'text-align': 'center'}">
+        <div class="field">
+            <label>E-mail</label>
+            <input type="text" class="register-textarea" pInputText>
+        </div>
+        <div class="field">
+            <label>Password</label>
+            <p-password type="text" [toggleMask]="true" inputStyleClass="register-textarea" [style]="{'width':'100%',}"/>
+        </div>
+
+        <button label="Log in" class="loginButton" pButton></button>
+        <p-divider align="center" type="solid">
+            <b>Still don't have an account?</b>
+        </p-divider>
+        <button label="Create account" class="registerButton" routerLink="/register" pButton></button>
+    </p-card>
+</form>

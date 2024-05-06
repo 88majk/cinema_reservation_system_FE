@@ -1,0 +1,35 @@
+<form class="form-container" [formGroup]="registerForm" (ngSubmit)="sendRegisterData()">
+    <p-card header="Register" [style]="{'width': '560px', 'border-radius': '25px', 'text-align': 'center'}">
+        <div class="field">
+            <label>E-mail</label>
+            <input type="text" formControlName="email" pInputText>
+        </div>
+        <div class="field">
+            <label>Name</label>
+            <input type="text" formControlName="name" pInputText>
+        </div>
+        <div class="field">
+            <label>Surname</label>
+            <input type="text" formControlName="surname" pInputText>
+        </div>
+        <div class="field">
+            <label>Date of birth</label>
+            <p-calendar formControlName="date_of_birth" [dateFormat]="'yy-mm-dd'" [showIcon]="true" 
+            [iconDisplay]="'input'"  [style]="{'width': '100%'}"/>
+        </div>
+        <div class="field">
+            <label>Password</label>
+            <p-password type="text" formControlName="password" [toggleMask]="true" [style]="{'width':'100%',}"/>
+        </div>
+        <div class="field">
+            <label>Confirm password</label>
+            <p-password type="text" [toggleMask]="true" [style]="{'width':'100%',}"/>
+        </div>
+        
+        <button label="Register account" type="submit" class="registerButton" pButton></button>
+        <p-divider align="center" type="solid">
+            <b>Already have an account?</b>
+        </p-divider>
+        <button label="Log in" class="loginButton" routerLink="/login" pButton></button>
+    </p-card>
+</form>

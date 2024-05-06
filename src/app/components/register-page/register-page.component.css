@@ -1,0 +1,43 @@
+.form-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  margin-bottom: 15px;
+}
+
+.field label {
+  align-self: flex-start;
+  margin-bottom: 5px;
+}
+
+.field input, .field p-password, .field p-calendar{
+  width: 100%;
+}
+
+.p-datepicker-trigger .p-clickable {
+    background-color: #464e8b;
+}
+
+
+.registerButton {
+    margin-top: 5px;
+    height: 50px;
+    width: 220px;
+    color: aliceblue;
+    background-color: #464e8b;
+}
+
+.loginButton {
+    margin-top: 5px;
+    height: 50px;
+    width: 220px;
+    color: rgb(58, 58, 58);
+    border-color: rgb(214, 213, 213);
+    background-color: white;
+}
