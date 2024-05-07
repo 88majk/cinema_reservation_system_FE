@@ -1,0 +1,75 @@
+.form-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 50px; /* Dodatkowy margines odstępu od góry */
+}
+
+.field {
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Wyśrodkowanie etykiety */
+    margin-bottom: 15px;
+}
+
+.field label {
+    margin-bottom: 5px;
+    font-weight: bold; /* Pogrubiona czcionka */
+    text-align: center; /* Wyśrodkowanie tekstu */
+}
+
+.field select {
+    width: 100%;
+    height: 36px; /* Wysokość pola wyboru */
+    padding: 5px; /* Wewnętrzny margines */
+    font-size: 14px; /* Rozmiar czcionki */
+}
+
+.selectCinemaButton {
+    margin-top: 5px;
+    height: 50px;
+    width: 220px;
+    color: aliceblue;
+    background-color: #464e8b;
+}
+
+.container {
+    display: flex;
+    justify-content: center;
+}
+
+.form-container {
+    width: 560px;
+}
+
+.select-container, .date-container {
+    margin-bottom: 20px;
+}
+
+.date-tiles {
+    display: flex;
+}
+
+.date-tile {
+    flex: 1;
+    background-color: #f0f0f0;
+    padding: 10px;
+    margin-right: 10px;
+    cursor: pointer;
+    text-align: center;
+}
+
+.date-tile:last-child {
+    margin-right: 0;
+}
+
+.selected {
+    background-color: #464e8b;
+    color: white;
+}
+
+.date-container label {
+    margin-bottom: 5px;
+    font-weight: bold;
+    text-align: center;
+}

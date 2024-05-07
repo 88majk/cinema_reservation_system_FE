@@ -1,14 +1,16 @@
-<header>
-  <div style="position: fixed;">
-    <p style="text-align: left; padding-left: 15px; font-size: 35px;">CinemaResSys</p>
+<header class="header">
+  <div>
+    <a routerLink="/homePage" style="text-decoration: none; color: inherit; font-size: 35px;">CinemaResSys</a>
   </div>
-  <div style="float: right; font-size: 20px; padding-right: 25px; padding-top: 25px;">
-    <i class="pi pi-user" routerLink="/login" ></i>
-    <a style="padding: 10px; color: aliceblue;" routerLink="/login" routerLinkActive="">Login</a>
-    <a style="padding: 10px; color: aliceblue;" routerLink="/register">Register</a>
+  <div style="font-size: 20px;">
+    <div style="float: right;">
+      <i class="pi pi-user" routerLink="/login"></i>
+      <a style="padding: 10px; color: aliceblue;" routerLink="/login" routerLinkActive="">Login</a>
+      <a style="padding: 10px; color: aliceblue;" routerLink="/register">Register</a>
+    </div>
   </div>
 </header>
 
-<div style="flex: 1; padding: 50px; justify-content: center; align-items: center;">
-  <router-outlet />
+<div class="container" style="padding-top: 80px;">
+  <router-outlet></router-outlet>
 </div>
