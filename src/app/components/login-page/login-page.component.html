@@ -1,15 +1,15 @@
-<form class="form-container">
+<form [formGroup]="loginForm" class="form-container" (submit)="sendLoginData()">
     <p-card header="Login" [style]="{'width': '560px', 'border-radius': '25px', 'text-align': 'center'}">
         <div class="field">
             <label>E-mail</label>
-            <input type="text" class="register-textarea" pInputText>
+            <input type="text" formControlName="email" class="register-textarea" pInputText>
         </div>
         <div class="field">
             <label>Password</label>
-            <p-password type="text" [toggleMask]="true" inputStyleClass="register-textarea" [style]="{'width':'100%',}"/>
+            <p-password type="text" formControlName="password" [toggleMask]="true" feedback="false" inputStyleClass="register-textarea" [style]="{'width':'100%',}"/>
         </div>
 
-        <button label="Log in" class="loginButton" pButton></button>
+        <button type="submit" label="Log in" class="loginButton" pButton></button>
         <p-divider align="center" type="solid">
             <b>Still don't have an account?</b>
         </p-divider>

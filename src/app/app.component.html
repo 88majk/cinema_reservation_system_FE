@@ -1,12 +1,25 @@
 <header>
-  <div style="position: fixed;">
-    <p style="text-align: left; padding-left: 15px; font-size: 35px;">CinemaResSys</p>
+  <div style="float: left; display: flex; font-size: 20px; padding-right: 25px;">
+    <h1 style="text-align: left; padding-left: 15px; font-size: 35px; margin-top: 2px;">CinemaResSys</h1>
+    <div style="padding: 12px 0px 0px 34px; color: aliceblue;">
+      <i class="pi pi-calendar" ></i>
+      <a style="padding: 7px; color: aliceblue">Repertoire</a>
+    </div>
+    
   </div>
-  <div style="float: right; font-size: 20px; padding-right: 25px; padding-top: 25px;">
-    <i class="pi pi-user" routerLink="/login" ></i>
-    <a style="padding: 10px; color: aliceblue;" routerLink="/login" routerLinkActive="">Login</a>
-    <a style="padding: 10px; color: aliceblue;" routerLink="/register">Register</a>
-  </div>
+
+  @if (authService.isLogged$ | async) {
+    <div style="float: right; font-size: 20px; padding-right: 25px; padding-top: 12px">
+      <i class="pi pi-user"></i>
+      <a style="padding: 7px; color: aliceblue;" routerLink="/login" >Profile</a>
+    </div>
+  } @else {
+    <div style="float: right; font-size: 20px; padding-right: 25px; padding-top: 12px">
+      <i class="pi pi-user"></i>
+      <a style="padding: 7px; color: aliceblue;" routerLink="/login" >Login</a>
+      <a style="padding: 7px; color: aliceblue;" routerLink="/register">Register</a>
+    </div>
+  }
 </header>
 
 <div style="flex: 1; padding: 50px; justify-content: center; align-items: center;">

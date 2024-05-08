@@ -15,6 +15,7 @@ import { DividerModule } from 'primeng/divider';
 import { CalendarModule } from 'primeng/calendar';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { provideAnimations } from '@angular/platform-browser/animations';
+import { DropdownModule } from 'primeng/dropdown';
 
 
 @NgModule({
@@ -31,6 +32,7 @@ import { provideAnimations } from '@angular/platform-browser/animations';
     CalendarModule,
     ReactiveFormsModule,
     FormsModule,
+    DropdownModule
   ],
   providers: [provideHttpClient(), provideAnimations()],
   bootstrap: [AppComponent],
