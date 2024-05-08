@@ -5,6 +5,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { RegisterPageComponent } from './components/register-page/register-page.component';
 import { LoginPageComponent } from './components/login-page/login-page.component';
+import { HomePageComponent } from './components/home-page/home-page.component';
 import { provideHttpClient } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
 import { CardModule } from 'primeng/card';
@@ -13,13 +14,14 @@ import { ButtonModule } from 'primeng/button';
 import { PasswordModule } from 'primeng/password';
 import { DividerModule } from 'primeng/divider';
 import { CalendarModule } from 'primeng/calendar';
+import { TreeSelectModule } from 'primeng/treeselect';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { provideAnimations } from '@angular/platform-browser/animations';
-import { DropdownModule } from 'primeng/dropdown';
+import { MovieSessionComponent } from './components/movie-session/movie-session.component';
 
 
 @NgModule({
-  declarations: [AppComponent, RegisterPageComponent, LoginPageComponent],
+  declarations: [AppComponent, RegisterPageComponent, LoginPageComponent, HomePageComponent, MovieSessionComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
@@ -32,7 +34,7 @@ import { DropdownModule } from 'primeng/dropdown';
     CalendarModule,
     ReactiveFormsModule,
     FormsModule,
-    DropdownModule
+    TreeSelectModule,
   ],
   providers: [provideHttpClient(), provideAnimations()],
   bootstrap: [AppComponent],
