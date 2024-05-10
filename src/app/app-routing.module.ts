@@ -2,9 +2,12 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { RegisterPageComponent } from './components/register-page/register-page.component';
 import { LoginPageComponent } from './components/login-page/login-page.component';
+
 import { HomePageComponent } from './components/home-page/home-page.component';
 import { MovieSessionComponent } from './components/movie-session/movie-session.component';
 import { ReservationComponent } from './components/reservation/reservation.component';
+import { UserProfileComponent } from './components/user-profile/user-profile.component';
+import { UserOrdersComponent } from './components/user-orders/user-orders.component';
 
 
 const routes: Routes = [
@@ -32,6 +35,14 @@ const routes: Routes = [
   { 
     path: 'booking/movieSession/:sessionId', 
     component: ReservationComponent 
+  },
+  {
+    path: 'user/profile',
+    component: UserProfileComponent
+  },
+  {
+    path: 'user/orders',
+    component: UserOrdersComponent
   }
 
 ];

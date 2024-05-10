@@ -14,3 +14,24 @@ header {
 a {
     text-decoration: none;
 }
+
+i {
+    font-size: 1.1rem;
+}
+
+.pop-up-button {
+    width: 160px;
+    margin-top: 5px;
+    text-align: center;
+    color: aliceblue;
+    background-color: #464e8b;
+}
+
+.headerButton {
+    height: 40px;
+    margin-top: 5px;
+    margin-left: 5px;
+    color: rgb(58, 58, 58);
+    border-color: rgb(214, 213, 213);
+    background-color: white;
+}

@@ -2,13 +2,48 @@
   <div>
     <a routerLink="/homePage" style="text-decoration: none; color: inherit; font-size: 35px;">CinemaResSys</a>
   </div>
-  <div style="font-size: 20px;">
-    <div style="float: right;">
-      <i class="pi pi-user" routerLink="/login"></i>
-      <a style="padding: 10px; color: aliceblue;" routerLink="/login" routerLinkActive="">Login</a>
-      <a style="padding: 10px; color: aliceblue;" routerLink="/register">Register</a>
-    </div>
+
+  @if (authService.isLogged$ | async) {
+  <div style="float: right; font-size: 20px;">
+    <button (mouseenter)="op.toggle($event)" class="headerButton" pButton>
+      <i style="padding-right: 5px;" class="pi pi-user"></i> Profile
+    </button>
+
+    <p-overlayPanel [style]="{'display': 'flex', 'justify-content': 'center'}" #op>
+      <div style="display: flex; flex-direction: column; align-items: center;">
+        <div>
+          <h3>Welcome {{authService.decodeToken().sub}}!</h3>
+        </div>
+        <div>
+          <button routerLink="/user/orders" class="pop-up-button" pButton>
+            <i style="padding-right: 10px;" class="pi pi-receipt"></i> Your orders
+          </button>
+        </div>
+        <div>
+          <button routerLink="/user/profile" class="pop-up-button" pButton>
+            <i style="padding-right: 10px;" class="pi pi-user-edit"></i> Edit profile
+          </button>
+        </div>
+        <div>
+          <button (click)="authService.loggingOut()" class="pop-up-button" pButton>
+            <i style="padding-right: 10px;" class="pi pi-sign-out"></i> Log out
+          </button>
+        </div>
+      </div>
+    </p-overlayPanel>
   </div>
+  } 
+
+  @else {
+  <div style="float: right; font-size: 20px;">
+    <button routerLink="/login" class="headerButton" pButton>
+      <i style="padding-right: 5px;" class="pi pi-sign-in"></i> Login
+    </button>
+    <button routerLink="/register" class="headerButton" pButton>
+      <i style="padding-right: 5px;" class="pi pi-user-plus"></i>Register
+    </button>
+  </div>
+  }
 </header>
 
 <div class="container" style="padding-top: 80px;">

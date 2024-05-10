@@ -1,0 +1,7 @@
+<form class="form-container">
+    <p-fieldset legend="Edit profile" [style]="{'width':'1000px'}">
+        <p class="m-0">
+            Hello {{authService.decodeToken().name}} {{authService.decodeToken().surname}}!
+        </p>
+    </p-fieldset>
+</form>
