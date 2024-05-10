@@ -1,0 +1,55 @@
+body {
+    /* Dodaj gradient linearny jako tło */
+    background: linear-gradient(to bottom, #f0f0f0, #cccccc);
+    /* Dodaj dodatkowy tło na wypadek, gdyby gradient nie został załadowany */
+    background-color: #cccccc; /* szary kolor jako fallback */
+    /* Ustawienie tła na całą stronę */
+    background-attachment: fixed;
+    background-size: cover;
+}
+
+.form-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.seating-rectangle {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: #f0f0f0; /* Kolor tła kontenera */
+    padding: 20px; /* Wewnętrzny odstęp */
+    border: 2px solid #ccc; /* Grubość i styl obramowania */
+    border-radius: 10px; /* Zaokrąglenie krawędzi */
+}
+
+.row {
+    display: flex;
+    justify-content: center;
+}
+
+.seat {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 25px; /* Szerokość prostokąta */
+    height: 25px; /* Wysokość prostokąta */
+    margin: 0 0px; /* Marginesy między siedzeniami */
+}
+
+.seat img {
+    width: 80%; /* Dopasowanie obrazka do rozmiaru kontenera */
+    height: 80%;
+    object-fit: contain; /* Dopasowanie obrazka zachowując proporcje */
+}
+
+.seat:hover {
+    background-color: #f8acf2; /* Kolor tła podczas najeżdżania */
+}
+
+.seat.clicked {
+    background-color: #f74141; /* Kolor tła po kliknięciu */
+}
+  
+  

@@ -2,8 +2,6 @@ import { Component, OnInit, ViewEncapsulation, inject } from '@angular/core';
 import { CinemaService } from '../../services/cinema.service';
 import { Cinema } from '../../models/getAllCinema-data'; // Importuj stworzony interfejs
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { cinemaForm } from '../../models/cinemaForm-data';
-import { RegisterData } from '../../models/register-data';
 import { formatDate } from '@angular/common';
 import { Router } from '@angular/router';
 

@@ -5,6 +5,7 @@ import { LoginPageComponent } from './components/login-page/login-page.component
 
 import { HomePageComponent } from './components/home-page/home-page.component';
 import { MovieSessionComponent } from './components/movie-session/movie-session.component';
+import { ReservationComponent } from './components/reservation/reservation.component';
 import { UserProfileComponent } from './components/user-profile/user-profile.component';
 import { UserOrdersComponent } from './components/user-orders/user-orders.component';
 
@@ -30,6 +31,10 @@ const routes: Routes = [
   { 
     path: 'homePage/cinemas/:cinemaId/movieSession/:date', 
     component: MovieSessionComponent 
+  },
+  { 
+    path: 'booking/movieSession/:sessionId', 
+    component: ReservationComponent 
   },
   {
     path: 'user/profile',
