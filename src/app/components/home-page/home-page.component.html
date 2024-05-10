@@ -1,6 +1,6 @@
 <form class="form-container" [formGroup]="homePageForm">
     <p-card [style]="{'width': '800px', 'border-radius': '25px', 'text-align': 'center'}">
-        <div class="field">
+        <div class="select-container">
             <label>Select Cinema:</label>
             <select id="cinemaSelect" class="selectCinemaButton"
             (change)="goToMovieSessions($event, selectedDate)">

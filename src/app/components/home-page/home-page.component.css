@@ -2,48 +2,83 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin-top: 50px; /* Dodatkowy margines odstępu od góry */
 }
 
-.field {
-    display: flex;
-    flex-direction: column;
-    align-items: center; /* Wyśrodkowanie etykiety */
-    margin-bottom: 15px;
+body {
+    /* Dodaj gradient linearny jako tło */
+    background: linear-gradient(to bottom, #f0f0f0, #cccccc);
+    /* Dodaj dodatkowy tło na wypadek, gdyby gradient nie został załadowany */
+    background-color: #cccccc; /* szary kolor jako fallback */
+    /* Ustawienie tła na całą stronę */
+    background-attachment: fixed;
+    background-size: cover;
 }
 
-.field label {
-    margin-bottom: 5px;
-    font-weight: bold; /* Pogrubiona czcionka */
-    text-align: center; /* Wyśrodkowanie tekstu */
+.select-container {
+    position: relative;
+    display: inline-block;
+    border-radius: 4px;
+    padding: 4px;
+    width: 100%; /* Szerokość 100% */
+    margin-top: 10px; /* 10px odstępu z góry */
+    margin-bottom: 10px;
 }
 
-.field select {
-    width: 100%;
-    height: 36px; /* Wysokość pola wyboru */
-    padding: 5px; /* Wewnętrzny margines */
-    font-size: 14px; /* Rozmiar czcionki */
+/* Styl dla samego selecta */
+.select-container select {
+    position: relative; /* Dodane, aby umożliwić pozycjonowanie strzałki */
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    width: calc(100% - 24px); /* Szerokość 100% minus 24px na uwzględnienie paddingu i miejsca dla strzałki */
+    padding: 8px 12px; /* Dostosowanie paddingu dla miejsca na strzałkę */
+    font-size: 16px; /* Większy rozmiar tekstu */
+    line-height: 1.5;
+    color: #555; /* Kolor tekstu na białym tle */
+    border: 1px solid #ccc;
+    border-radius: 8px; /* Zaokrąglenie krawędzi */
+    background-color: #f0f0f0; /* Bardzo jaśniejszy odcień błękitu */
+    cursor: pointer;
+    outline: none;
+    text-align: center; /* Tekst na środku */
+    margin-top: 16px;
+    margin-bottom: 16px;
 }
 
-.selectCinemaButton {
-    margin-top: 5px;
-    height: 50px;
-    width: 220px;
-    color: aliceblue;
+.select-container label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 10px; /* Zwiększenie odstępu od płytek daty */
+    font-size: 18px; /* Zwiększenie rozmiaru etykiety */
+}
+
+/* Styl po najechaniu na select */
+.select-container:hover select {
+    border-color: #aaa;
+}
+
+/* Styl po wybraniu wartości */
+.select-container select:focus {
+    border-color: #007bff;
+    box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+}
+
+/* Styl dla opcji selecta */
+.select-container select option {
+    padding: 8px 12px;
+    background-color: #f0f0f0;
+}
+
+/* Styl po najechaniu na opcję */
+.select-container select option:hover {
     background-color: #464e8b;
 }
 
-.container {
-    display: flex;
-    justify-content: center;
-}
-
-.form-container {
-    width: 560px;
-}
-
-.select-container, .date-container {
-    margin-bottom: 20px;
+.date-container label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 10px; /* Zwiększenie odstępu od płytek daty */
+    font-size: 18px; /* Zwiększenie rozmiaru etykiety */
 }
 
 .date-tiles {
@@ -51,12 +86,17 @@
 }
 
 .date-tile {
-    flex: 1;
+    display: inline-block;
     background-color: #f0f0f0;
-    padding: 10px;
+    padding: 14px 20px;
     margin-right: 10px;
     cursor: pointer;
-    text-align: center;
+    border-radius: 8px;
+    transition: background-color 0.3s ease;
+    width: 90%;
+    margin-top: 10px;
+    margin-bottom: 20px;
+
 }
 
 .date-tile:last-child {
@@ -66,10 +106,4 @@
 .selected {
     background-color: #464e8b;
     color: white;
-}
-
-.date-container label {
-    margin-bottom: 5px;
-    font-weight: bold;
-    text-align: center;
 }

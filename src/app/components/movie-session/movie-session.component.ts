@@ -1,6 +1,8 @@
 import { Component, ViewEncapsulation, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { CinemaService } from '../../services/cinema.service';
+import { MovieSessionService } from '../../services/moviesession.service';
+import { MovieAndSessions } from '../../models/movieAndSession-data';
 import { Cinema } from '../../models/getAllCinema-data';
 import { FormGroup } from '@angular/forms';
 import { formatDate } from '@angular/common';
@@ -13,22 +15,29 @@ import { Router } from '@angular/router';
   encapsulation: ViewEncapsulation.None
 })
 export class MovieSessionComponent implements OnInit {
+  movieAndSessions: MovieAndSessions[] = [];
   homePageForm: FormGroup = new FormGroup({});
   selectedCinemaName: string = ''; 
-  selectedCinema: Cinema | null = null; 
+  selectedCinema!: Cinema;
   selectedDate: Date = new Date();
   selectedDateTileIndex: number = 0; // Indeks wybranego kafelka daty
   cinemas: Cinema[] = [];
   dates: Date[] = [];
   cinemasLoaded: boolean = false; 
+  sidebarVisible: boolean = false;
+  selectedMovie: MovieAndSessions | null = null;
+  isDropdownOpen: boolean = false; // Dodajemy właściwość isDropdownOpen
+
 
   constructor(private route: ActivatedRoute,
     private cinemaService: CinemaService,
+    private movieSessionService: MovieSessionService,
     private router: Router
   ) {}
 
   ngOnInit(): void {
     this.loadCinemas();
+    this.loadMovieSession();
   }
 
   loadCinemas(): void {
@@ -122,5 +131,37 @@ export class MovieSessionComponent implements OnInit {
       console.error('Selected cinema not found:', selectedCinemaName);
     }
   }
-  
+
+  loadMovieSession(): void {
+    this.route.paramMap.subscribe(params => {
+      const cinemaId = Number(params.get('cinemaId'));
+      const dateFromParams = new Date(params.get('date') || '');
+
+      const formattedDate = formatDate(dateFromParams, 'yyyy-MM-dd', 'en-US');
+      this.movieSessionService.getMovieSessions(cinemaId, formattedDate).subscribe(
+        (response: any) => {
+          this.movieAndSessions = response.movieAndSessions
+          console.log(response);
+          this.movieAndSessions.forEach(movieSession => {
+            console.log(movieSession.name);
+          }); 
+        },
+        (error) => {
+          // Obsłuż błąd
+          console.error(error);
+        }
+      );
+    });
+  }
+
+  showSidebar(movie: MovieAndSessions) {
+    this.selectedMovie = movie;
+    this.sidebarVisible = true;
+  }
+  getGenresNames(): string {
+    if (!this.selectedMovie || !this.selectedMovie.genres) {
+      return '';
+    }
+    return this.selectedMovie.genres.map(genre => genre.name).join(', ');
+  }
 }
