@@ -29,7 +29,7 @@ import { FieldsetModule } from 'primeng/fieldset';
 
 
 @NgModule({
-  declarations: [AppComponent, RegisterPageComponent, LoginPageComponent, HomePageComponent, MovieSessionComponent, UserOrdersComponent, UserProfileComponent. ReservationComponent],
+  declarations: [AppComponent, RegisterPageComponent, LoginPageComponent, HomePageComponent, MovieSessionComponent, UserOrdersComponent, UserProfileComponent, ReservationComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
