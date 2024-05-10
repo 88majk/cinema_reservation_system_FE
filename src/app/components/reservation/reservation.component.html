@@ -1,0 +1,11 @@
+<form *ngIf="isDataLoaded" class="form-container" [formGroup]="reservationPage">
+    <p-card [style]="{'width': '800px', 'border-radius': '25px', 'text-align': 'center'}">
+        <div class="seating-rectangle">
+            <div class="row" *ngFor="let row of seatingLayout; let i = index">
+                <div class="seat" *ngFor="let seat of row; let j = index" (click)="handleClick($event, i, j)">
+                    <img [src]="seat" alt="Seat">
+                </div>
+            </div>
+        </div>       
+    </p-card>
+</form>

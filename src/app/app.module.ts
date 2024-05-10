@@ -21,10 +21,11 @@ import { TreeSelectModule } from 'primeng/treeselect';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { provideAnimations } from '@angular/platform-browser/animations';
 import { MovieSessionComponent } from './components/movie-session/movie-session.component';
+import { ReservationComponent } from './components/reservation/reservation.component';
 
 
 @NgModule({
-  declarations: [AppComponent, RegisterPageComponent, LoginPageComponent, HomePageComponent, MovieSessionComponent],
+  declarations: [AppComponent, RegisterPageComponent, LoginPageComponent, HomePageComponent, MovieSessionComponent, ReservationComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,

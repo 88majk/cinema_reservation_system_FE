@@ -142,9 +142,6 @@ export class MovieSessionComponent implements OnInit {
         (response: any) => {
           this.movieAndSessions = response.movieAndSessions
           console.log(response);
-          this.movieAndSessions.forEach(movieSession => {
-            console.log(movieSession.name);
-          }); 
         },
         (error) => {
           // Obsłuż błąd
@@ -163,5 +160,14 @@ export class MovieSessionComponent implements OnInit {
       return '';
     }
     return this.selectedMovie.genres.map(genre => genre.name).join(', ');
+  }
+
+  goToReservationPage(movieAndSessionId: number) {
+    try{
+      this.router.navigate(['booking/movieSession/', movieAndSessionId]);
+    }
+    catch(error) {
+      console.error('Selected session not found: ', movieAndSessionId);
+    }
   }
 }
