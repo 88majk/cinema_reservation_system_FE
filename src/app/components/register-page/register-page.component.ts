@@ -3,6 +3,7 @@ import { Component, ViewEncapsulation, inject } from '@angular/core';
 import { RegisterData } from '../../models/register-data';
 import { RegisterService } from '../../services/register.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-register-page',
@@ -15,7 +16,7 @@ export class RegisterPageComponent {
 
   private registerService = inject(RegisterService);
 
-  constructor(private formBuilder: FormBuilder) { }
+  constructor(private formBuilder: FormBuilder, private router: Router) { }
 
   ngOnInit(){
     this.registerForm = this.formBuilder.group({
@@ -30,14 +31,17 @@ export class RegisterPageComponent {
   sendRegisterData(){
     const data = {...this.registerForm.value};
     if (this.registerForm.valid) {
-      this.registerService.postRegisterData(data).subscribe(
-        (response) => {
-          console.log(response);
-        },
-        (error) => {
-          console.log(error);
-        }
-      );
+      setTimeout(() => {
+        this.registerService.postRegisterData(data).subscribe(
+          (response) => {
+            console.log(response);
+          },
+          (error) => {
+            console.log(error);
+          });
+          this.router.navigate(['/homePage']);
+      }, 1000);
+      
     }
   }
 }
