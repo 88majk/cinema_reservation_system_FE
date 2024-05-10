@@ -9,7 +9,12 @@
             <p-password type="text" formControlName="password" [toggleMask]="true" feedback="false" inputStyleClass="register-textarea" [style]="{'width':'100%',}"/>
         </div>
 
-        <button type="submit" label="Log in" class="loginButton" pButton></button>
+        <button (click)="loginClick()" type="submit" label="Log in" class="loginButton" pButton>
+            @if(!isLogging)
+            {<span class="p-button-label">Log in</span>}
+            @else
+            {<span class="p-button-label">Logging <i class="pi pi-spin pi-spinner" style="font-size: 1rem"></i></span>}
+        </button>
         <p-divider align="center" type="solid">
             <b>Still don't have an account?</b>
         </p-divider>

@@ -1,5 +1,6 @@
-import { Component, inject } from '@angular/core';
+import { Component, ViewChild, inject } from '@angular/core';
 import { AuthService } from './services/auth.service';
+import { OverlayPanel } from 'primeng/overlaypanel';
 
 @Component({
   selector: 'app-root',
@@ -9,8 +10,8 @@ import { AuthService } from './services/auth.service';
 export class AppComponent {
   title = 'CinemaResSys';
   authService = inject(AuthService);
+ 
 
-  constructor() {
+  constructor() {}
 
-  }
 }

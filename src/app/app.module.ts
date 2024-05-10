@@ -21,10 +21,14 @@ import { TreeSelectModule } from 'primeng/treeselect';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { provideAnimations } from '@angular/platform-browser/animations';
 import { MovieSessionComponent } from './components/movie-session/movie-session.component';
+import { OverlayPanelModule } from 'primeng/overlaypanel';
+import { UserOrdersComponent } from './components/user-orders/user-orders.component';
+import { UserProfileComponent } from './components/user-profile/user-profile.component';
+import { FieldsetModule } from 'primeng/fieldset';
 
 
 @NgModule({
-  declarations: [AppComponent, RegisterPageComponent, LoginPageComponent, HomePageComponent, MovieSessionComponent],
+  declarations: [AppComponent, RegisterPageComponent, LoginPageComponent, HomePageComponent, MovieSessionComponent, UserOrdersComponent, UserProfileComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
@@ -38,6 +42,8 @@ import { MovieSessionComponent } from './components/movie-session/movie-session.
     ReactiveFormsModule,
     FormsModule,
     TreeSelectModule,
+    OverlayPanelModule,
+    FieldsetModule,
     AccordionModule,
     SidebarModule,
     TabViewModule,
