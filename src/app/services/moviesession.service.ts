@@ -19,7 +19,7 @@ export class MovieSessionService {
       .set('cinemaId', cinemaId.toString())
       .set('movieSessionDate', movieSessionDate);
 
-      return this.http.get<MovieAndSessions>(url, { params }).pipe(
+      return this.http.get<MovieAndSessions[]>(url, { params }).pipe(
         catchError(error => {
           let errorMessage: string;
           if (error.error instanceof ErrorEvent) {

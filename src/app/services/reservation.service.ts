@@ -9,12 +9,12 @@ import { Observable, throwError, catchError } from 'rxjs';
 })
 export class ReservationService {
 
-  private baseUrl = 'http://localhost:8080/seats';
+  private baseUrl = 'http://localhost:8080';
 
   constructor(private http: HttpClient) { }
 
   getCinemaHallSeats(movieSessionId: number): Observable<any> {
-    const url = `${this.baseUrl}/movieSession/${movieSessionId}`;
+    const url = `${this.baseUrl}/seats/movieSession/${movieSessionId}`;
     const params = new HttpParams()
       .set('movieSessionId', movieSessionId.toString())
       return this.http.get<CinemaHallRowsSeat>(url, { params }).pipe(
@@ -31,5 +31,9 @@ export class ReservationService {
           return throwError(errorMessage);
         })
       );
+    }
+
+    postNewBooking(bookingData: any){    
+      return this.http.post<any>(`${this.baseUrl}/booking/newBooking`, bookingData);
     }
 }

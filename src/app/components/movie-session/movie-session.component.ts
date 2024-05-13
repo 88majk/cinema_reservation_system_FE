@@ -85,6 +85,7 @@ export class MovieSessionComponent implements OnInit {
 
   selectDateEvent(event: any, date: Date): void {
     this.selectedDate = date;
+    this.movieAndSessions = []; // Resetowanie tablicy
     this.goToMovieSessions(event, date);
 }
 
@@ -140,8 +141,15 @@ export class MovieSessionComponent implements OnInit {
       const formattedDate = formatDate(dateFromParams, 'yyyy-MM-dd', 'en-US');
       this.movieSessionService.getMovieSessions(cinemaId, formattedDate).subscribe(
         (response: any) => {
-          this.movieAndSessions = response.movieAndSessions
-          console.log(response);
+          console.log('Response received:', response);
+          if (response && response.movieAndSessions && response.movieAndSessions.length > 0) {
+            this.movieAndSessions = response.movieAndSessions; // Zapisanie odpowiedzi do zmiennej movieAndSessions
+            console.log('a:', this.movieAndSessions); // Wyświetlenie 'a' w konsoli
+
+          } else {
+            // Obsłuż brak filmów
+            console.log('No movies available for this day.');
+          }
         },
         (error) => {
           // Obsłuż błąd

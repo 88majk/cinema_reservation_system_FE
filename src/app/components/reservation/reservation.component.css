@@ -14,6 +14,32 @@ body {
     align-items: center;
 }
 
+.card-container {
+    width: 800px;
+    border-radius: 25px;
+    text-align: center;
+    overflow: hidden; /* Zapobieganie pojawianiu się paska przewijania poziomego */
+}
+
+.seating-header {
+    text-align: center;
+    margin-bottom: 10px;
+    font-size: 24px;
+}
+
+.movie-info {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+}
+
+.movie-info h3 {
+    margin-top: 0;
+    font-size: 20px;
+}
+
 .seating-rectangle {
     display: flex;
     flex-direction: column;
@@ -21,8 +47,34 @@ body {
     background-color: #f0f0f0; /* Kolor tła kontenera */
     padding: 20px; /* Wewnętrzny odstęp */
     border: 2px solid #ccc; /* Grubość i styl obramowania */
-    border-radius: 10px; /* Zaokrąglenie krawędzi */
+    border-radius: 20px; /* Zaokrąglenie krawędzi */
+    margin-bottom: 20px;
+    margin-top: 20px
 }
+
+.legend {
+    display: flex;
+    justify-content: space-between; /* Rozłożenie równomiernie */
+    margin-bottom: 20px;
+}
+
+.legend-item {
+    display: flex;
+    align-items: center;
+    flex-grow: 1; /* Każdy element legendy ma flex-grow: 1 */
+    margin-right: 10px; /* Dodajemy odstęp między elementami */
+}
+
+.legend-color {
+    width: 20px;
+    height: 20px;
+    margin-right: 5px;
+}
+
+.legend-text {
+    font-size: 14px;
+}
+
 
 .row {
     display: flex;
@@ -51,5 +103,135 @@ body {
 .seat.clicked {
     background-color: #f74141; /* Kolor tła po kliknięciu */
 }
+
+.table-container {
+    width: 100%; /* Szerokość tabeli będzie równa szerokości karty */
+    margin: auto; /* Wyśrodkowanie tabeli */
+    overflow-x: auto; /* Dodaj pasek przewijania poziomego w razie potrzeby */
+}
+
+.table-container .p-table {
+    border-collapse: collapse;
+    table-layout: fixed;
+    width: auto;
+}
+
+.table-container .p-table th,
+.table-container .p-table td {
+    padding: 8px;
+    text-align: center;
+    width: 25%; /* Dzielimy dostępną przestrzeń na cztery kolumny */
+}
+
+.table-container .p-table th:last-child,
+.table-container .p-table td:last-child {
+    width: auto; /* Ostatnia kolumna zajmuje pozostałą przestrzeń */
+}
+
+.table-container .p-button {
+    margin: 0;
+}
+
+.flex-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.flex-container .left-content {
+    text-align: left;
+}
+
+.flex-container .right-content {
+    text-align: right;
+}
+
+.btnwallet {
+    margin-top: 20px; /* Dodaj odstęp na górze przycisku */
+    margin-bottom: 20px; /* Dodaj odstęp na dole przycisku */
+}
+
+@media (hover: hover) {
+    .info-text {
+        color: red; /* Ustawienie koloru tekstu na czerwony */
+        margin-top: 10px; /* Dodatkowy margines na górę, aby oddzielić od przycisku */
+        font-size: 14px; /* Rozmiar czcionki */
+    }
+    
+    #creditcard {
+      /*  set start position */
+      transform: translateY(110px);
+      transition: transform 0.1s ease-in-out;
+      /*  set transition for mouse enter & exit */
+    }
   
+    #money {
+      /*  set start position */
+      transform: translateY(180px);
+      transition: transform 0.1s ease-in-out;
+      /*  set transition for mouse enter & exit */
+    }
   
+    .btnwallet button:hover #creditcard {
+      transform: translateY(0px);
+      transition: transform 0.2s ease-in-out;
+      /*  overide transition for mouse enter */
+    }
+  
+    .btnwallet button:hover #money {
+      transform: translateY(0px);
+      transition: transform 0.3s ease-in-out;
+      /*  overide transition for mouse enter */
+    }
+  }
+  
+  @keyframes bounce {
+    0% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(-0.25rem);
+    }
+    100% {
+      transform: translateY(0);
+    }
+  }
+  
+  .btnwallet .button:hover .btnwallet .button__text span {
+    transform: translateY(-0.25rem);
+    transition: transform .2s ease-in-out;
+  }
+  
+  /* styling */
+
+  .btnwallet .button {
+    border: none;
+    outline: none;
+    background-color: 
+  purple;
+    padding: 1rem 90px 1rem 2rem;
+    position: relative;
+    border-radius: 8px;
+    letter-spacing: 0.7px;
+    background-color: 
+  #464e8b;
+    color: 
+  #fff;
+    font-size: 21px;
+    font-family: "Lato", sans-serif;
+    cursor: pointer;
+    box-shadow: 
+  rgba(0, 9, 61, 0.2) 0px 4px 8px 0px;
+  }
+  
+  .btnwallet .button:active {
+    transform: translateY(1px);
+  }
+  
+  .btnwallet .button__svg {
+    position: absolute;
+    overflow: visible;
+    bottom: 6px;
+    right: 0.2rem;
+    height: 140%;
+  }

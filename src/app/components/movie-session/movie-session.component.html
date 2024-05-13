@@ -21,8 +21,8 @@
               </div>
             </div>
         </div>
-        <p-accordion *ngIf="movieAndSessions && movieAndSessions.length > 0" [multiple]="true" expandIcon="pi pi-plus" collapseIcon="pi pi-minus" [activeIndex]="0">
-            <p-accordionTab *ngFor="let movie of movieAndSessions; let first = first" [header]=movie.name [selected]="first">
+        <p-accordion *ngIf="movieAndSessions && movieAndSessions.length > 0" [multiple]="true" expandIcon="pi pi-plus" collapseIcon="pi pi-minus">
+            <p-accordionTab *ngFor="let movie of movieAndSessions let first = first" [header]=movie.name [selected]="first">
                 <div class="accordion-tab-content">
 
                     <div class="header-container">
@@ -45,7 +45,7 @@
                                     <p><strong>Type of session:</strong> {{ session.dateOfSession }}</p>
                                     <p><strong>Duration:</strong> {{ movie.duration }}</p>
                                     <p><strong>Available seats:</strong></p>
-                                    <p><strong>With subtitles:</strong> {{ session.isSubtitles ? 'Yes' : 'No' }} </p>
+                                    <p><strong>With subtitles:</strong> {{ session.subtitles ? 'Yes' : 'No' }} </p>
                                 </div>
                             </div>
                             <div class="button-buy-ticket-container">
