@@ -29,7 +29,10 @@ import { OverlayPanelModule } from 'primeng/overlaypanel';
 import { UserOrdersComponent } from './components/user-orders/user-orders.component';
 import { UserProfileComponent } from './components/user-profile/user-profile.component';
 import { FieldsetModule } from 'primeng/fieldset';
+import { TableModule } from 'primeng/table';
+import { DialogModule } from 'primeng/dialog';
 import { ConfirmationService } from 'primeng/api';
+
 
 
 @NgModule({
@@ -53,6 +56,7 @@ import { ConfirmationService } from 'primeng/api';
     SidebarModule,
     TabViewModule,
     TableModule,
+    DialogModule
     DropdownModule,
     ConfirmDialogModule,
   ],
