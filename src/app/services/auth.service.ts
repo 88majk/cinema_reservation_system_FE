@@ -9,14 +9,14 @@ import { BehaviorSubject, tap } from 'rxjs';
 export class AuthService {
   private _isLogged$ = new BehaviorSubject<boolean>(false);
   isLogged$ = this._isLogged$.asObservable();
-
-  decoded_token = this.decodeToken();
+  decodedToken: any;
 
   private loginService = inject(LoginService);
   
   constructor() {
     const user_token = localStorage.getItem('user_token');
     this._isLogged$.next(!!user_token);
+    this.decodeToken();
   }
 
   authorization(data: LoginData){
@@ -24,6 +24,7 @@ export class AuthService {
       tap((response: any) => {
         this._isLogged$.next(true);
           localStorage.setItem('user_token', response.token);
+          this.decodeToken();
       })
     )
   }
@@ -31,10 +32,9 @@ export class AuthService {
   decodeToken() {
     const user_token = localStorage.getItem('user_token');
     if (user_token) {
-      const decoded_token = JSON.parse(atob(user_token.split('.')[1]));
-      return decoded_token;
+      this.decodedToken = JSON.parse(atob(user_token.split('.')[1]));
     } else {
-      return null;
+      this.decodedToken = null;
     }
   }
 

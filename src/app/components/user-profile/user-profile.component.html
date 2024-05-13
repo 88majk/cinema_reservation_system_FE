@@ -1,7 +1,98 @@
-<form class="form-container">
-    <p-fieldset legend="Edit profile" [style]="{'width':'1000px'}">
-        <p class="m-0">
-            Hello {{authService.decodeToken().name}} {{authService.decodeToken().surname}}!
-        </p>
-    </p-fieldset>
-</form>
+<div class="form-container">
+    <p-card header="Hello {{authService.decodedToken.name}} {{authService.decodedToken.name}}!">
+        <ng-template></ng-template>
+        <div>
+            <p class="m-0">
+
+            </p>
+        </div>
+        <div>
+            <p-fieldset [style]="{'width':'1000px'}">
+                <ng-template pTemplate="header">
+                    Personal information
+                </ng-template>
+                <ng-template pTemplate="content">
+                    <div style="display: flex; justify-content: space-between;">
+                        <div style="flex: 1;">
+                            <div class="field">
+                                <label>Name</label>
+                                <input type="text" pInputText [attr.disabled]="isDisabled ? true : null"
+                                    class="input-area">
+                            </div>
+                            <div class="field">
+                                <label>E-mail</label>
+                                <input type="text" [attr.disabled]="isDisabled ? true : null" class="input-area"
+                                    pInputText>
+                            </div>
+
+                        </div>
+                        <div style="flex: 1">
+                            <div class="field">
+                                <label>Surname</label>
+                                <input type="text" [attr.disabled]="isDisabled ? true : null" class="input-area"
+                                    pInputText>
+                            </div>
+                            <div class="field">
+                                <label>Birth date</label>
+                                <p-calendar [style]="{'width':'400px'}" [inputStyle]="{'width':'100%',}"
+                                    [disabled]="isDisabled" [dateFormat]="'yy-mm-dd'" [showIcon]="true"
+                                    [iconDisplay]="'input'" />
+                            </div>
+                        </div>
+                    </div>
+                    <div style="justify-content: flex-end;">
+                        <button pButton (click)="isDisabled ? isDisabled = false : isDisabled = false"
+                            class="edit-button">
+                            <span class="p-button-label">{{ isDisabled ? 'Edit' : 'Confirm changes' }}</span>
+                        </button>
+                        @if(!isDisabled){
+                        <button pButton (click)="isDisabled = true" class="back-button">
+                            Back
+                        </button>
+                        }
+                    </div>
+                </ng-template>
+            </p-fieldset>
+        </div>
+        <div>
+            <p-fieldset legend="Change password">
+                <div>
+                    <span>If you want to change your password, press the button below and follow the steps.</span>
+                </div>
+                <div style="margin-top: 15px;">
+                    <button pButton (click)="showDialog()" label="Change password" class="edit-button"></button>
+                    <p-dialog header="Change your password" [modal]="true" [(visible)]="visible"
+                        [style]="{ width: '400px' }">
+                        <div style="display: flex; flex-direction: column;">
+                            <label style="margin-bottom: 5px;">Password</label>
+                            <input pInputText />
+                        </div>
+                        <div style="display: flex; flex-direction: column; margin-top: 15px;">
+                            <label style="margin-bottom: 5px;">Confirm password</label>
+                            <input pInputText />
+                        </div>
+                        <div
+                            style="display: flex; justify-content: space-between; margin-top: 25px; padding-right: 15px;">
+                            <button pButton label="Back" severity="secondary" (click)="visible = false"
+                                style="width: 120px;" class="back-button"></button>
+                            <button pButton label="Save" (click)="visible = false" style="width: 120px;"
+                                class="edit-button"></button>
+                        </div>
+                    </p-dialog>
+                </div>
+            </p-fieldset>
+        </div>
+        <div>
+            <p-fieldset legend="Delete account">
+                <div>
+                    <span>If you delete the account, the data assigned to it will be irretrievably lost.</span>
+                </div>
+                <div style="margin-top: 15px;">
+                    <button pButton class="delete-button">
+                        <i class="pi pi-trash" style="margin-right: 5px;"></i> <span class="p-button-label">Delete account</span>
+                    </button>
+                </div>
+            </p-fieldset>
+        </div>
+    </p-card>
+</div>
