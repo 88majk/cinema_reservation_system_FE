@@ -60,8 +60,10 @@ export class HomePageComponent implements OnInit {
       this.selectedDate = date;
   }
 
-  formatDate(date: Date, format: string): string {
-    return formatDate(date, format, 'en-US');
+  formatDate(date: Date): string {
+    const day = date.getDate();
+    const month = date.toLocaleString('en-US', { month: 'short' });
+    return `${day}\n${month}.`;
   }
 
   goToMovieSessions(event: any, date: Date) {

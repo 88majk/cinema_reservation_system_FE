@@ -3,5 +3,5 @@ export interface MovieSession {
     dateOfSession: string;
     timeOfSession: string;
     sessionTypeName: string;
-    isSubtitles: boolean;
+    subtitles: boolean;
   }
