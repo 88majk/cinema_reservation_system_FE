@@ -9,9 +9,12 @@ import { HomePageComponent } from './components/home-page/home-page.component';
 import { provideHttpClient } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
 import { CardModule } from 'primeng/card';
+import { DropdownModule } from 'primeng/dropdown';
 import { TabViewModule } from 'primeng/tabview';
 import { AccordionModule } from 'primeng/accordion';
 import { InputTextModule } from 'primeng/inputtext';
+import { TableModule } from 'primeng/table';
+import { ConfirmDialogModule } from 'primeng/confirmdialog';
 import { ButtonModule } from 'primeng/button';
 import { SidebarModule } from 'primeng/sidebar';
 import { PasswordModule } from 'primeng/password';
@@ -26,6 +29,7 @@ import { OverlayPanelModule } from 'primeng/overlaypanel';
 import { UserOrdersComponent } from './components/user-orders/user-orders.component';
 import { UserProfileComponent } from './components/user-profile/user-profile.component';
 import { FieldsetModule } from 'primeng/fieldset';
+import { ConfirmationService } from 'primeng/api';
 
 
 @NgModule({
@@ -48,8 +52,11 @@ import { FieldsetModule } from 'primeng/fieldset';
     AccordionModule,
     SidebarModule,
     TabViewModule,
+    TableModule,
+    DropdownModule,
+    ConfirmDialogModule,
   ],
-  providers: [provideHttpClient(), provideAnimations()],
+  providers: [provideHttpClient(), provideAnimations(), ConfirmationService],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

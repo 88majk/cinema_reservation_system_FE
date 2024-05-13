@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation, ViewChild  } from '@angular/core';
 import { Router } from '@angular/router';
 import { FormGroup } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
@@ -6,6 +6,12 @@ import { ReservationService } from '../../services/reservation.service'
 import { CinemaHallRowsSeat } from '../../models/cinemaHallRowsSeat-data'
 import { Seat } from '../../models/seat-data'
 import { Rows } from '../../models/rows-data';
+import { BookingRequestData } from '../../models/booking-data';
+import { BookingMovieSession } from '../../models/bookingMovieSession-data';
+import { BookingSeat } from '../../models/bookingSeat-data';
+import { ConfirmationService } from 'primeng/api';
+import { AuthService } from '../../services/auth.service';
+
 
 
 @Component({
@@ -21,7 +27,12 @@ export class ReservationComponent implements OnInit {
   seatingLayout!: any[][];
   isDataLoaded: boolean = false;
   cinemaHallSeats: CinemaHallRowsSeat | null = null;
-  selectedSeats: Seat[] = []; // Lista przechowująca wybrane miejsca
+  selectedSeats: Seat[] = []; 
+  isSeatsSelected: boolean = true;
+  movieSessionId!: number;
+  bookingNumber: number | null = null;
+  errorMessage: string = '';
+  @ViewChild('confirmation') confirmation: any;
 
 
   ngOnInit(): void {
@@ -33,12 +44,10 @@ export class ReservationComponent implements OnInit {
   constructor(
     private router: Router,
     private route: ActivatedRoute,
-    private reservationService: ReservationService
-  ) {
-    // Tablica definiująca nieregularną liczbę miejsc w każdym rzędzie
-    // const seatsPerRow = [4, 3, 6, 7, 8, 2, 10];
-
-  }
+    private reservationService: ReservationService,
+    private confirmationService: ConfirmationService,
+    private authService: AuthService
+  ) {}
 
   generateSeatingLayout(): any[][] {
     const layout = [];
@@ -106,9 +115,9 @@ export class ReservationComponent implements OnInit {
   
   loadCinemaHallSeats(): void {
     this.route.paramMap.subscribe(params => {
-      const movieSessionId = Number(params.get('sessionId'));
+      this.movieSessionId = Number(params.get('sessionId'));
 
-      this.reservationService.getCinemaHallSeats(movieSessionId).subscribe(
+      this.reservationService.getCinemaHallSeats(this.movieSessionId).subscribe(
         (response: any) => {
           this.cinemaHallSeats = response as CinemaHallRowsSeat;
           this.seatingLayout = this.generateSeatingLayout();
@@ -121,6 +130,86 @@ export class ReservationComponent implements OnInit {
           console.error(error);
         }
       );
+    });
+  }
+
+  calculateTotalPrice(): number {
+    let totalPrice = 0;
+
+    if (this.selectedSeats) {
+        for (const seat of this.selectedSeats) {
+            totalPrice += seat.price;
+        }
+    }
+
+    return totalPrice;
+  }
+
+  handleButtonClick(): void {
+    if (!this.selectedSeats || this.selectedSeats.length === 0){
+      this.isSeatsSelected = false;
+      return;
+    }
+    else{
+      this.isSeatsSelected = true;
+      const createBookingRequestData = this.createBookingRequestData();
+      console.log(createBookingRequestData)
+      this.reservationService.postNewBooking(createBookingRequestData).subscribe({
+        next: (response) => {
+          this.bookingNumber = Number(response.reservationNumber); // Zakładając, że backend zwraca numer rezerwacji
+          this.loadCinemaHallSeats();
+          this.showConfirmationDialog();
+          console.log(this.bookingNumber)
+        },
+        error: (error) => {
+          console.log(error.error)
+        }
+      });
+    }
+  }
+
+  createBookingRequestData(): BookingRequestData {
+    const bookingSeats: BookingSeat[] = [];
+    const user_token = localStorage.getItem('user_token');
+
+    for (let i = 0; i < this.selectedSeats.length; i++){
+      const bookingSeat: BookingSeat = {
+        bookingStatus: 1,
+        seatId: this.selectedSeats[i].seatId
+      };
+      bookingSeats.push(bookingSeat);
+    }
+
+    const bookingMovieSessions: BookingMovieSession[] = [];
+    const bookingMovieSession: BookingMovieSession = {
+      movieSessionId: this.movieSessionId,
+      bookingSeatDtoList: bookingSeats
+    };
+    bookingMovieSessions.push(bookingMovieSession);
+
+    const bookingRequestData: BookingRequestData = {
+      token: user_token ?? "",
+      totalPrice: this.calculateTotalPrice(),
+      bookingStatus: 1,
+      bookingMovieSessionDtoList: bookingMovieSessions
+    }
+
+    return bookingRequestData;
+  } 
+
+  showConfirmationDialog() {
+    this.confirmationService.confirm({
+      message: 'Your message goes here',
+      header: 'Confirmation',
+      accept: () => {
+          // Akcja po zaakceptowaniu dialogu
+          this.selectedSeats = []
+          console.log('Accepted');
+      },
+      reject: () => {
+          // Akcja po odrzuceniu dialogu
+          console.log('Rejected');
+      }
     });
   }
 
