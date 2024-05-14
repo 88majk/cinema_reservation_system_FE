@@ -1,7 +1,29 @@
 .form-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.p-card {
+  width: 560px;
+  border-radius: 25px;
+  text-align: center;
+  color: #ff5d73;
+  background: rgb(14, 14, 14);
+  background: linear-gradient(
+    135deg,
+    rgba(14, 14, 14, 1) 0%,
+    rgba(73, 73, 73, 1) 100%
+  );
+}
+
+.register-passwordarea {
+  width: 100%;
+  border-radius: 5px;
+}
+
+.p-password-panel {
+  color: #ff5d73;
 }
 
 .field {
@@ -16,28 +38,97 @@
   margin-bottom: 5px;
 }
 
-.field input, .field p-password, .field p-calendar{
+.field input,
+.field p-password,
+.field p-calendar {
   width: 100%;
+  background-color: #494949;
+  color: #ff5d73;
+  border-color: #000000;
+  border-radius: 5px;
 }
 
-.p-datepicker-trigger .p-clickable {
-    background-color: #464e8b;
+.p-password-panel {
+  border: 3px solid #FF5D73;
+  border-radius: 5px;
+  background-color: #000000;
+  color: #FF5D73;
+  padding-bottom: 8px;
 }
 
-
-.registerButton {
-    margin-top: 5px;
-    height: 50px;
-    width: 220px;
-    color: aliceblue;
-    background-color: #464e8b;
+.p-password-meter {
+  border-radius: 5px;
 }
 
-.loginButton {
-    margin-top: 5px;
-    height: 50px;
-    width: 220px;
-    color: rgb(58, 58, 58);
-    border-color: rgb(214, 213, 213);
-    background-color: white;
+.p-datepicker{
+  height: auto;
+  width: auto;
+  border: 2px solid #FF5D73;
+  border-radius: 5px;
+  background-color: #000000;
+  color: #a5a5a5;
+}
+
+.p-datepicker-header {
+  color: #FF5D73;
+  background-color: #000000;
+}
+
+.register-button {
+  margin-top: 5px;
+  height: 50px;
+  width: 220px;
+  color: aliceblue;
+  background-color: #ff5d73;
+  border-color: #000000;
+}
+
+.login-button {
+  margin-top: 5px;
+  height: 50px;
+  width: 220px;
+  color: #ffffff;
+  border-color: #000000;
+  background-color: #7c7a7a;
+}
+
+.custom-divider.p-divider.p-divider-center.p-divider-horizontal.p-divider-solid {
+  position: relative;
+  padding: 2;
+}
+
+.custom-divider.p-divider-center.p-divider-horizontal.p-divider-solid::before{
+  content: "";
+  position: absolute;
+  top: 50%;
+  width: 27%;
+  height: 1px;
+  z-index: 0;
+  background-color: #FF5D73;
+}
+
+.custom-divider.p-divider-center.p-divider-horizontal.p-divider-solid::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  width: 27%;
+  height: 2px;
+  z-index: 0;
+  background-color: #FF5D73;
+}
+
+.custom-divider.p-divider-center.p-divider-horizontal.p-divider-solid::before {
+  left: 0;
+  border-color: transparent;
+}
+
+.custom-divider.p-divider-center.p-divider-horizontal.p-divider-solid::after {
+  right: 0;
+  border-color: transparent;
+}
+
+.custom-divider .p-divider-content {
+  background-color: transparent !important;
+  color: #FF5D73;
+  position: relative;
 }

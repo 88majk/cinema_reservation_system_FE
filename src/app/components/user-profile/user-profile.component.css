@@ -4,14 +4,65 @@
   align-items: center;
 }
 
+.p-card {
+  border-radius: 25px;
+  color: #ff5d73;
+  background: rgb(14, 14, 14);
+  background: linear-gradient(
+    135deg,
+    rgba(14, 14, 14, 1) 0%,
+    rgba(73, 73, 73, 1) 100%
+  );
+}
+
+.p-dialog-header {
+  color: #ff5d73;
+  background-color: #000000;
+}
+
+.p-dialog-content {
+  color: #ff5d73;
+  
+  background: rgb(0,0,0);
+  background: linear-gradient(180deg, rgba(0,0,0,1) 0%, rgba(73,73,73,1) 100%);
+}
+
+.p-dialog-content input {
+  width: 350px;
+  color: #ff5d73;
+  border-color: #000000;
+  background-color: #494949;
+}
+
+.p-fieldset {
+  background-color: transparent;
+  border-color: #ff5d73;
+  color: #ffffff;
+}
+
+.p-fieldset-legend{
+  border: 0;
+  color: #ff5d73;
+  background-color: transparent ;
+}
+
 .field {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
   margin-bottom: 20px;
 }
+
 .field label {
   margin-bottom: 5px;
+}
+
+.field input{
+
+  background-color: #494949;
+  color: #ff5d73;
+  border-color: #000000;
+  border-radius: 5px;
 }
 
 .input-area {
@@ -34,14 +85,27 @@
 
 .edit-button {
     margin-top: 5px;
-    color: aliceblue;
-    background-color: #464e8b;
+    color: #ffffff;
+    border-color: #000000;
+    background-color: #7c7a7a;
+    transition: transform 0.2s ease-in-out;
 }
+
+.edit-button:hover {
+  transform: scale(1.04);
+}
+
 
 .delete-button {
     margin-top: 5px;
-    color: aliceblue;
-    background-color: #d42a00;
+    border-color: #ff5d73;
+    color: #ffffff;
+    background-color: #ff5d73;
+    transition: transform 0.2s ease-in-out;
+}
+
+.delete-button:hover {
+  transform: scale(1.04);
 }
 
 .back-button {
@@ -50,9 +114,9 @@
     color: rgb(58, 58, 58);
     border-color: rgb(214, 213, 213);
     background-color: white;
+    transition: transform 0.2s ease-in-out;
 }
 
-.p-fieldset-legend {
-    border: 0;
-    background-color: white;
+.back-button:hover {
+  transform: scale(1.04);
 }

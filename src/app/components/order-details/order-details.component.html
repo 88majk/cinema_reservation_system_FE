@@ -1,0 +1,7 @@
+<div>
+    @for (item of orderDetails; track $index) {
+        <span>{{item.bookingNumber}}</span>
+    }
+    <span>orderDetails</span>
+    <button label="Back" (click)="close()" pButton></button>
+</div>

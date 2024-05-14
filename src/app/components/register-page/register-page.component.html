@@ -19,11 +19,13 @@
         </div>
         <div class="field">
             <label>Password</label>
-            <p-password type="text" formControlName="password" [toggleMask]="true" [style]="{'width':'100%',}"/>
+            <p-password type="text" formControlName="password" 
+            [toggleMask]="true" inputStyleClass="register-passwordarea" styleClass="register-passwordarea"/>
         </div>
         <div class="field">
             <label>Confirm password</label>
-            <p-password type="text" formControlName="retPassword" [feedback]="false" [toggleMask]="true" [style]="{'width':'100%',}"/>
+            <p-password type="text" formControlName="retPassword" [feedback]="false" 
+            [toggleMask]="true" inputStyleClass="register-passwordarea" styleClass="register-passwordarea"/>
         </div>
         <div style="padding-bottom: 15px; color: #eb0202;">
             @if (this.registerForm.value.password != this.registerForm.value.retPassword &&
@@ -36,15 +38,15 @@
                 <small>{{errorMessage}}</small>
             }
         </div>
-        <button (click)="registerClick()"  type="submit" class="registerButton" pButton>
+        <button (click)="registerClick()"  type="submit" class="register-button" pButton>
             @if(!isRegistering)
             {<span class="p-button-label">Register account</span>}
             @else
             {<span class="p-button-label">Registering <i class="pi pi-spin pi-spinner" style="font-size: 1rem"></i></span>}
         </button>
-        <p-divider align="center" type="solid">
+        <p-divider align="center" type="solid" styleClass="custom-divider">
             <b>Already have an account?</b>
         </p-divider>
-        <button label="Log in" class="loginButton" routerLink="/login" pButton></button>
+        <button label="Log in" class="login-button" routerLink="/login" pButton></button>
     </p-card>
 </form>
