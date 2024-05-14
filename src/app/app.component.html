@@ -12,7 +12,7 @@
     <p-overlayPanel [style]="{'display': 'flex', 'justify-content': 'center'}" #op>
       <div style="display: flex; flex-direction: column; align-items: center;">
         <div>
-          <h3>Welcome {{authService.decodeToken().sub}}!</h3>
+          <h3>Welcome {{authService.decodedToken.sub}}!</h3>
         </div>
         <div>
           <button routerLink="/user/orders" class="pop-up-button" pButton>

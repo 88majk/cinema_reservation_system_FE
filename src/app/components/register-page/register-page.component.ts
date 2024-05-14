@@ -1,5 +1,4 @@
 import { Component, ViewEncapsulation, inject } from '@angular/core';
-
 import { RegisterData } from '../../models/register-data';
 import { RegisterService } from '../../services/register.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
