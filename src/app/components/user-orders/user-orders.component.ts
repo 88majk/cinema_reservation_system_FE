@@ -17,12 +17,13 @@ export class UserOrdersComponent {
   constructor() {}
 
   ngOnInit() {
-    this.getBookingsByUserId(this.authService.decodedToken.id);
+    this.getBookingsByUserId();
     this.authService.checkTokenExpiration();
   }
 
-  getBookingsByUserId(userId: any): void {
-    this.ordersService.getBookingsByUserId(userId).subscribe(
+  getBookingsByUserId(): void {
+    console.log(this.authService.decodedToken.id)
+    this.ordersService.getBookingsByUserId().subscribe(
       (response: Order[]) => {
         this.userBookings = response;
         console.log(this.userBookings);

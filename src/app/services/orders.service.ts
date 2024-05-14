@@ -11,7 +11,7 @@ export class OrdersService {
 
   constructor() { }
 
-  getBookingsByUserId(userId: any): Observable<Order[]> {
-    return this.http.get<Order[]>('http://localhost:8080/booking/bookingForUser/' + userId);
+  getBookingsByUserId(): Observable<Order[]> {
+    return this.http.get<Order[]>('http://localhost:8080/booking/userBookings/' + localStorage.getItem('user_token'));
   }
 }
