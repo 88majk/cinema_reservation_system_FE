@@ -1,6 +1,7 @@
 <form class="form-container">
     <p-table 
     styleClass="p-datatable-striped" 
+    [value]="userBookings"
     [tableStyle]="{'min-width': '970px'}">
         <ng-template pTemplate="header">
             <tr>
@@ -8,15 +9,21 @@
                 <th>Movie</th>
                 <th>Seat</th>
                 <th>Price</th>
+                <th>Status</th>
                 <th>Edit/Delete</th>
             </tr>
         </ng-template>
-        <ng-template pTemplate="body">
+        <ng-template pTemplate="body" let-booking>
             <tr>
-                <td>film</td>
+                <td>{{booking.bookingNumber}}</td>
                 <td></td>
                 <td></td>
-                <td></td>
+                <td>{{booking.totalPrice}} $</td>
+                <td>{{booking.status.name}}</td>
+                <td>
+                    <button pButton label="Edit"></button>
+                    <button pButton label="Cancel"></button>
+                </td>
             </tr>
         </ng-template>
 </p-table>
