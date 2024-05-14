@@ -5,6 +5,7 @@ export interface BookingRequestData {
     token: string;
     totalPrice: number;
     bookingStatus: number;
+    bookingNumber: number;
     bookingMovieSessionDtoList: BookingMovieSession[];
   }
   
