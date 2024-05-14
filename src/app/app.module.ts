@@ -17,6 +17,7 @@ import { TableModule } from 'primeng/table';
 import { ConfirmDialogModule } from 'primeng/confirmdialog';
 import { ButtonModule } from 'primeng/button';
 import { SidebarModule } from 'primeng/sidebar';
+import { MessagesModule } from 'primeng/messages';
 import { PasswordModule } from 'primeng/password';
 import { DividerModule } from 'primeng/divider';
 import { CalendarModule } from 'primeng/calendar';
@@ -58,6 +59,7 @@ import { ConfirmationService } from 'primeng/api';
     DialogModule,
     DropdownModule,
     ConfirmDialogModule,
+    MessagesModule,
   ],
   providers: [provideHttpClient(), provideAnimations(), ConfirmationService],
   bootstrap: [AppComponent],
