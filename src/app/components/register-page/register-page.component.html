@@ -23,11 +23,24 @@
         </div>
         <div class="field">
             <label>Confirm password</label>
-            <p-password type="text" [toggleMask]="true" [style]="{'width':'100%',}"/>
+            <p-password type="text" formControlName="retPassword" [feedback]="false" [toggleMask]="true" [style]="{'width':'100%',}"/>
         </div>
-        
-        <button label="Register account" type="submit" class="registerButton" pButton>
-            
+        <div style="padding-bottom: 15px; color: #eb0202;">
+            @if (this.registerForm.value.password != this.registerForm.value.retPassword &&
+            this.registerForm.get('password')?.dirty && 
+            this.registerForm.get('retPassword')?.dirty
+            ){
+                <small>Passwords do not match.</small>
+            }
+            @if (errorMessage.length > 0) {
+                <small>{{errorMessage}}</small>
+            }
+        </div>
+        <button (click)="registerClick()"  type="submit" class="registerButton" pButton>
+            @if(!isRegistering)
+            {<span class="p-button-label">Register account</span>}
+            @else
+            {<span class="p-button-label">Registering <i class="pi pi-spin pi-spinner" style="font-size: 1rem"></i></span>}
         </button>
         <p-divider align="center" type="solid">
             <b>Already have an account?</b>

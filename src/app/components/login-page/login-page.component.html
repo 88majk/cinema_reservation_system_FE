@@ -1,23 +1,27 @@
 <form [formGroup]="loginForm" class="form-container" (submit)="sendLoginData()">
-    <p-card header="Login" [style]="{'width': '560px', 'border-radius': '25px', 'text-align': 'center'}">
+    <p-card header="Login" >
         <div class="field">
             <label>E-mail</label>
             <input type="text" formControlName="email" class="register-textarea" pInputText>
         </div>
         <div class="field">
             <label>Password</label>
-            <p-password type="text" formControlName="password" [toggleMask]="true" feedback="false" inputStyleClass="register-textarea" [style]="{'width':'100%',}"/>
+            <p-password type="text" formControlName="password" [toggleMask]="true" feedback="false" inputStyleClass="register-passwordarea" styleClass="register-passwordarea"/>
         </div>
-
-        <button (click)="loginClick()" type="submit" label="Log in" class="loginButton" pButton>
+        <div style="padding-bottom: 10px; color: #eb0202;">
+            @if (errorMessage.length > 0) {
+                <small>{{errorMessage}}</small>
+            }      
+        </div>
+        <button (click)="loginClick()" type="submit" label="Log in" class="login-button" pButton>
             @if(!isLogging)
             {<span class="p-button-label">Log in</span>}
             @else
             {<span class="p-button-label">Logging <i class="pi pi-spin pi-spinner" style="font-size: 1rem"></i></span>}
         </button>
-        <p-divider align="center" type="solid">
-            <b>Still don't have an account?</b>
+        <p-divider align="center" type="solid" styleClass="custom-divider" type="solid">
+            <span> Still don't have an account? </span>
         </p-divider>
-        <button label="Create account" class="registerButton" routerLink="/register" pButton></button>
+        <button label="Create account" class="register-button" routerLink="/register" pButton></button>
     </p-card>
 </form>
