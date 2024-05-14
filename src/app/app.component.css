@@ -20,12 +20,34 @@ i {
     font-size: 1.1rem;
 }
 
+
+
+.p-overlaypanel .p-overlaypanel-content {
+    padding: 15px;
+    color: #FF5D73;
+    background-color: #494949;
+    border-radius: 5px;
+    border-width: 2px;
+    border-color: #FF5D73;
+}
+
+.p-overlaypanel::before,
+.p-overlaypanel::after {
+  display: none !important;
+}
+
 .pop-up-button {
     width: 160px;
     margin-top: 5px;
     text-align: center;
     color: aliceblue;
-    background-color: #464e8b;
+    background-color: #FF5D73;
+    border-color: #FF5D73;
+    transition: transform 0.2s ease-in-out;
+}
+
+.pop-up-button:hover {
+    transform: scale(1.04);
 }
 
 .header-button {
@@ -35,4 +57,9 @@ i {
     color: #FFFFFF;
     border-color: #000000;
     background-color: #FF5D73;
+    transition: transform 0.2s ease-in-out;
+}
+
+.header-button:hover {
+    background-color: #ee586c;
 }

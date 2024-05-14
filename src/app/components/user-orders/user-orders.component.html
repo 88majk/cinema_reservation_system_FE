@@ -1,27 +1,33 @@
 <div class="form-container">
-    <p-table styleClass="p-datatable-striped" [value]="userBookings" [tableStyle]="{'min-width': '970px'}">
-        <ng-template pTemplate="header">
-            <tr>
-                <th>Order ID</th>
-                <th>Cinema</th>
-                <th>Movie</th>
-                <th>Price</th>
-                <th>Status</th>
-                <th>Edit/Delete</th>
-            </tr>
-        </ng-template>
-        <ng-template pTemplate="body" let-booking>
-            <tr>
-                <td>{{booking.bookingNumber}}</td>
-                <td>{{booking.cinemaName}}</td>
-                <td>{{booking.movieName}}</td>
-                <td>{{booking.totalPrice}} $</td>
-                <td>{{booking.status.name}}</td>
-                <td>
-                    <button pButton label="Edit"></button>
-                    <button pButton label="Cancel"></button>
-                </td>
-            </tr>
-        </ng-template>
-    </p-table>
+    <p-card header="Your orders">
+        <p-table [value]="userBookings" [tableStyle]="{'min-width': '970px'}">
+            <ng-template pTemplate="header">
+                <tr>
+                    <th>Order ID</th>
+                    <th>Date</th>
+                    <th>Cinema</th>
+                    <th>Movie</th>
+                    <th>Price</th>
+                    <th>Status</th>
+                    <th>Order details</th>
+                </tr>
+            </ng-template>
+            <ng-template pTemplate="body" let-booking>
+                <tr>
+                    <td>{{booking.bookingNumber}}</td>
+                    <td>{{booking.sessionDate}}</td>
+                    <td>{{booking.cinemaName}}</td>
+                    <td>{{booking.movieName}}</td>
+                    <td>{{booking.totalPrice}} $</td>
+                    <td><p-tag value="{{booking.status.name}}" [severity]="setSeverity(booking.status.name)"/></td>
+                    <td>
+                        <button (click)="visible = true" (click)="getBookingDetails(booking.bookingId)" pButton class="details-button" label="View"></button>
+                        <p-dialog [visible]="visible" [modal]="true">
+                            <button (click)="visible = false" label="Back"pButton></button>
+                        </p-dialog>
+                    </td>
+                </tr>
+            </ng-template>
+        </p-table>
+    </p-card>
 </div>

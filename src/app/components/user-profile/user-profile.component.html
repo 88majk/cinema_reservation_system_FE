@@ -40,7 +40,7 @@
                     </div>
                     <div style="justify-content: flex-end;">
                         <button pButton (click)="isDisabled ? isDisabled = false : isDisabled = false"
-                            class="edit-button">
+                        [ngClass]="isDisabled ? 'edit-button' : 'delete-button'">
                             <span class="p-button-label">{{ isDisabled ? 'Edit' : 'Confirm changes' }}</span>
                         </button>
                         @if(!isDisabled){
@@ -63,18 +63,18 @@
                         [style]="{ width: '400px' }">
                         <div style="display: flex; flex-direction: column;">
                             <label style="margin-bottom: 5px;">Password</label>
-                            <input pInputText />
+                            <p-password [feedback]="false" [toggleMask]="true"></p-password>
                         </div>
                         <div style="display: flex; flex-direction: column; margin-top: 15px;">
                             <label style="margin-bottom: 5px;">Confirm password</label>
-                            <input pInputText />
+                            <p-password [feedback]="false" [toggleMask]="true"></p-password>
                         </div>
                         <div
                             style="display: flex; justify-content: space-between; margin-top: 25px; padding-right: 15px;">
                             <button pButton label="Back" severity="secondary" (click)="visible = false"
-                                style="width: 120px;" class="back-button"></button>
+                                style="width: 120px;" class="edit-button"></button>
                             <button pButton label="Save" (click)="visible = false" style="width: 120px;"
-                                class="edit-button"></button>
+                                class="delete-button"></button>
                         </div>
                     </p-dialog>
                 </div>

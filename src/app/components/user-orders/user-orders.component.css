@@ -1,5 +1,46 @@
 .form-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.p-card {
+  border-radius: 25px;
+  color: #ff5d73;
+  background: rgb(14, 14, 14);
+  background: linear-gradient(165deg, rgba(0,0,0,1) 0%, rgba(73,73,73,1) 100%);
+}
+
+.p-datatable .p-datatable-tbody > tr {
+    color: #ffffff;
+    background-color: transparent;
+}
+
+.p-datatable .p-datatable-tbody > tr > td {
+    border: 1px solid #ff5d73;
+    border-width: 0 0 1px 0;
+    background-color: transparent;
+}
+
+.p-datatable .p-datatable-thead > tr > th {
+    border: 1px solid #ff5d73;
+    border-width: 0 0 1px 0;
+    color: #ffffff;
+    background-color: transparent;
+}
+
+.p-datatable-table {
+    border-color: #ff5d73;
+}
+
+.details-button {
+    height: 30px;
+    color: #ffffff;
+    background-color: #ff5d73;
+    border: #ff5d73;
+    transition: transform 0.2s ease-in-out;
+}
+
+.details-button:hover {
+    transform: scale(1.04);
 }

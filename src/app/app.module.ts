@@ -32,11 +32,13 @@ import { UserProfileComponent } from './components/user-profile/user-profile.com
 import { FieldsetModule } from 'primeng/fieldset';
 import { DialogModule } from 'primeng/dialog';
 import { ConfirmationService } from 'primeng/api';
+import { TagModule } from 'primeng/tag';
+import { OrderDetailsComponent } from './components/order-details/order-details.component';
 
 
 
 @NgModule({
-  declarations: [AppComponent, RegisterPageComponent, LoginPageComponent, HomePageComponent, MovieSessionComponent, UserOrdersComponent, UserProfileComponent, ReservationComponent],
+  declarations: [AppComponent, RegisterPageComponent, LoginPageComponent, HomePageComponent, MovieSessionComponent, UserOrdersComponent, UserProfileComponent, ReservationComponent, OrderDetailsComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
@@ -60,6 +62,7 @@ import { ConfirmationService } from 'primeng/api';
     DropdownModule,
     ConfirmDialogModule,
     MessagesModule,
+    TagModule
   ],
   providers: [provideHttpClient(), provideAnimations(), ConfirmationService],
   bootstrap: [AppComponent],
