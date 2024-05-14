@@ -37,6 +37,7 @@ export class ReservationComponent implements OnInit {
 
   ngOnInit(): void {
     this.loadCinemaHallSeats();
+    this.authService.checkTokenExpiration();
   }
 
   // seatingLayout: any[][];
