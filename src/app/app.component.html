@@ -5,7 +5,7 @@
 
   @if (authService.isLogged$ | async) {
   <div style="float: right; font-size: 20px;">
-    <button (mouseenter)="op.toggle($event)" class="headerButton" pButton>
+    <button (mouseenter)="op.toggle($event)" class="header-button" pButton>
       <i style="padding-right: 5px;" class="pi pi-user"></i> Profile
     </button>
 
@@ -36,10 +36,10 @@
 
   @else {
   <div style="float: right; font-size: 20px;">
-    <button routerLink="/login" class="headerButton" pButton>
+    <button routerLink="/login" class="header-button" pButton>
       <i style="padding-right: 5px;" class="pi pi-sign-in"></i> Login
     </button>
-    <button routerLink="/register" class="headerButton" pButton>
+    <button routerLink="/register" class="header-button" pButton>
       <i style="padding-right: 5px;" class="pi pi-user-plus"></i>Register
     </button>
   </div>

@@ -4,16 +4,6 @@
     align-items: center;
 }
 
-body {
-  /* Dodaj gradient linearny jako tło */
-  background: linear-gradient(to bottom, #f0f0f0, #cccccc);
-  /* Dodaj dodatkowy tło na wypadek, gdyby gradient nie został załadowany */
-  background-color: #cccccc; /* szary kolor jako fallback */
-  /* Ustawienie tła na całą stronę */
-  background-attachment: fixed;
-  background-size: cover;
-}
-
 .field {
   display: flex;
   flex-direction: column;

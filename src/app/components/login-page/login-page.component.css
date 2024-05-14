@@ -4,21 +4,29 @@
     align-items: center;
 }
 
-body {
-  /* Dodaj gradient linearny jako tło */
-  background: linear-gradient(to bottom, #f0f0f0, #cccccc);
-  /* Dodaj dodatkowy tło na wypadek, gdyby gradient nie został załadowany */
-  background-color: #cccccc; /* szary kolor jako fallback */
-  /* Ustawienie tła na całą stronę */
-  background-attachment: fixed;
-  background-size: cover;
+.p-card {
+  width: 560px; 
+  border-radius: 25px; 
+  text-align: center; 
+  color:#FF5D73;
+  background: rgb(14,14,14);
+background: linear-gradient(135deg, rgba(14,14,14,1) 0%, rgba(73,73,73,1) 100%);
+}
+
+.register-passwordarea {
+  width: 100%;
+  border-radius: 5px;
+}
+
+.p-password-panel {
+  color: #FF5D73;
 }
 
 .field {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  margin-bottom: 15px;
+  margin-bottom: 10px;
 }
 
 .field label {
@@ -28,21 +36,67 @@ body {
 
 .field input, .field p-password {
   width: 100%;
+  background-color: #494949;
+  color: #FF5D73;
+  border-color: #000000;
+  border-radius: 5px;
 }
 
-.loginButton {
+.login-button {
     margin-top: 5px;
     height: 50px;
     width: 220px;
     color: aliceblue;
-    background-color: #464e8b;
+    background-color: #FF5D73;
+    border-color: #000000;
 }
 
-.registerButton {
+.register-button {
     margin-top: 5px;
     height: 50px;
     width: 220px;
-    color: rgb(58, 58, 58);
-    border-color: rgb(214, 213, 213);
-    background-color: white;
+    color: #FFFFFF;
+    border-color: #000000;
+    background-color: #7c7a7a;
+}
+
+.custom-divider.p-divider.p-divider-center.p-divider-horizontal.p-divider-solid {
+  position: relative;
+  padding: 2;
+}
+
+.custom-divider.p-divider-center.p-divider-horizontal.p-divider-solid::before{
+  content: "";
+  position: absolute;
+  top: 50%;
+  width: 27%;
+  height: 1px;
+  z-index: 0;
+  background-color: #FF5D73;
+}
+
+.custom-divider.p-divider-center.p-divider-horizontal.p-divider-solid::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  width: 27%;
+  height: 2px;
+  z-index: 0;
+  background-color: #FF5D73;
+}
+
+.custom-divider.p-divider-center.p-divider-horizontal.p-divider-solid::before {
+  left: 0;
+  border-color: transparent;
+}
+
+.custom-divider.p-divider-center.p-divider-horizontal.p-divider-solid::after {
+  right: 0;
+  border-color: transparent;
+}
+
+.custom-divider .p-divider-content {
+  background-color: transparent !important;
+  color: #FF5D73;
+  position: relative;
 }

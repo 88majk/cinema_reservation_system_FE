@@ -1,7 +1,7 @@
 header {
     position: fixed;
-    background-color: #464e8b;
-    color: aliceblue;
+    background-color: #000000;
+    color: #FF5D73;
     width: 100%;
     height:fit-content;
     height: 60px;
@@ -28,11 +28,11 @@ i {
     background-color: #464e8b;
 }
 
-.headerButton {
+.header-button {
     height: 40px;
     margin-top: 5px;
     margin-left: 5px;
-    color: rgb(58, 58, 58);
-    border-color: rgb(214, 213, 213);
-    background-color: white;
+    color: #FFFFFF;
+    border-color: #000000;
+    background-color: #FF5D73;
 }

@@ -18,6 +18,7 @@ export class LoginPageComponent {
   private authService = inject(AuthService);
 
   isLogging: boolean = false;
+  errorMessage: string = "";
 
   loginClick() {
     this.isLogging = true;
@@ -41,14 +42,21 @@ export class LoginPageComponent {
       setTimeout(() => {
         this.authService.authorization(data).subscribe((response) => {
           console.log(response);
+          this.router.navigate(['/homePage']);
         },
         error => {
-          console.log(error);
+          console.log(error.error);
+          this.errorMessage = error.error;
+          this.clearErrorAfterTimeout();
         }
-        );
-        this.router.navigate(['/homePage']);
+        ); 
       }, 1200);
-      
     }
+  }
+
+  clearErrorAfterTimeout(): void {
+    setTimeout(() => {
+      this.errorMessage = "";
+    }, 5000);
   }
 }

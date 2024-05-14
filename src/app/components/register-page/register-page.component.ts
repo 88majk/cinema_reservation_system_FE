@@ -1,8 +1,10 @@
-import { Component, ViewEncapsulation, inject } from '@angular/core';
+import { Component, ViewEncapsulation, inject, input } from '@angular/core';
 import { RegisterData } from '../../models/register-data';
 import { RegisterService } from '../../services/register.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { AuthService } from '../../services/auth.service';
+import { LoginData } from '../../models/login-data';
 
 @Component({
   selector: 'app-register-page',
@@ -14,33 +16,69 @@ export class RegisterPageComponent {
   registerForm: FormGroup = new FormGroup({});
 
   private registerService = inject(RegisterService);
+  private authService = inject(AuthService);
 
-  constructor(private formBuilder: FormBuilder, private router: Router) { }
+  errorMessage: string = "";
+  isRegistering: boolean = false;
 
-  ngOnInit(){
+  constructor(private formBuilder: FormBuilder, private router: Router) {}
+
+  ngOnInit() {
     this.registerForm = this.formBuilder.group({
       email: ['', [Validators.required, Validators.email]],
       name: ['', [Validators.required]],
       surname: ['', [Validators.required]],
       date_of_birth: ['', [Validators.required]],
-      password: ['', [Validators.required]]
-    } as unknown as RegisterData);
+      password: ['', [Validators.required]],
+      retPassword: ['', [Validators.required]],
+    });
   }
 
-  sendRegisterData(){
-    const data = {...this.registerForm.value};
-    if (this.registerForm.valid) {
+  sendRegisterData() {
+    if (this.validateForm()) {
+      const { email, name, surname, date_of_birth, password } = this.registerForm.value;
+      const registerData: RegisterData = { email, name, surname, date_of_birth, password };
+      const loginData: LoginData = { email, password };
       setTimeout(() => {
-        this.registerService.postRegisterData(data).subscribe(
+        this.registerService.postRegisterData(registerData).subscribe(
           (response) => {
             console.log(response);
+            this.authService.authorization(loginData).subscribe(
+              (response) => {
+                console.log(response);
+                this.router.navigate(['/homePage']);
+              },
+              (error) => {
+                console.log(error); 
+              }
+            );
           },
           (error) => {
             console.log(error);
-          });
-          this.router.navigate(['/homePage']);
+            this.errorMessage = error.error;
+            this.clearErrorAfterTimeout();
+          }
+        );
       }, 1000);
-      
     }
+  }
+
+  clearErrorAfterTimeout(): void {
+    setTimeout(() => {
+      this.errorMessage = "";
+    }, 5000);
+  }
+
+  validateForm(): boolean {
+    return this.registerForm.valid && 
+    (this.registerForm.value.password === this.registerForm.value.retPassword);
+  }
+
+  registerClick(): void {
+    if(this.validateForm())
+    this.isRegistering = true;
+    setTimeout(() => {
+      this.isRegistering = false;
+    }, 1200);
   }
 }
