@@ -1,3 +1,13 @@
+.error-message {
+    position: fixed;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 98%;
+    margin-top: 65px;
+    z-index: 9999; /* Upewnij się, że komunikat będzie zawsze na wierzchu */
+}
+
 body {
     /* Dodaj gradient linearny jako tło */
     background: linear-gradient(to bottom, #f0f0f0, #cccccc);

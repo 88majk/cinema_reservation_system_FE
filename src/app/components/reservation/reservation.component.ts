@@ -30,13 +30,19 @@ export class ReservationComponent implements OnInit {
   selectedSeats: Seat[] = []; 
   isSeatsSelected: boolean = true;
   movieSessionId!: number;
-  bookingNumber: number | null = null;
+  bookingNumber: number = -1;
   errorMessage: string = '';
+  messages: any[] = [];
   @ViewChild('confirmation') confirmation: any;
 
 
   ngOnInit(): void {
     this.loadCinemaHallSeats();
+    const successMessage = localStorage.getItem('successMessage');
+    if (successMessage) {
+        this.messages.push({severity:'success', summary:'Success', detail: successMessage});
+        localStorage.removeItem('successMessage'); // Usuń komunikat po wyświetleniu
+    }
   }
 
   // seatingLayout: any[][];
@@ -89,29 +95,43 @@ export class ReservationComponent implements OnInit {
     }
 
     if (imageUrl && imageUrl === 'assets/chair-grey.png') {
-      return; // Nie wykonujemy żadnych działań dla szarego siedzenia
+        return; // Nie wykonujemy żadnych działań dla szarego siedzenia
     }
 
-    if (target.classList.contains('clicked')) {
-      // Usuwamy miejsce z listy wybranych miejsc
-      const index = this.selectedSeats.findIndex(selectedSeat => selectedSeat.seatId === seat.seatId);
-      if (index !== -1) {
+    const index = this.selectedSeats.findIndex(selectedSeat => selectedSeat.seatId === seat.seatId);
+
+    if (index !== -1) {
+        // Usuwamy miejsce z listy wybranych miejsc i usuwamy podświetlenie
         this.selectedSeats.splice(index, 1);
-      }
-
-      target.classList.remove('clicked');
-      img?.classList.remove('clicked');
+        target.classList.remove('clicked');
+        img?.classList.remove('clicked');
     } else {
-      // Dodajemy miejsce do listy wybranych miejsc
-      this.selectedSeats.push(seat);
-
-      target.classList.add('clicked');
-      img?.classList.add('clicked');
+        // Dodajemy miejsce do listy wybranych miejsc i dodajemy podświetlenie
+        this.selectedSeats.push(seat);
+        target.classList.add('clicked');
+        img?.classList.add('clicked');
     }
 
     console.log(this.selectedSeats);
-  }
+}
 
+
+  deleteButtonClick(event: MouseEvent, seat: Seat){
+    const rowIndex = seat.row.toLowerCase().charCodeAt(0) - 97;
+
+    console.log("Usuwam siedzenie z rzędu", rowIndex, "i kolumny", seat.column);
+
+    const seatToRemoveIndex = this.selectedSeats.findIndex(selectedSeat => selectedSeat.seatId === seat.seatId);
+    if (seatToRemoveIndex !== -1) {
+        this.selectedSeats.splice(seatToRemoveIndex, 1);
+
+        // Znajdź siedzenie odpowiadające klikniętemu przyciskowi
+        const seatElement = document.querySelector(`.row:nth-child(${rowIndex + 1}) .seat:nth-child(${seat.column})`);
+        if (seatElement) {
+            seatElement.classList.remove('clicked');
+        }
+    }
+  }
   
   loadCinemaHallSeats(): void {
     this.route.paramMap.subscribe(params => {
@@ -145,36 +165,38 @@ export class ReservationComponent implements OnInit {
     return totalPrice;
   }
 
-  handleButtonClick(): void {
+  handleButtonClick(bookingStatus: number): void {
     if (!this.selectedSeats || this.selectedSeats.length === 0){
       this.isSeatsSelected = false;
       return;
     }
     else{
       this.isSeatsSelected = true;
-      const createBookingRequestData = this.createBookingRequestData();
+      const createBookingRequestData = this.createBookingRequestData(bookingStatus);
       console.log(createBookingRequestData)
       this.reservationService.postNewBooking(createBookingRequestData).subscribe({
         next: (response) => {
-          this.bookingNumber = Number(response.reservationNumber); // Zakładając, że backend zwraca numer rezerwacji
-          this.loadCinemaHallSeats();
+          this.bookingNumber = Number(response.reservationNumber);
           this.showConfirmationDialog();
           console.log(this.bookingNumber)
         },
         error: (error) => {
           console.log(error.error)
+          this.messages = [];
+          this.messages.push({severity:'error', summary:'Error', detail:`${error.error}. Please reload page.`});
+                
         }
       });
     }
   }
 
-  createBookingRequestData(): BookingRequestData {
+  createBookingRequestData(bookingStatus: number): BookingRequestData {
     const bookingSeats: BookingSeat[] = [];
     const user_token = localStorage.getItem('user_token');
 
     for (let i = 0; i < this.selectedSeats.length; i++){
       const bookingSeat: BookingSeat = {
-        bookingStatus: 1,
+        bookingStatus: bookingStatus,
         seatId: this.selectedSeats[i].seatId
       };
       bookingSeats.push(bookingSeat);
@@ -190,7 +212,8 @@ export class ReservationComponent implements OnInit {
     const bookingRequestData: BookingRequestData = {
       token: user_token ?? "",
       totalPrice: this.calculateTotalPrice(),
-      bookingStatus: 1,
+      bookingStatus: bookingStatus,
+      bookingNumber: this.bookingNumber,
       bookingMovieSessionDtoList: bookingMovieSessions
     }
 
@@ -198,17 +221,26 @@ export class ReservationComponent implements OnInit {
   } 
 
   showConfirmationDialog() {
+
+    const totalPrice = this.calculateTotalPrice();
+    const numberOfTickets = this.selectedSeats.length;
     this.confirmationService.confirm({
-      message: 'Your message goes here',
-      header: 'Confirmation',
+      message: `You buy ${numberOfTickets} ticket for a total of ${totalPrice}$`,
+      header: 'Confirm payment',
       accept: () => {
           // Akcja po zaakceptowaniu dialogu
-          this.selectedSeats = []
+          this.handleButtonClick(2);
           console.log('Accepted');
-      },
+          //this.selectedSeats = []
+          localStorage.setItem('successMessage', `You have completed the payment. Your reservation number is ${this.bookingNumber}.`);
+          window.location.reload();
+                },
       reject: () => {
           // Akcja po odrzuceniu dialogu
           console.log('Rejected');
+          this.messages = [];
+          this.messages.push({severity:'info', summary:'Info', detail:`You reject the payment. Your temporary reservation number is ${this.bookingNumber}.
+           You can change your booking here and confirm your payment or do it in the my orders tab. `});
       }
     });
   }

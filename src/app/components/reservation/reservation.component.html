@@ -1,3 +1,8 @@
+<p-messages [value]="messages" [enableService]="false" [closable]="true" 
+    [showTransitionOptions]="'500ms'" 
+    [hideTransitionOptions]="'500ms'" 
+    class="error-message"></p-messages>
+
 <form class="form-container" [formGroup]="reservationPage">
     <p-card class="card-container">
         <h2 class="seating-header">Choose Your Seats</h2>
@@ -65,7 +70,8 @@
                             icon="pi pi-trash" 
                             severity="danger" 
                             [rounded]="true" 
-                            [outlined]="true" 
+                            [outlined]="true"
+                            (click)="deleteButtonClick($event, seat)"
                              />
                     </td>
                 </tr>
@@ -85,7 +91,7 @@
         </div>
         <p-confirmDialog #confirmation></p-confirmDialog>
         <div class="btnwallet">
-            <button class="button" (click)="handleButtonClick()">
+            <button class="button" (click)="handleButtonClick(1)">
                 <span class="button__text">
                     <span>B</span><span>u</span>y <span>t</span>i<span>c</span><span>k</span><span>e</span><span>t</span>
                 </span>                
