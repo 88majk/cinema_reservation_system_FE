@@ -10,45 +10,48 @@
                     Personal information
                 </ng-template>
                 <ng-template pTemplate="content">
-                    <div style="display: flex; justify-content: space-between;">
-                        <div style="flex: 1;">
-                            <div class="field">
-                                <label>Name</label>
-                                <input type="text" placeholder="{{userData.name}}" pInputText [attr.disabled]="isDisabled ? true : null"
-                                    class="input-area">
-                            </div>
-                            <div class="field">
-                                <label>E-mail</label>
-                                <input type="text" placeholder="{{userData.email}}" [attr.disabled]="isDisabled ? true : null" class="input-area"
-                                    pInputText>
-                            </div>
+                    <form [formGroup]="updateForm" (submit)="updateUserData()">
+                        <div style="display: flex; justify-content: space-between;">
+                            <div style="flex: 1;">
+                                <div class="field">
+                                    <label>Name</label>
+                                    <input type="text" formControlName="name" placeholder="{{userData.name}}" pInputText
+                                        [attr.disabled]="isDisabled ? true : null" class="input-area">
+                                </div>
+                                <div class="field">
+                                    <label>E-mail</label>
+                                    <input type="text" formControlName="email" placeholder="{{userData.email}}"
+                                        [attr.disabled]="isDisabled ? true : null" class="input-area" pInputText>
+                                </div>
 
-                        </div>
-                        <div style="flex: 1">
-                            <div class="field">
-                                <label>Surname</label>
-                                <input type="text" placeholder="{{userData.surname}}" [attr.disabled]="isDisabled ? true : null" class="input-area"
-                                    pInputText>
                             </div>
-                            <div class="field">
-                                <label>Birth date</label>
-                                <p-calendar [style]="{'width':'400px'}" [inputStyle]="{'width':'100%',}"
-                                    [disabled]="isDisabled" [dateFormat]="'yy-mm-dd'" [showIcon]="true"
-                                    [iconDisplay]="'input'" [(ngModel)]="userData.dateOfBirth" />
+                            <div style="flex: 1">
+                                <div class="field">
+                                    <label>Surname</label>
+                                    <input type="text" formControlName="surname" placeholder="{{userData.surname}}"
+                                        [attr.disabled]="isDisabled ? true : null" class="input-area" pInputText>
+                                </div>
+                                <div class="field">
+                                    <label>Birth date</label>
+                                    <p-calendar [style]="{'width':'400px'}" formControlName="dateOfBirth"
+                                        [inputStyle]="{'width':'100%',}" [disabled]="isDisabled"
+                                        [dateFormat]="'yy-mm-dd'" [showIcon]="true" [iconDisplay]="'input'"
+                                        [(ngModel)]="userData.dateOfBirth" />
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <div style="justify-content: flex-end;">
-                        <button pButton (click)="isDisabled ? isDisabled = false : isDisabled = false"
-                        [ngClass]="isDisabled ? 'edit-button' : 'delete-button'">
-                            <span class="p-button-label">{{ isDisabled ? 'Edit' : 'Confirm changes' }}</span>
-                        </button>
-                        @if(!isDisabled){
-                        <button pButton (click)="isDisabled = true" class="back-button">
-                            Back
-                        </button>
-                        }
-                    </div>
+                        <div style="justify-content: flex-end;">
+                            <button pButton (click)="isDisabled ? isDisabled = false : isDisabled = true"
+                                [ngClass]="isDisabled ? 'edit-button' : 'delete-button'" type="submit">
+                                <span class="p-button-label">{{ isDisabled ? 'Edit' : 'Back' }}</span>
+                            </button>
+                            @if(!isDisabled){
+                            <button pButton type="submit" class="back-button">
+                                Confirm Changes
+                            </button>
+                            }
+                        </div>
+                    </form>
                 </ng-template>
             </p-fieldset>
         </div>
@@ -61,21 +64,23 @@
                     <button pButton (click)="showDialog()" label="Change password" class="edit-button"></button>
                     <p-dialog header="Change your password" [modal]="true" [(visible)]="visible"
                         [style]="{ width: '400px' }">
-                        <div style="display: flex; flex-direction: column;">
-                            <label style="margin-bottom: 5px;">Password</label>
-                            <p-password [feedback]="false" [toggleMask]="true"></p-password>
-                        </div>
-                        <div style="display: flex; flex-direction: column; margin-top: 15px;">
-                            <label style="margin-bottom: 5px;">Confirm password</label>
-                            <p-password [feedback]="false" [toggleMask]="true"></p-password>
-                        </div>
-                        <div
-                            style="display: flex; justify-content: space-between; margin-top: 25px; padding-right: 15px;">
-                            <button pButton label="Back" severity="secondary" (click)="visible = false"
-                                style="width: 120px;" class="edit-button"></button>
-                            <button pButton label="Save" (click)="visible = false" style="width: 120px;"
-                                class="delete-button"></button>
-                        </div>
+                        <form [formGroup]="updatePasswordForm" (submit)="updateUserPassword()">
+                            <div style="display: flex; flex-direction: column;">
+                                <label style="margin-bottom: 5px;">Password</label>
+                                <p-password formControlName="password" [feedback]="false" [toggleMask]="true"></p-password>
+                            </div>
+                            <div style="display: flex; flex-direction: column; margin-top: 15px;">
+                                <label style="margin-bottom: 5px;">Confirm password</label>
+                                <p-password formControlName="retPassword" [feedback]="false" [toggleMask]="true"></p-password>
+                            </div>
+                            <div
+                                style="display: flex; justify-content: space-between; margin-top: 25px; padding-right: 15px;">
+                                <button pButton label="Back" severity="secondary" (click)="visible = false"
+                                    style="width: 120px;" class="edit-button"></button>
+                                <button pButton label="Save" type="submit" style="width: 120px;"
+                                    class="delete-button"></button>
+                            </div>
+                        </form>
                     </p-dialog>
                 </div>
             </p-fieldset>
@@ -87,7 +92,8 @@
                 </div>
                 <div style="margin-top: 15px;">
                     <button pButton class="delete-button">
-                        <i class="pi pi-trash" style="margin-right: 5px;"></i> <span class="p-button-label">Delete account</span>
+                        <i class="pi pi-trash" style="margin-right: 5px;"></i> <span class="p-button-label">Delete
+                            account</span>
                     </button>
                 </div>
             </p-fieldset>
