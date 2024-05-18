@@ -33,12 +33,13 @@ import { FieldsetModule } from 'primeng/fieldset';
 import { DialogModule } from 'primeng/dialog';
 import { ConfirmationService } from 'primeng/api';
 import { TagModule } from 'primeng/tag';
-import { OrderDetailsComponent } from './components/order-details/order-details.component';
+import { PanelModule } from 'primeng/panel';
+import { DataViewModule } from 'primeng/dataview';
 
 
 
 @NgModule({
-  declarations: [AppComponent, RegisterPageComponent, LoginPageComponent, HomePageComponent, MovieSessionComponent, UserOrdersComponent, UserProfileComponent, ReservationComponent, OrderDetailsComponent],
+  declarations: [AppComponent, RegisterPageComponent, LoginPageComponent, HomePageComponent, MovieSessionComponent, UserOrdersComponent, UserProfileComponent, ReservationComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
@@ -62,7 +63,9 @@ import { OrderDetailsComponent } from './components/order-details/order-details.
     DropdownModule,
     ConfirmDialogModule,
     MessagesModule,
-    TagModule
+    TagModule,
+    PanelModule,
+    DataViewModule
   ],
   providers: [provideHttpClient(), provideAnimations(), ConfirmationService],
   bootstrap: [AppComponent],

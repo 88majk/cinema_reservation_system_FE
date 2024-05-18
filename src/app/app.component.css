@@ -1,34 +1,32 @@
 header {
-    position: fixed;
-    background-color: #000000;
-    color: #FF5D73;
-    width: 100%;
-    height:fit-content;
-    height: 60px;
-    padding: 15px; 
-    display: flex; 
-    justify-content: space-between; 
-    align-items: center;
-    z-index: 10000;
+  position: fixed;
+  background-color: #000000;
+  color: #ff5d73;
+  width: 100%;
+  height: fit-content;
+  height: 75px;
+  padding: 15px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  z-index: 10000;
 }
 
 a {
-    text-decoration: none;
+  text-decoration: none;
 }
 
 i {
-    font-size: 1.1rem;
+  font-size: 1.1rem;
 }
 
-
-
 .p-overlaypanel .p-overlaypanel-content {
-    padding: 15px;
-    color: #FF5D73;
-    background-color: #494949;
-    border-radius: 5px;
-    border-width: 2px;
-    border-color: #FF5D73;
+  padding: 15px;
+  color: #ff5d73;
+  background-color: #494949;
+  border-radius: 5px;
+  border-width: 2px;
+  border-color: #ff5d73;
 }
 
 .p-overlaypanel::before,
@@ -37,29 +35,48 @@ i {
 }
 
 .pop-up-button {
-    width: 160px;
-    margin-top: 5px;
-    text-align: center;
-    color: aliceblue;
-    background-color: #FF5D73;
-    border-color: #FF5D73;
-    transition: transform 0.2s ease-in-out;
+  width: 160px;
+  margin-top: 5px;
+  text-align: center;
+  color: aliceblue;
+  background-color: #ff5d73;
+  border-color: #ff5d73;
+  transition: transform 0.2s ease-in-out;
 }
 
 .pop-up-button:hover {
-    transform: scale(1.04);
+  transform: scale(1.04);
 }
 
 .header-button {
-    height: 40px;
-    margin-top: 5px;
-    margin-left: 5px;
-    color: #FFFFFF;
-    border-color: #000000;
-    background-color: #FF5D73;
-    transition: transform 0.2s ease-in-out;
+  height: 40px;
+  margin-top: 5px;
+  margin-left: 5px;
+  color: #ffffff;
+  border-color: #000000;
+  background-color: #ff5d73;
+  transition: transform 0.2s ease-in-out;
 }
 
 .header-button:hover {
-    background-color: #ee586c;
+  background-color: #ee586c;
+}
+
+.a-header {
+    color: #ff5d73;
+    margin-right: 20px;
+    transition: 0.2s ease-in-out;
+}
+
+.a-title {
+  color: #ff5d73;
+  margin-right: 20px;
+  margin-left: 20px;
+  transition: 0.2s ease-in-out;
+  font-size: 35px;
+}
+
+.a-header:hover {
+    transform: scale(1.06);
+    cursor: pointer;
 }

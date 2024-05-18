@@ -1,9 +1,14 @@
+import { Time } from "@angular/common";
+
 export type OrderDetails = {
-    seat: string;
+    seats: string;
+    seatType: string;
     price: number;
     movieName: string;
     cinemaName: string;
     hallName: string;
+    sessionDate: Date;
+    sessionTime: Time;
     movieSessionId: number;
     bookingNumber: number;
 }

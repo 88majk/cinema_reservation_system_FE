@@ -1,12 +1,24 @@
+body {
+  background-image: url("/assets/cover.jpg");
+  background-size: cover; 
+  background-position: center; 
+  background-repeat: no-repeat; 
+  height: 100vh;
+  margin: 0; 
+}
+
 .form-container {
   display: flex;
-  flex-direction: column;
-  align-items: center;
+  flex-direction: row;
+  justify-content: flex-end;
+  margin-right: 250px;
+  animation: fadeIn 0.4s ease-in-out;
 }
 
 .p-card {
   width: 560px;
   border-radius: 25px;
+  border: 2px #ff5d73 solid;
   text-align: center;
   color: #ff5d73;
   background: rgb(14, 14, 14);
@@ -30,6 +42,7 @@
   display: flex;
   flex-direction: column;
   align-items: flex-start;
+  margin-right: 15px;
   margin-bottom: 15px;
 }
 
@@ -49,10 +62,10 @@
 }
 
 .p-password-panel {
-  border: 3px solid #FF5D73;
+  border: 3px solid #ff5d73;
   border-radius: 5px;
   background-color: #000000;
-  color: #FF5D73;
+  color: #ff5d73;
   padding-bottom: 8px;
 }
 
@@ -60,17 +73,17 @@
   border-radius: 5px;
 }
 
-.p-datepicker{
+.p-datepicker {
   height: auto;
   width: auto;
-  border: 2px solid #FF5D73;
+  border: 2px solid #ff5d73;
   border-radius: 5px;
   background-color: #000000;
   color: #a5a5a5;
 }
 
 .p-datepicker-header {
-  color: #FF5D73;
+  color: #ff5d73;
   background-color: #000000;
 }
 
@@ -97,14 +110,14 @@
   padding: 2;
 }
 
-.custom-divider.p-divider-center.p-divider-horizontal.p-divider-solid::before{
+.custom-divider.p-divider-center.p-divider-horizontal.p-divider-solid::before {
   content: "";
   position: absolute;
   top: 50%;
   width: 27%;
   height: 1px;
   z-index: 0;
-  background-color: #FF5D73;
+  background-color: #ff5d73;
 }
 
 .custom-divider.p-divider-center.p-divider-horizontal.p-divider-solid::after {
@@ -114,7 +127,7 @@
   width: 27%;
   height: 2px;
   z-index: 0;
-  background-color: #FF5D73;
+  background-color: #ff5d73;
 }
 
 .custom-divider.p-divider-center.p-divider-horizontal.p-divider-solid::before {
@@ -129,6 +142,6 @@
 
 .custom-divider .p-divider-content {
   background-color: transparent !important;
-  color: #FF5D73;
+  color: #ff5d73;
   position: relative;
 }
