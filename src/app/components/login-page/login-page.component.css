@@ -1,16 +1,32 @@
+body {
+  background-image: url("/assets/cover.jpg");
+  background-size: cover; 
+  background-position: center; 
+  background-repeat: no-repeat; 
+  height: 100vh;
+  margin: 0; 
+}
+
 .form-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  margin-right: 250px;
+  animation: fadeIn 0.5s ease-in-out;
 }
 
 .p-card {
-  width: 560px; 
-  border-radius: 25px; 
-  text-align: center; 
-  color:#FF5D73;
-  background: rgb(14,14,14);
-background: linear-gradient(135deg, rgba(14,14,14,1) 0%, rgba(73,73,73,1) 100%);
+  width: 560px;
+  border-radius: 25px;
+  border: 2px #ff5d73 solid;
+  text-align: center;
+  color: #ff5d73;
+  background: rgb(14, 14, 14);
+  background: linear-gradient(
+    135deg,
+    rgba(14, 14, 14, 1) 0%,
+    rgba(73, 73, 73, 1) 100%
+  );
 }
 
 .register-passwordarea {
@@ -19,7 +35,7 @@ background: linear-gradient(135deg, rgba(14,14,14,1) 0%, rgba(73,73,73,1) 100%);
 }
 
 .p-password-panel {
-  color: #FF5D73;
+  color: #ff5d73;
 }
 
 .field {
@@ -34,30 +50,31 @@ background: linear-gradient(135deg, rgba(14,14,14,1) 0%, rgba(73,73,73,1) 100%);
   margin-bottom: 5px;
 }
 
-.field input, .field p-password {
+.field input,
+.field p-password {
   width: 100%;
   background-color: #494949;
-  color: #FF5D73;
+  color: #ff5d73;
   border-color: #000000;
   border-radius: 5px;
 }
 
 .login-button {
-    margin-top: 5px;
-    height: 50px;
-    width: 220px;
-    color: aliceblue;
-    background-color: #FF5D73;
-    border-color: #000000;
+  margin-top: 5px;
+  height: 50px;
+  width: 220px;
+  color: aliceblue;
+  background-color: #ff5d73;
+  border-color: #000000;
 }
 
 .register-button {
-    margin-top: 5px;
-    height: 50px;
-    width: 220px;
-    color: #FFFFFF;
-    border-color: #000000;
-    background-color: #7c7a7a;
+  margin-top: 5px;
+  height: 50px;
+  width: 220px;
+  color: #ffffff;
+  border-color: #000000;
+  background-color: #7c7a7a;
 }
 
 .custom-divider.p-divider.p-divider-center.p-divider-horizontal.p-divider-solid {
@@ -65,14 +82,14 @@ background: linear-gradient(135deg, rgba(14,14,14,1) 0%, rgba(73,73,73,1) 100%);
   padding: 2;
 }
 
-.custom-divider.p-divider-center.p-divider-horizontal.p-divider-solid::before{
+.custom-divider.p-divider-center.p-divider-horizontal.p-divider-solid::before {
   content: "";
   position: absolute;
   top: 50%;
   width: 27%;
   height: 1px;
   z-index: 0;
-  background-color: #FF5D73;
+  background-color: #ff5d73;
 }
 
 .custom-divider.p-divider-center.p-divider-horizontal.p-divider-solid::after {
@@ -82,7 +99,7 @@ background: linear-gradient(135deg, rgba(14,14,14,1) 0%, rgba(73,73,73,1) 100%);
   width: 27%;
   height: 2px;
   z-index: 0;
-  background-color: #FF5D73;
+  background-color: #ff5d73;
 }
 
 .custom-divider.p-divider-center.p-divider-horizontal.p-divider-solid::before {
@@ -97,6 +114,6 @@ background: linear-gradient(135deg, rgba(14,14,14,1) 0%, rgba(73,73,73,1) 100%);
 
 .custom-divider .p-divider-content {
   background-color: transparent !important;
-  color: #FF5D73;
+  color: #ff5d73;
   position: relative;
 }

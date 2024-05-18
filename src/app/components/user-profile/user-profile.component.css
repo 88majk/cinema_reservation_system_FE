@@ -2,6 +2,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  animation: fadeIn 0.5s ease-in-out;
 }
 
 .p-card {
@@ -89,6 +90,7 @@
     border-color: #000000;
     background-color: #7c7a7a;
     transition: transform 0.2s ease-in-out;
+    animation: slideIn 0.3s ease-in-out;
 }
 
 .edit-button:hover {
@@ -102,6 +104,7 @@
     color: #ffffff;
     background-color: #ff5d73;
     transition: transform 0.2s ease-in-out;
+    animation: slideIn 0.3s ease-in-out;
 }
 
 .delete-button:hover {
@@ -115,6 +118,7 @@
     border-color: rgb(214, 213, 213);
     background-color: white;
     transition: transform 0.2s ease-in-out;
+    animation: slideIn 0.3s ease-in-out;
 }
 
 .back-button:hover {

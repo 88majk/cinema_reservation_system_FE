@@ -1,13 +1,22 @@
 <header class="header">
-  <div>
-    <a routerLink="/homePage" style="text-decoration: none; color: inherit; font-size: 35px;">CinemaResSys</a>
+  <div style="display: flex; flex-direction: row; align-items: center; justify-content: space-between;">
+    <div style="display: flex; flex-direction: row; float: left; font-size: 20px;">
+      <a routerLink="/homePage" class="a-title">
+        Cinematick
+      </a>
+    </div>
+    <div style="display: flex; margin-left: 30px; flex-direction: row; align-items: self-start; font-size: 20px;">
+      <a routerLink="/homePage" class="a-header">
+        Repertoir
+      </a>
+    </div>
   </div>
 
   @if (authService.isLogged$ | async) {
-  <div style="float: right; font-size: 20px;">
-    <button (mouseenter)="op.toggle($event)" class="header-button" pButton>
+  <div style="display: flex; flex-direction: row; float: right; font-size: 20px;">
+    <a (mouseenter)="op.toggle($event)" class="a-header">
       <i style="padding-right: 5px;" class="pi pi-user"></i> Profile
-    </button>
+    </a>
 
     <p-overlayPanel [style]="{'display': 'flex', 'justify-content': 'center'}"  #op>
       <div style="display: flex; flex-direction: column; align-items: center;">
@@ -35,13 +44,14 @@
   } 
 
   @else {
-  <div style="float: right; font-size: 20px;">
-    <button routerLink="/login" class="header-button" pButton>
+  <div style="display:flex; flex-direction: row; float: right; font-size: 20px;">
+    <a routerLink="/login" class="a-header">
       <i style="padding-right: 5px;" class="pi pi-sign-in"></i> Login
-    </button>
-    <button routerLink="/register" class="header-button" pButton>
+    </a>
+    <!-- <p-divider layout="vertical" styleClass="custom-divider"></p-divider> -->
+    <a routerLink="/register" class="a-header">
       <i style="padding-right: 5px;" class="pi pi-user-plus"></i>Register
-    </button>
+    </a>
   </div>
   }
 </header>

@@ -5,6 +5,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthService } from '../../services/auth.service';
 import { LoginData } from '../../models/login-data';
+import { ExampleOpinions } from '../../models/example-opinions';
 
 @Component({
   selector: 'app-register-page',
@@ -14,6 +15,17 @@ import { LoginData } from '../../models/login-data';
 })
 export class RegisterPageComponent {
   registerForm: FormGroup = new FormGroup({});
+
+  opinions: ExampleOpinions[] = [
+    {
+      username: 'Alex',
+      opinion: 'Fast and simple.'
+    },
+    {
+      username: 'Mike',
+      opinion: 'Very easy reservation.'
+    }
+  ];
 
   private registerService = inject(RegisterService);
   private authService = inject(AuthService);
