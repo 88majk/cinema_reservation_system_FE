@@ -12,6 +12,7 @@ body {
   flex-direction: row;
   justify-content: flex-end;
   margin-right: 250px;
+  margin-top: 40px;
   animation: fadeIn 0.5s ease-in-out;
 }
 
