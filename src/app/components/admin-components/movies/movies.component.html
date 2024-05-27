@@ -1,0 +1,134 @@
+<div class="container">
+    <p-card header="Movie managment page">
+        <div>
+            <p-tabView styleClass="admin-tabview">
+                <p-tabPanel header="Add">
+                    <form [formGroup]="movieForm" (submit)="sendNewMovie()" id="addMovieForm">
+                        <div class="group-form-group">
+                            <div class="form-group">
+                                <label for="name">Movie name:</label>
+                                <input formControlName="name" type="text" id="name" name="name" pInputText>
+                            </div>
+                            <div class="form-group">
+                                <label for="releaseDate">Release Date:</label>
+                                <input formControlName="releaseDate" type="date" id="releaseDate" name="releaseDate" value="2024-05-27" pInputText>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="description">Description:</label>
+                            <textarea formControlName="description" id="description" name="description" [autoResize]="true" pInputTextarea></textarea>
+                        </div>
+
+                        <div class="group-form-group">
+                            <div class="form-group">
+                                <label for="minimumAge">Minimum Age:</label>
+                                <input formControlName="minimumAge" type="number" id="minimumAge" name="minimumAge" pInputText>
+                            </div>
+                            <div class="form-group">
+                                <label for="duration">Duration (minutes):</label>
+                                <input formControlName="duration" type="number" id="duration" name="duration" pInputText>
+                            </div>
+                        </div>
+                        <div class="group-form-group">
+                            <div class="form-group">
+                                <label for="productionCountry">Production Country:</label>
+                                <input formControlName="productionCountry" type="text" id="productionCountry" name="productionCountry" pInputText>
+                            </div>
+                            <div class="form-group">
+                                <label for="director">Director:</label>
+                                <input formControlName="director" type="text" id="director" name="director" pInputText>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label>Genres:</label>
+                            <p-multiSelect formControlName="movieGenres" [options]="genres" [(ngModel)]="pickedGenres" optionLabel="name"/>
+                        </div>
+                        <div class="form-group">
+                            <button type="submit" class="add-button" pButton>Add Movie</button>
+                            @if(addMovieMessage) {
+                                <small style="color: #FF0304; margin-top: 10px; font-size: medium;">{{addMovieMessage}}</small>
+                            }
+                        </div>
+                    </form>
+                </p-tabPanel>
+                <p-tabPanel header="Update">
+                    <p-table [value]="movies" [tableStyle]="{ 'min-width': '970px' }" [rows]="10" [paginator]="true">
+                        <ng-template pTemplate="header">
+                            <tr>
+                                <th>Movie ID</th>
+                                <th>Movie Name</th>
+                                <th>Director</th>
+                                <th>Actions</th>
+                            </tr>
+                        </ng-template>
+                        <ng-template pTemplate="body" let-movie>
+                            <tr>
+                                <td>{{ movie.movieId }}</td>
+                                <td>{{ movie.name }}</td>
+                                <td>{{ movie.director }}</td>
+                                <td>
+                                    <button class="delete-button" (click)="visibleDialog = true" (click)="getMovieById(movie.movieId)" pButton>Update</button>
+
+                                    <p-dialog [(visible)]="visibleDialog" [modal]="true" [closable]="true">
+                                        <ng-template pTemplate="header">
+                                            <h1 style="padding: 0px; margin: 0px">
+                                              Edit movie
+                                            </h1>
+                                          </ng-template>
+                                        <form [formGroup]="updateMovieForm" (ngSubmit)="updateMovieById(movieId)">
+                                            <div class="group-form-group">
+                                                <div class="form-group">
+                                                    <label for="name">Movie name:</label>
+                                                    <input formControlName="name" type="text" [value]="movieById?.name" pInputText>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="releaseDate">Release Date:</label>
+                                                    <input formControlName="releaseDate" type="date" [value]="movieById?.releaseDate" pInputText>
+                                                </div>
+                                            </div>
+                    
+                                            <div class="form-group">
+                                                <label for="description">Description:</label>
+                                                <textarea formControlName="description" [value]="movieById?.description" [autoResize]="true" pInputTextarea></textarea>
+                                            </div>
+                                            <div class="form-group">
+                                                <label>Genres:</label>
+                                                <p-multiSelect formControlName="movieGenres" placeholder="{{getMovieGenres()}}" [options]="genres" [(ngModel)]="pickedGenres" optionLabel="name"/>
+                                            </div>
+                                            <div class="group-form-group">
+                                                <div class="form-group">
+                                                    <label for="minimumAge">Minimum Age:</label>
+                                                    <input formControlName="minimumAge" type="number" [value]="movieById?.minimumAge" pInputText>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="duration">Duration (minutes):</label>
+                                                    <input formControlName="duration" type="number" [value]="movieById?.duration" pInputText>
+                                                </div>
+                                            </div>
+                                            <div class="group-form-group">
+                                                <div class="form-group">
+                                                    <label for="productionCountry">Production Country:</label>
+                                                    <input formControlName="productionCountry" type="text" [value]="movieById?.productionCountry" pInputText>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="director">Director:</label>
+                                                    <input formControlName="director" type="text" [value]="movieById?.director" pInputText>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <button type="submit" class="add-button" pButton>Edit</button>
+                                                @if(addMovieMessage) {
+                                                    <small style="color: #FF0304; margin-top: 10px; font-size: medium;">{{addMovieMessage}}</small>
+                                                }
+                                            </div>
+                                        </form>         
+                                      </p-dialog>
+                                </td>
+                        </ng-template>
+                    </p-table>
+                </p-tabPanel>
+            </p-tabView>
+        </div>
+    </p-card>
+</div>

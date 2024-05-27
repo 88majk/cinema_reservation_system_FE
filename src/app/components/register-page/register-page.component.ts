@@ -5,7 +5,6 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthService } from '../../services/auth.service';
 import { LoginData } from '../../models/login-data';
-import { ExampleOpinions } from '../../models/example-opinions';
 
 @Component({
   selector: 'app-register-page',
@@ -16,22 +15,12 @@ import { ExampleOpinions } from '../../models/example-opinions';
 export class RegisterPageComponent {
   registerForm: FormGroup = new FormGroup({});
 
-  opinions: ExampleOpinions[] = [
-    {
-      username: 'Alex',
-      opinion: 'Fast and simple.'
-    },
-    {
-      username: 'Mike',
-      opinion: 'Very easy reservation.'
-    }
-  ];
-
   private registerService = inject(RegisterService);
   private authService = inject(AuthService);
 
-  errorMessage: string = "";
+  errorMessage: string = '';
   isRegistering: boolean = false;
+  isRegistered: boolean = false;
 
   constructor(private formBuilder: FormBuilder, private router: Router) {}
 
@@ -47,23 +36,25 @@ export class RegisterPageComponent {
   }
 
   sendRegisterData() {
+    const { email, password } = this.registerForm.value;
+    const registerData = {
+      ...this.registerForm.value,
+      dateOfBirth: this.getFormattedDate(this.birthDateFormField?.value),
+    };
+    console.log(registerData);
+    const loginData: LoginData = { email, password };
+    
     if (this.validateForm()) {
-      const { email, name, surname, date_of_birth, password } = this.registerForm.value;
-      const registerData: RegisterData = { email, name, surname, date_of_birth, password };
-      const loginData: LoginData = { email, password };
       setTimeout(() => {
         this.registerService.postRegisterData(registerData).subscribe(
           (response) => {
             console.log(response);
+            console.log(loginData);
             this.authService.authorization(loginData).subscribe(
               (response) => {
                 console.log(response);
                 this.router.navigate(['/homePage']);
-              },
-              (error) => {
-                console.log(error); 
-              }
-            );
+              })
           },
           (error) => {
             console.log(error);
@@ -73,22 +64,34 @@ export class RegisterPageComponent {
         );
       }, 1000);
     }
+    
+  }
+
+  get birthDateFormField() {
+    return this.registerForm.get('date_of_birth');
+  }
+
+  getFormattedDate(inputDate: string | undefined): string {
+    if (!inputDate) return '';
+    const dateObj = new Date(inputDate);
+    return dateObj.toISOString();
   }
 
   clearErrorAfterTimeout(): void {
     setTimeout(() => {
-      this.errorMessage = "";
+      this.errorMessage = '';
     }, 5000);
   }
 
   validateForm(): boolean {
-    return this.registerForm.valid && 
-    (this.registerForm.value.password === this.registerForm.value.retPassword);
+    return (
+      this.registerForm.valid &&
+      this.registerForm.value.password === this.registerForm.value.retPassword
+    );
   }
 
   registerClick(): void {
-    if(this.validateForm())
-    this.isRegistering = true;
+    if (this.validateForm()) this.isRegistering = true;
     setTimeout(() => {
       this.isRegistering = false;
     }, 1200);

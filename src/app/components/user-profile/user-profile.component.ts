@@ -45,7 +45,6 @@ export class UserProfileComponent {
       (data) => {
         console.log(data);
         this.userData = data;
-        console.log(this.userData.dateOfBirth);
       },
       (error) => {
         console.log(error);
@@ -69,8 +68,8 @@ export class UserProfileComponent {
     const passsword = this.updatePasswordForm.value.password;
     console.log(passsword);
     this.userService.updateUserPassword(passsword).subscribe(
-      (data) => {
-        console.log(data);
+      (response) => {
+        // console.log(response.token);
       },
       (error) => {
         console.log(error);

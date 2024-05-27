@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable, inject } from '@angular/core';
 import { LoginData } from '../models/login-data';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -10,7 +11,7 @@ export class LoginService {
 
   constructor() { }
 
-  postLoginData(data: LoginData) {
-    return this.http.post("http://localhost:8080/users/login", data);
+  postLoginData(data: LoginData): Observable<string> {
+    return this.http.post<string>("http://localhost:8080/users/login", data);
   }
 }

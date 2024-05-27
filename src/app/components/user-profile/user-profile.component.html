@@ -42,7 +42,7 @@
                         </div>
                         <div style="justify-content: flex-end;">
                             <button pButton (click)="isDisabled ? isDisabled = false : isDisabled = true"
-                                [ngClass]="isDisabled ? 'edit-button' : 'delete-button'" type="submit">
+                                [ngClass]="isDisabled ? 'edit-button' : 'delete-button'">
                                 <span class="p-button-label">{{ isDisabled ? 'Edit' : 'Back' }}</span>
                             </button>
                             @if(!isDisabled){

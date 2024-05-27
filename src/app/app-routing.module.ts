@@ -8,6 +8,8 @@ import { MovieSessionComponent } from './components/movie-session/movie-session.
 import { ReservationComponent } from './components/reservation/reservation.component';
 import { UserProfileComponent } from './components/user-profile/user-profile.component';
 import { UserOrdersComponent } from './components/user-orders/user-orders.component';
+import { AdminPageComponent } from './components/admin-page/admin-page.component';
+import { MoviesComponent } from './components/admin-components/movies/movies.component';
 
 
 const routes: Routes = [
@@ -43,7 +45,18 @@ const routes: Routes = [
   {
     path: 'user/orders',
     component: UserOrdersComponent
+  },
+  {
+    path: 'admin',
+    component: AdminPageComponent,
+    children: [
+      {
+        path: 'movies',
+        component: MoviesComponent
+      }
+    ]
   }
+  
 
 ];
 

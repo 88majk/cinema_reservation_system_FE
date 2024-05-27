@@ -1,0 +1,35 @@
+<div class="admin-container">
+    <div class="sidebar-div">
+        <p-card header="Admin page">
+            <div class="tiles-container">
+                <a class="tile">
+                    <i class="fa-solid fa-hotel"></i>
+                    Cinema
+                </a>
+                <a class="tile">
+                    <i class="fa-solid fa-chalkboard"></i>
+                    Cinema hall
+                </a>
+                <a class="tile">
+                    <i class="fa-solid fa-couch"></i>
+                    Seats
+                </a>
+                <a class="tile" routerLink="/admin/movies">
+                    <i class="fa-solid fa-film"></i>
+                    Movie
+                </a>
+                <a class="tile">
+                    <i class="fa-solid fa-ticket"></i>
+                    Bookings
+                </a>
+                <a class="tile">
+                    <i class="fa-solid fa-user-gear"></i>
+                    Access
+                </a>
+            </div>
+        </p-card>
+    </div>
+    <div class="router-div">
+        <router-outlet></router-outlet>
+    </div>
+</div>
