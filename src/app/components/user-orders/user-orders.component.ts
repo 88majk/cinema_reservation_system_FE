@@ -22,7 +22,7 @@ export class UserOrdersComponent {
   }
 
   getBookingsByUserId(userId: any): void {
-    this.ordersService.getBookingsByUserId(userId).subscribe(
+    this.ordersService.getBookingsByUserId().subscribe(
       (response: Order[]) => {
         this.userBookings = response;
         console.log(this.userBookings);
