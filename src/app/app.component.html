@@ -15,6 +15,11 @@
 
   @if (authService.isLogged$ | async) {
   <div style="display: flex; flex-direction: row; float: right; font-size: 20px;">
+    @if(authService.decodedToken.role == 'Administrator'){
+      <a class="a-header1" routerLink="admin">
+        <i class="pi pi-cog" style="padding-right: 5px;"></i>Admin page
+      </a>
+    }
     <a (mouseenter)="op.toggle($event)" class="a-header">
       <i style="padding-right: 5px;" class="pi pi-user"></i> Profile
     </a>
@@ -22,7 +27,7 @@
     <p-overlayPanel [style]="{'display': 'flex', 'justify-content': 'center'}"  #op>
       <div style="display: flex; flex-direction: column; align-items: center;">
         <div>
-          <h3>Welcome {{authService.decodedToken.sub}}!</h3>
+          <h3>{{authService.decodedToken.sub}}</h3>
         </div>
         <div>
           <button routerLink="/user/orders" class="pop-up-button" pButton>

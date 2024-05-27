@@ -36,11 +36,15 @@ import { TagModule } from 'primeng/tag';
 import { PanelModule } from 'primeng/panel';
 import { DataViewModule } from 'primeng/dataview';
 import { ImageModule } from 'primeng/image';
-
+import { AdminPageComponent } from './components/admin-page/admin-page.component';
+import { MoviesComponent } from './components/admin-components/movies/movies.component';
+import { InputTextareaModule } from 'primeng/inputtextarea';
+import { InputNumberModule } from 'primeng/inputnumber';
+import { MultiSelectModule } from 'primeng/multiselect';
 
 
 @NgModule({
-  declarations: [AppComponent, RegisterPageComponent, LoginPageComponent, HomePageComponent, MovieSessionComponent, UserOrdersComponent, UserProfileComponent, ReservationComponent],
+  declarations: [AppComponent, RegisterPageComponent, LoginPageComponent, HomePageComponent, MovieSessionComponent, UserOrdersComponent, UserProfileComponent, ReservationComponent, AdminPageComponent, MoviesComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
@@ -67,7 +71,10 @@ import { ImageModule } from 'primeng/image';
     TagModule,
     PanelModule,
     DataViewModule,
-    ImageModule
+    ImageModule,
+    InputTextareaModule,
+    InputNumberModule,
+    MultiSelectModule
   ],
   providers: [provideHttpClient(), provideAnimations(), ConfirmationService],
   bootstrap: [AppComponent],

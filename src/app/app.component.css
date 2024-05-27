@@ -40,7 +40,7 @@ img {
 }
 
 .pop-up-button {
-  width: 160px;
+  width: 180px;
   margin-top: 5px;
   text-align: center;
   color: aliceblue;
@@ -73,6 +73,12 @@ img {
     transition: 0.2s ease-in-out;
 }
 
+.a-header1 {
+  color: #ffffff;
+  margin-right: 20px;
+  transition: 0.2s ease-in-out;
+}
+
 .a-title {
   color: #ff5d73;
   margin-right: 20px;
@@ -84,4 +90,9 @@ img {
 .a-header:hover {
     transform: scale(1.06);
     cursor: pointer;
+}
+
+.a-header1:hover {
+  transform: scale(1.06);
+  cursor: pointer;
 }
