@@ -20,6 +20,11 @@ i {
   font-size: 1.1rem;
 }
 
+img {
+  padding: 0px;
+  scale: 0.1;
+}
+
 .p-overlaypanel .p-overlaypanel-content {
   padding: 15px;
   color: #ff5d73;

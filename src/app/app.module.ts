@@ -35,6 +35,7 @@ import { ConfirmationService } from 'primeng/api';
 import { TagModule } from 'primeng/tag';
 import { PanelModule } from 'primeng/panel';
 import { DataViewModule } from 'primeng/dataview';
+import { ImageModule } from 'primeng/image';
 
 
 
@@ -65,7 +66,8 @@ import { DataViewModule } from 'primeng/dataview';
     MessagesModule,
     TagModule,
     PanelModule,
-    DataViewModule
+    DataViewModule,
+    ImageModule
   ],
   providers: [provideHttpClient(), provideAnimations(), ConfirmationService],
   bootstrap: [AppComponent],
