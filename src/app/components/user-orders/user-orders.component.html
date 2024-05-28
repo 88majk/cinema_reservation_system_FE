@@ -52,9 +52,9 @@
                     background-color: transparent;
                   "
                 >
-                  @if(visible) {
+                  @if(downloadedOrderDetails) {
                   <div style="display: flex; flex-direction: column">
-                    <h3>{{ orderDetails[0]?.movieName }}</h3>
+                    <h3>{{ orderDetails[0].movieName }}</h3>
                     <div style="display: flex; flex-direction: row">
                       <div
                         style="
@@ -65,7 +65,7 @@
                       >
                         <h4 style="margin-bottom: 10px">Place</h4>
                         <p style="margin-top: 0px">
-                          {{ orderDetails[0]?.cinemaName }}
+                          {{ orderDetails[0].cinemaName }}
                         </p>
                       </div>
 
@@ -79,7 +79,7 @@
                       >
                         <h4 style="margin-bottom: 10px">Hall</h4>
                         <p style="margin-top: 0px">
-                          {{ orderDetails[0]?.hallName }}
+                          {{ orderDetails[0].hallName }}
                         </p>
                       </div>
                     </div>
@@ -93,8 +93,8 @@
                       >
                         <h4 style="margin-bottom: 10px">Date</h4>
                         <p style="margin-top: 0px">
-                          {{ orderDetails[0]?.sessionDate }} -
-                          {{ orderDetails[0]?.sessionTime }}
+                          {{ orderDetails[0].sessionDate }} -
+                          {{ orderDetails[0].sessionTime }}
                         </p>
                       </div>
                     </div>

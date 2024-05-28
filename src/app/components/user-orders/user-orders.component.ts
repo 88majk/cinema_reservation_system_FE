@@ -19,6 +19,7 @@ export class UserOrdersComponent {
 
   userBookings: Order[] = [];
   orderDetails: OrderDetails[] = [];
+  downloadedOrderDetails: boolean = false;
   visible: boolean = false;
   activeOrder: boolean = false;
   visibleDialogId: number | null = null;
@@ -50,6 +51,7 @@ export class UserOrdersComponent {
     this.ordersService.getBookingDetails(booking.bookingId).subscribe(
       (response: OrderDetails[]) => {
         this.orderDetails = response;
+        this.downloadedOrderDetails = true;
         console.table(this.orderDetails);
 
         this.totalOrderPrice = this.orderDetails.reduce(
