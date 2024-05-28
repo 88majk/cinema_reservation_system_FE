@@ -5,6 +5,7 @@ export type Order = {
     bookingNumber: number;
     totalPrice: number;
     cinemaName: string;
+    movieSessionId: number;
     movieName: string;
     sessionDate: Date;
     sessionTime: Time;

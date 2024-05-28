@@ -11,6 +11,7 @@ import { BookingMovieSession } from '../../models/bookingMovieSession-data';
 import { BookingSeat } from '../../models/bookingSeat-data';
 import { ConfirmationService } from 'primeng/api';
 import { AuthService } from '../../services/auth.service';
+import { MovieSessionInfo } from '../../models/movieSessionInfo-data';
 
 
 
@@ -27,6 +28,7 @@ export class ReservationComponent implements OnInit {
   seatingLayout!: any[][];
   isDataLoaded: boolean = false;
   cinemaHallSeats: CinemaHallRowsSeat | null = null;
+  movieSessionInfo: MovieSessionInfo | null = null;
   selectedSeats: Seat[] = []; 
   isSeatsSelected: boolean = true;
   movieSessionId!: number;
@@ -37,6 +39,7 @@ export class ReservationComponent implements OnInit {
 
 
   ngOnInit(): void {
+    this.loadMovieSessionInfo();
     this.loadCinemaHallSeats();
     const successMessage = localStorage.getItem('successMessage');
     if (successMessage) {
@@ -244,6 +247,23 @@ export class ReservationComponent implements OnInit {
           this.messages.push({severity:'info', summary:'Info', detail:`You reject the payment. Your temporary reservation number is ${this.bookingNumber}.
            You can change your booking here and confirm your payment or do it in the my orders tab. `});
       }
+    });
+  }
+
+  loadMovieSessionInfo(): void {
+    this.route.paramMap.subscribe(params => {
+      this.movieSessionId = Number(params.get('sessionId'));
+
+      this.reservationService.getMovieSessionInfo(this.movieSessionId).subscribe(
+        (response: any) => {
+          this.movieSessionInfo = response as MovieSessionInfo;
+          console.log(response);
+        },
+        (error) => {
+          // Obsłuż błąd
+          console.error(error);
+        }
+      );
     });
   }
 

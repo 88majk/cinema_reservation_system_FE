@@ -33,7 +33,7 @@
           <td>
             <button
               (click)="visible = true"
-              (click)="getBookingDetails(booking.bookingId)"
+              (click)="getBookingDetails(booking)"
               pButton
               class="details-button"
               label="View"
@@ -41,7 +41,7 @@
             <p-dialog [(visible)]="visible" [modal]="true" [closable]="true">
               <ng-template pTemplate="header">
                 <h1 style="padding: 0px; margin: 0px">
-                  Order details {{ booking.bookingNumber }}
+                  Order details {{ selectedBookingDetails?.bookingNumber }}, {{ selectedBookingDetails?.status?.name }}
                 </h1>
               </ng-template>
                 <div
@@ -125,26 +125,45 @@
                       </ng-template>
                     </p-table>
                   </div>
+                }
                   <div style="margin-top: 15px">
-                    @if(!activeOrder){
-                    <p style="color: #ff5d73; font-style: italic;">You cannot now cancel or edit this order.</p>
-                    }
-                    @else {
+                    <ng-container [ngSwitch]="selectedBookingDetails?.status?.name">
+                      <ng-container *ngSwitchCase="'Confirmed'">
                         <button
-                      (click)="visible = false"
-                      label="Edit order"
-                      class="edit-button"
-                      pButton
-                    ></button>
-                    <button
-                      (click)="visible = false"
-                      label="Cancel order"
-                      class="cancel-button"
-                      pButton
-                    ></button>
-                    }
+                          (click)="updateStatus(selectedBookingDetails?.bookingId, 'Cancelled')"
+                          label="Cancel"
+                          class="cancel-button"
+                          pButton
+                        ></button>
+                      </ng-container>
+                      <ng-container *ngSwitchCase="'Pending'">
+                        <button
+                          (click)="updateStatus(selectedBookingDetails?.bookingId, 'Confirmed')"
+                          label="Confirm"
+                          class="confirm-button"
+                          pButton
+                        ></button>
+                        <button
+                          (click)="editBooking(selectedBookingDetails?.bookingId, selectedBookingDetails?.movieSessionId)"
+                          label="Edit"
+                          class="edit-button"
+                          pButton
+                        ></button>
+                        <button
+                          (click)="updateStatus(selectedBookingDetails?.bookingId, 'Cancelled')"
+                          label="Cancel"
+                          class="cancel-button"
+                          pButton
+                        ></button>
+                      </ng-container>
+                      <ng-container *ngSwitchDefault>
+                        <p style="color: #ff5d73; font-style: italic;">
+                          You cannot now cancel or edit this order.
+                        </p>
+                      </ng-container>
+                    </ng-container>
                   </div>
-                  }
+                    
                 </div>
             </p-dialog>
           </td>

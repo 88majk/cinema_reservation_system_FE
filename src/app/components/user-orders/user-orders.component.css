@@ -90,29 +90,38 @@
   );
 }
 
-.edit-button {
-    margin-top: 5px;
-    height: 35px;
-    color: #ffffff;
-    border-color: #7c7a7a;
-    background-color: #7c7a7a;
-    transition: transform 0.2s ease-in-out;
-    margin-right: 15px;
-}
-
 .edit-button:hover {
   transform: scale(1.04);
 }
 
-.cancel-button {
-    margin-top: 5px;
-    height: 35px;
-    border-color: #ff5d73;
-    color: #ffffff;
-    background-color: #ff5d73;
-    transition: transform 0.2s ease-in-out;
+.cancel-button:hover {
+  transform: scale(1.04);
 }
 
-.cancel-button:hover {
+.edit-button,
+.confirm-button,
+.cancel-button {
+  color: white;
+  padding: 8px 16px;
+  border: none;
+  cursor: pointer;
+  border-radius: 4px;
+  margin-left: 10px;
+  margin-right: 10px;
+}
+
+.edit-button {
+  background-color: blue;
+}
+
+.confirm-button {
+  background-color: green;
+}
+
+.cancel-button {
+  background-color: red;
+}
+
+.confirm-button:hover {
   transform: scale(1.04);
 }

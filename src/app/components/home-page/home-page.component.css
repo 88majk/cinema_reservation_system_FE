@@ -1,12 +1,43 @@
-.form-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+.background {
+    background-image: url("/assets/cover.jpg");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
 }
 
+.container {
+    position: relative; 
+    overflow-y: hidden; 
+    height: 100vh; 
+}
 
+.form-container {
+    padding-right: 10px; 
+    overflow-y: auto; /* Przewijanie treści wewnątrz kontenera */
+    height: calc(100vh - 80px); /* Wysokość kontenera pomniejszona o wysokość paska przewijania */
+}
 
-
+.p-card {
+    background: rgb(14, 14, 14);
+    background: linear-gradient(
+        135deg,
+        rgba(14, 14, 14, 1) 0%,
+        rgba(73, 73, 73, 1) 100%
+    );
+    width: 800px;
+    margin: 20px auto; /* Odległość od góry */
+    border-radius: 25px;
+    border: 2px #ff5d73 solid;
+    color: #ff5d73;
+    position: relative;
+    z-index: 2;
+    text-align: center;
+}
+  
 .select-container {
     position: relative;
     display: inline-block;
@@ -27,14 +58,13 @@
     padding: 8px 12px; /* Dostosowanie paddingu dla miejsca na strzałkę */
     font-size: 16px; /* Większy rozmiar tekstu */
     line-height: 1.5;
-    color: #555; /* Kolor tekstu na białym tle */
-    border: 1.5px solid #ccc;
+    color: #ff5d73; /* Kolor tekstu na białym tle */
+    border: 1.5px solid #ffffff;
     border-radius: 8px; /* Zaokrąglenie krawędzi */
-    background-color: #f0f0f0; /* Bardzo jaśniejszy odcień błękitu */
+    background-color: #494949;
     cursor: pointer;
     outline: none;
     text-align: center; /* Tekst na środku */
-    margin-top: 16px;
     margin-bottom: 16px;
 }
 
@@ -42,31 +72,26 @@
     display: block;
     font-weight: bold;
     margin-bottom: 10px; /* Zwiększenie odstępu od płytek daty */
-    font-size: 18px; /* Zwiększenie rozmiaru etykiety */
+    font-size: 26px; /* Zwiększenie rozmiaru etykiety */
 }
 
 /* Styl po najechaniu na select */
 .select-container:hover select {
-    border-color: #007bff;
-}
-
-/* Styl po wybraniu wartości */
-.select-container select:focus {
-    border-color: #007bff;
+    border-color: #ff5d73;
 }
 
 /* Styl dla opcji selecta */
 .select-container select option {
     padding: 8px 12px;
-    background-color: aliceblue;
+    background-color: #494949;
     transition: border-color 0.3s ease; /* Dodajemy płynny efekt przejścia dla koloru obramowania */
     border-bottom: 1px solid transparent; /* Dodajemy transparentną krawędź dolną */
 }
 
-/* Styl po najechaniu na opcję */
 .select-container select option:hover {
-    border-color: #007bff; /* Zmiana koloru obramowania przy najechaniu */
+    background-color: #7c7a7a; /* Zmiana koloru tła przy najechaniu */
     cursor: pointer; /* Zmiana kursora myszy na wskaźnik przy najechaniu */
+    border: 1px solid #ff5d73; /* Dodanie obramowania przy najechaniu */
 }
 
 
@@ -74,7 +99,7 @@
     display: block;
     font-weight: bold;
     margin-bottom: 10px; /* Zwiększenie odstępu od płytek daty */
-    font-size: 18px; /* Zwiększenie rozmiaru etykiety */
+    font-size: 26px; /* Zwiększenie rozmiaru etykiety */
 }
 
 .date-tiles {
@@ -83,16 +108,15 @@
 
 .date-tile {
     display: inline-block;
-    background-color: aliceblue;
+    background-color: #494949;
     padding: 14px 20px;
     margin-right: 10px;
     cursor: pointer;
     border-radius: 8px;
     transition: background-color 0.3s ease, transform 0.2s ease;
     width: 90%;
-    margin-top: 10px;
     margin-bottom: 20px;
-    border: 1.5px solid #ccc; /* Dodajemy obramowanie */
+    border: 1.5px solid #ffffff; /* Dodajemy obramowanie */
     white-space: pre-line; /* Umożliwia wyświetlanie wielu linii tekstu */
 
 }
@@ -102,11 +126,11 @@
 }
 
 .selected {
-    background-color: #464e8b;
-    color: aliceblue;
+    background-color: #7c7a7a;
+    color: #ff5d73;
 }
 
 .date-tile:hover {
     transform: scale(1.1); /* Lekkie powiększenie po najechaniu myszką */
-    border-color: #007bff; /* Zmiana koloru obramowania po najechaniu myszką */
+    border-color: #ff5d73; /* Zmiana koloru obramowania po najechaniu myszką */
 }
