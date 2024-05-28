@@ -41,10 +41,11 @@ import { MoviesComponent } from './components/admin-components/movies/movies.com
 import { InputTextareaModule } from 'primeng/inputtextarea';
 import { InputNumberModule } from 'primeng/inputnumber';
 import { MultiSelectModule } from 'primeng/multiselect';
+import { CinemasComponent } from './components/admin-components/cinemas/cinemas.component';
 
 
 @NgModule({
-  declarations: [AppComponent, RegisterPageComponent, LoginPageComponent, HomePageComponent, MovieSessionComponent, UserOrdersComponent, UserProfileComponent, ReservationComponent, AdminPageComponent, MoviesComponent],
+  declarations: [AppComponent, RegisterPageComponent, LoginPageComponent, HomePageComponent, MovieSessionComponent, UserOrdersComponent, UserProfileComponent, ReservationComponent, AdminPageComponent, MoviesComponent, CinemasComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,

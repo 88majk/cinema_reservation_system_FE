@@ -3,6 +3,7 @@ import { AuthService } from '../../services/auth.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { UserService } from '../../services/user.service';
 import { UpdateUserData } from '../../models/user-update-data';
+import { UserData } from '../../models/user-data';
 
 @Component({
   selector: 'app-user-profile',
@@ -13,7 +14,16 @@ import { UpdateUserData } from '../../models/user-update-data';
 export class UserProfileComponent {
   isDisabled: boolean = true;
   visible: boolean = false;
-  userData: any;
+  userUpdateErrorMessage: string = '';
+  userUpdateResponseMessage: string = '';
+  passwordUpdateErrorMessage: string = '';
+  passwordUpdateResponseMessage: string = '';
+  userData: UserData = {
+    name: '',
+    surname: '',
+    email: '',
+    dateOfBirth: new Date(),
+  };
 
   authService = inject(AuthService);
   userService = inject(UserService);
@@ -24,27 +34,41 @@ export class UserProfileComponent {
   constructor(private formBuilder: FormBuilder) {}
 
   ngOnInit() {
-    this.getUserData(this.authService.decodedToken.sub);
+    this.userData.dateOfBirth = new Date();
+    this.getUserData();
     this.authService.checkTokenExpiration();
 
     this.updateForm = this.formBuilder.group({
-      email: ['', Validators.required],
-      name: ['', Validators.required],
-      surname: ['', Validators.required],
-      dateOfBirth: ['', Validators.required],
-    }as unknown as UpdateUserData);
+      email: [{ value: '', disabled: this.isDisabled }, Validators.required],
+      name: [{ value: '', disabled: this.isDisabled }, Validators.required],
+      surname: [{ value: '', disabled: this.isDisabled }, Validators.required],
+      dateOfBirth: [
+        { value: '', disabled: this.isDisabled },
+        Validators.required,
+      ],
+    } as unknown as UpdateUserData);
 
     this.updatePasswordForm = this.formBuilder.group({
-      password: ['', ],
-      retPassword: ['', ],
+      password: [
+        '',
+       [ Validators.required,
+        Validators.minLength(8),
+        Validators.maxLength(32)]
+      ],
+      retPassword: ['', Validators.required],
     });
   }
 
-  getUserData(email: string) {
-    return this.userService.getUserData(email).subscribe(
+  getUserData() {
+    return this.userService.getUserData().subscribe(
       (data) => {
-        console.log(data);
         this.userData = data;
+        this.updateForm.patchValue({
+          name: this.userData.name,
+          surname: this.userData.surname,
+          email: this.userData.email,
+          dateOfBirth: this.userData.dateOfBirth,
+        });
       },
       (error) => {
         console.log(error);
@@ -53,31 +77,73 @@ export class UserProfileComponent {
   }
 
   updateUserData() {
-    const data = {...this.updateForm.value}
-    this.userService.updateUserData(data).subscribe(
-      (data) => {
-        console.log(data);
-      },
-      (error) => {
-        console.log(error);
-      }
-    );
+    if (this.updateForm.valid) {
+      const data = { ...this.updateForm.value };
+      this.userService.updateUserData(data).subscribe(
+        (response) => {
+          console.log(response);
+          this.userUpdateResponseMessage = 'Your account has been updated.';
+          this.clearMessageAfterTimeout();
+        },
+        (error) => {
+          console.log(error);
+          this.userUpdateErrorMessage = error.error;
+          this.clearMessageAfterTimeout();
+        }
+      );
+    } else {
+      this.userUpdateErrorMessage = 'Please fill all the fields.';
+      this.clearMessageAfterTimeout();
+    }
   }
 
   updateUserPassword() {
-    const passsword = this.updatePasswordForm.value.password;
-    console.log(passsword);
-    this.userService.updateUserPassword(passsword).subscribe(
-      (response) => {
-        // console.log(response.token);
-      },
-      (error) => {
-        console.log(error);
+    const password = this.updatePasswordForm.value.password;
+    const retPassword = this.updatePasswordForm.value.retPassword;
+    if (this.updatePasswordForm.valid && password == retPassword) {
+      const password = this.updatePasswordForm.value.password;
+      this.userService.updateUserPassword(password).subscribe(
+        (response) => {
+          console.log(response);
+          this.passwordUpdateResponseMessage =
+            'Password has been updated successfully.';
+          this.clearMessageAfterTimeout();
+        },
+        (error) => {
+          console.log(error);
+        }
+      );
+    } else {
+      if (password != retPassword) {
+        this.passwordUpdateErrorMessage = 'Passwords do not match.';
+        this.clearMessageAfterTimeout();
+      } else if (password.length < 8 || password.length > 32) {
+        this.passwordUpdateErrorMessage =
+          'Password must be between 8 and 32 characters.';
+        this.clearMessageAfterTimeout();
       }
-    );
+    }
   }
 
   showDialog() {
     this.visible = !this.visible;
+  }
+
+  toggleDisabled(): void {
+    this.isDisabled = !this.isDisabled;
+    if (this.isDisabled) {
+      this.updateForm.disable();
+    } else {
+      this.updateForm.enable();
+    }
+  }
+
+  clearMessageAfterTimeout(): void {
+    setTimeout(() => {
+      this.userUpdateErrorMessage = '';
+      this.userUpdateResponseMessage = '';
+      this.passwordUpdateErrorMessage = '';
+      this.passwordUpdateResponseMessage = '';
+    }, 5000);
   }
 }

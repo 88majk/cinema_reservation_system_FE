@@ -1,4 +1,4 @@
-.movie-container {
+.cinema-container {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -15,6 +15,32 @@
     rgba(14, 14, 14, 1) 0%,
     rgba(73, 73, 73, 1) 100%
   );
+}
+
+.p-tabview .p-tabview-nav {
+  background-color: transparent;
+  border-color: #ff5d73;
+}
+
+.p-tabview .p-tabview-nav li .p-tabview-nav-link {
+  background-color: transparent;
+  color: #ffffff;
+  border-color: #ff5d73;
+  transition: 0.2s ease-in-out;
+}
+
+.p-tabview .p-tabview-nav li .p-tabview-nav-link:hover {
+  transform: scale(1.06);
+  color: #ff5d73;
+}
+
+.p-tabview .p-tabview-nav li.p-highlight .p-tabview-nav-link {
+  color: #ff5d73;
+}
+
+.p-tabview .p-tabview-panels {
+  background-color: transparent;
+  color: #ffffff;
 }
 
 .group-form-group {
@@ -41,29 +67,6 @@
   color: #ff5d73;
   border-color: #000000;
   border-radius: 5px;
-}
-
-.form-group textarea {
-  width: 100%;
-  min-height: 100px;
-  background-color: #494949;
-  color: #ff5d73;
-  border-color: #000000;
-  border-radius: 5px;
-}
-
-.p-inputnumber-buttons-horizontal .p-button.p-inputnumber-button-up {
-  order: 3;
-  border-top-left-radius: 0;
-  border-bottom-left-radius: 0;
-  background-color: #ff5d73;
-}
-
-.p-inputnumber-buttons-horizontal .p-button.p-inputnumber-button-down {
-  order: 1;
-  border-top-right-radius: 0;
-  border-bottom-right-radius: 0;
-  background-color: #ff5d73;
 }
 
 .add-button {
@@ -150,64 +153,6 @@
 
 .edit-button:hover {
   transform: scale(1.04);
-}
-
-.delete-button {
-  height: 35px;
-  border-color: #ff5d73;
-  color: #ffffff;
-  background-color: #ff5d73;
-  margin-right: 15px;
-  transition: transform 0.2s ease-in-out;
-}
-
-.delete-button:hover {
-  transform: scale(1.04);
-}
-
-.p-multiselect {
-  width: 620px;
-}
-
-.p-dialog .p-multiselect {
-  width: 680px;
-}
-
-.p-multiselect,
-.p-multiselect-label-container,
-.p-multiselect .p-multiselect-trigger,
-.p-multiselect-panel .p-multiselect-header,
-.p-multiselect-panel .p-multiselect-items {
-  background-color: #494949;
-  color: #ff5d73;
-  border-color: #000000;
-  border-radius: 5px;
-}
-
-.p-multiselect-panel
-  .p-multiselect-header
-  .p-multiselect-filter-container
-  .p-multiselect-filter-icon {
-  color: #ffffff;
-  border: #ff5d73 solid 1px;
-}
-
-.p-icon {
-  color: #ffffff;
-}
-
-.p-multiselect-panel .p-multiselect-item {
-  background-color: #494949;
-  color: #ffffff;
-  border-color: #000000;
-  border-radius: 5px;
-  
-}
-
-.p-checkbox,
-.p-checkbox-box {
-  border-radius: 7px;
-  background-color: #ff5d73;
 }
 
 .p-dialog {

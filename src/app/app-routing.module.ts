@@ -10,6 +10,7 @@ import { UserProfileComponent } from './components/user-profile/user-profile.com
 import { UserOrdersComponent } from './components/user-orders/user-orders.component';
 import { AdminPageComponent } from './components/admin-page/admin-page.component';
 import { MoviesComponent } from './components/admin-components/movies/movies.component';
+import { CinemasComponent } from './components/admin-components/cinemas/cinemas.component';
 
 
 const routes: Routes = [
@@ -53,6 +54,10 @@ const routes: Routes = [
       {
         path: 'movies',
         component: MoviesComponent
+      },
+      {
+        path: 'cinemas',
+        component: CinemasComponent
       }
     ]
   }

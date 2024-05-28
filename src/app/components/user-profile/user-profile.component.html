@@ -1,5 +1,5 @@
 <div class="form-container">
-    <p-card header="Hello {{userData?.name}} {{userData?.surname}}!">
+    <p-card header="Hello {{userData.name}} {{userData.surname}}!">
         <ng-template></ng-template>
         <div>
 
@@ -15,41 +15,47 @@
                             <div style="flex: 1;">
                                 <div class="field">
                                     <label>Name</label>
-                                    <input type="text" formControlName="name" placeholder="{{userData.name}}" pInputText
-                                        [attr.disabled]="isDisabled ? true : null" class="input-area">
+                                    <input type="text" formControlName="name" value="{{userData.name}}" pInputText
+                                         class="input-area">
                                 </div>
                                 <div class="field">
                                     <label>E-mail</label>
-                                    <input type="text" formControlName="email" placeholder="{{userData.email}}"
-                                        [attr.disabled]="isDisabled ? true : null" class="input-area" pInputText>
+                                    <input type="text" formControlName="email" value="{{userData.email}}"
+                                         class="input-area" pInputText>
                                 </div>
 
                             </div>
                             <div style="flex: 1">
                                 <div class="field">
                                     <label>Surname</label>
-                                    <input type="text" formControlName="surname" placeholder="{{userData.surname}}"
-                                        [attr.disabled]="isDisabled ? true : null" class="input-area" pInputText>
+                                    <input type="text" formControlName="surname" value="{{userData.surname}}"
+                                         class="input-area" pInputText>
                                 </div>
                                 <div class="field">
                                     <label>Birth date</label>
                                     <p-calendar [style]="{'width':'400px'}" formControlName="dateOfBirth"
-                                        [inputStyle]="{'width':'100%',}" [disabled]="isDisabled"
+                                        [inputStyle]="{'width':'100%',}"
                                         [dateFormat]="'yy-mm-dd'" [showIcon]="true" [iconDisplay]="'input'"
                                         [(ngModel)]="userData.dateOfBirth" />
                                 </div>
                             </div>
                         </div>
                         <div style="justify-content: flex-end;">
-                            <button pButton (click)="isDisabled ? isDisabled = false : isDisabled = true"
-                                [ngClass]="isDisabled ? 'edit-button' : 'delete-button'">
+                            <button pButton (click)="toggleDisabled()"
+                                [ngClass]="isDisabled ? 'edit-button' : 'delete-button'" type="button">
                                 <span class="p-button-label">{{ isDisabled ? 'Edit' : 'Back' }}</span>
                             </button>
-                            @if(!isDisabled){
-                            <button pButton type="submit" class="back-button">
+                            <button *ngIf="!isDisabled" pButton type="submit" class="back-button">
                                 Confirm Changes
                             </button>
-                            }
+                        </div>
+                        <div style="margin-top: 10px;">
+                            <small *ngIf="userUpdateErrorMessage.length > 0" style="color: #FF0504">
+                                {{userUpdateErrorMessage}}
+                            </small>
+                            <small *ngIf="userUpdateResponseMessage.length > 0" style="color: #3bc600">
+                                {{userUpdateResponseMessage}}
+                            </small>
                         </div>
                     </form>
                 </ng-template>
@@ -79,6 +85,16 @@
                                     style="width: 120px;" class="edit-button"></button>
                                 <button pButton label="Save" type="submit" style="width: 120px;"
                                     class="delete-button"></button>
+                            </div>
+                            <div style="margin-top: 10px;">
+                                <small *ngIf="passwordUpdateErrorMessage.length > 0"
+                                    style="color: #FF0504; margin-top: 10px;">
+                                    {{passwordUpdateErrorMessage}}
+                                </small>
+                                <small *ngIf="passwordUpdateResponseMessage.length > 0"
+                                    style="color: #3bc600; margin-top: 10px;">
+                                    {{passwordUpdateResponseMessage}}
+                                </small>
                             </div>
                         </form>
                     </p-dialog>
