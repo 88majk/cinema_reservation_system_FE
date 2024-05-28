@@ -1,0 +1,114 @@
+<div class="cinema-container">
+    <p-card header="Cinema managment">
+        <div>
+            <p-tabView styleClass="admin-tabview">
+                <p-tabPanel header="Add">
+                    <form [formGroup]="newCinemaForm" (submit)="sendNewCinema()" id="addMovieForm">
+                        <div class="form-group" style="align-items: center;">
+                            <label for="minimumAge">Cinema name:</label>
+                            <input formControlName="name" type="text" pInputText>
+                        </div>
+                        <div class="group-form-group">
+                            <div class="form-group">
+                                <label for="duration">Address:</label>
+                                <input formControlName="address" type="text" pInputText>
+                            </div>
+                            <div class="form-group">
+                                <label for="productionCountry">Localization:</label>
+                                <input formControlName="localization" type="text" pInputText>
+                            </div>
+                        </div>
+                        <div class="group-form-group">
+                            <div class="form-group">
+                                <label for="director">Email:</label>
+                                <input formControlName="emailContact" type="text" pInputText>
+                            </div>
+                            <div class="form-group">
+                                <label for="director">Phone number:</label>
+                                <input formControlName="phoneNumber" type="text" pInputText>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <button type="submit" class="add-button" pButton>Add Movie</button>
+                            @if(addCinemaMessage) {
+                            <small
+                                style="color: #FF0304; margin-top: 10px; font-size: medium;">{{addCinemaMessage}}</small>
+                            }
+                        </div>
+                    </form>
+                </p-tabPanel>
+                <p-tabPanel header="Update">
+                    <p-table [value]="fullCinemas" [tableStyle]="{ 'min-width': '970px' }" [rows]="10"
+                        [paginator]="true">
+                        <ng-template pTemplate="header">
+                            <tr>
+                                <th>Cinema ID</th>
+                                <th>Cinema name</th>
+                                <th>Address</th>
+                                <th>Localization</th>
+                                <th>Phone number</th>
+                                <th>Email</th>
+                                <th>Update</th>
+                            </tr>
+                        </ng-template>
+                        <ng-template pTemplate="body" let-cinema>
+                            <tr>
+                                <td>{{ cinema.id }}</td>
+                                <td>{{ cinema.name }}</td>
+                                <td>{{ cinema.address }}</td>
+                                <td>{{ cinema.localization }}</td>
+                                <td>{{ cinema.phoneNumber }}</td>
+                                <td>{{ cinema.emailContact }}</td>
+                                <td>
+                                    <button class="edit-button" (click)="visibleDialog = true" (click)="getCinemaById(cinema.id)"  pButton>
+                                        <i class="fa-regular fa-pen-to-square"></i>
+                                    </button>
+
+                                    <p-dialog [(visible)]="visibleDialog" [modal]="true" [closable]="true">
+                                        <ng-template pTemplate="header">
+                                            <h1 style="padding: 0px; margin: 0px">
+                                                Edit cinema
+                                            </h1>
+                                        </ng-template>
+                                        <form [formGroup]="updateCinemaForm" (submit)="updateCinemaById(updCinemaId)">
+                                            <div class="form-group" style="align-items: center;">
+                                                <label for="name">Cinema name:</label>
+                                                <input formControlName="name" [value]="cinemaById.name" type="text" pInputText>
+                                            </div>
+                                            <div class="group-form-group">
+                                                <div class="form-group">
+                                                    <label for="duration">Address:</label>
+                                                    <input formControlName="address" [value]="cinemaById.address" type="text" pInputText>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="productionCountry">Localization:</label>
+                                                    <input formControlName="localization" [value]="cinemaById.localization" type="text" pInputText>
+                                                </div>
+                                            </div>
+                                            <div class="group-form-group">
+                                                <div class="form-group">
+                                                    <label for="director">Email:</label>
+                                                    <input formControlName="emailContact" [value]="cinemaById.emailContact" type="text" pInputText>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="director">Phone number:</label>
+                                                    <input formControlName="phoneNumber" [value]="cinemaById.phoneNumber" type="text" pInputText>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <button type="submit" class="add-button" pButton>Edit movie</button>
+                                                @if(addCinemaMessage) {
+                                                <small
+                                                    style="color: #FF0304; margin-top: 10px; font-size: medium;">{{addCinemaMessage}}</small>
+                                                }
+                                            </div>
+                                        </form>
+                                    </p-dialog>
+                                </td>
+                        </ng-template>
+                    </p-table>
+                </p-tabPanel>
+            </p-tabView>
+        </div>
+    </p-card>
+</div>

@@ -3,6 +3,7 @@ import { Injectable, inject } from '@angular/core';
 import { UpdateUserData } from '../models/user-update-data';
 import { Observable, tap } from 'rxjs';
 import { AuthService } from './auth.service';
+import { UserData } from '../models/user-data';
 
 @Injectable({
   providedIn: 'root'
@@ -12,15 +13,14 @@ export class UserService {
   private authService = inject(AuthService);
   constructor() { }
 
-  getUserData(email: string) {
-    return this.http.get(`http://localhost:8080/users/${email}`);
+  getUserData(): Observable<UserData> {
+    return this.http.get<UserData>(`http://localhost:8080/users/${localStorage.getItem('user_token')}`);
   }
 
   updateUserData(updateData: UpdateUserData): Observable<any> {
     return this.http.put(`http://localhost:8080/users/update/` + localStorage.getItem('user_token'), updateData)
     .pipe(
       tap((response: any) => {
-          console.log(response.token);
           localStorage.removeItem('user_token');
           localStorage.setItem('user_token', response.token);
           this.authService.decodeToken();

@@ -1,5 +1,5 @@
 <div class="container">
-    <p-card header="Movie managment page">
+    <p-card header="Movie managment">
         <div>
             <p-tabView styleClass="admin-tabview">
                 <p-tabPanel header="Add">
@@ -59,7 +59,7 @@
                                 <th>Movie ID</th>
                                 <th>Movie Name</th>
                                 <th>Director</th>
-                                <th>Actions</th>
+                                <th>Update</th>
                             </tr>
                         </ng-template>
                         <ng-template pTemplate="body" let-movie>
@@ -68,7 +68,7 @@
                                 <td>{{ movie.name }}</td>
                                 <td>{{ movie.director }}</td>
                                 <td>
-                                    <button class="delete-button" (click)="visibleDialog = true" (click)="getMovieById(movie.movieId)" pButton>Update</button>
+                                    <button class="edit-button" (click)="visibleDialog = true" (click)="getMovieById(movie.movieId)" pButton><i class="fa-regular fa-pen-to-square"></i></button>
 
                                     <p-dialog [(visible)]="visibleDialog" [modal]="true" [closable]="true">
                                         <ng-template pTemplate="header">
