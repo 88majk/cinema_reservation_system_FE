@@ -49,6 +49,7 @@ export class AuthService {
     if (expirationTime <= currentTime) {
       this._isLogged$.next(false);
       localStorage.removeItem('user_token');
+      window.location.reload();
       this.router.navigate(['/login']);
     }
   }
@@ -67,5 +68,9 @@ export class AuthService {
     this._isLogged$.next(false);
     localStorage.removeItem('user_token');
     this.router.navigate(['/homePage']);
+    
+    setTimeout(() => {
+      window.location.reload();
+    }, 500);
   }
 }

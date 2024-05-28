@@ -91,37 +91,35 @@
 }
 
 .edit-button:hover {
-  transform: scale(1.04);
+  transform: scale(1.06);
 }
 
 .cancel-button:hover {
-  transform: scale(1.04);
+  transform: scale(1.06);
 }
 
 .edit-button,
 .confirm-button,
 .cancel-button {
-  color: white;
-  padding: 8px 16px;
-  border: none;
-  cursor: pointer;
-  border-radius: 4px;
-  margin-left: 10px;
-  margin-right: 10px;
+  margin-left: 15px;
+    margin-top: 5px;
+    border-color: rgb(214, 213, 213);
+    background-color: white;
+    transition: transform 0.2s ease-in-out;
 }
 
 .edit-button {
-  background-color: blue;
+  background-color: #494949;
 }
 
 .confirm-button {
-  background-color: green;
+  background-color: #009000;
 }
 
 .cancel-button {
-  background-color: red;
+  background-color: #ff5d73;
 }
 
 .confirm-button:hover {
-  transform: scale(1.04);
+  transform: scale(1.06);
 }
