@@ -8,58 +8,103 @@
     z-index: 9999; /* Upewnij się, że komunikat będzie zawsze na wierzchu */
 }
 
-body {
-    /* Dodaj gradient linearny jako tło */
-    background: linear-gradient(to bottom, #f0f0f0, #cccccc);
-    /* Dodaj dodatkowy tło na wypadek, gdyby gradient nie został załadowany */
-    background-color: #cccccc; /* szary kolor jako fallback */
-    /* Ustawienie tła na całą stronę */
-    background-attachment: fixed;
-    background-size: cover;
+.background {
+  background-image: url("/assets/cover.jpg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+}
+
+.container {
+  position: relative; 
+  overflow-y: hidden; 
+  height: 100vh; 
 }
 
 .form-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+  padding-right: 10px; 
+  overflow-y: auto; /* Przewijanie treści wewnątrz kontenera */
+  height: calc(100vh - 80px); /* Wysokość kontenera pomniejszona o wysokość paska przewijania */
+}
+
+.p-card {
+  background: rgb(14, 14, 14);
+  background: linear-gradient(
+      135deg,
+      rgba(14, 14, 14, 1) 0%,
+      rgba(73, 73, 73, 1) 100%
+  );
+  width: 800px;
+  margin: 20px auto; /* Odległość od góry */
+  border-radius: 25px;
+  border: 2px #ff5d73 solid;
+  color: #ff5d73;
+  position: relative;
+  z-index: 2;
+  text-align: center;
 }
 
 .card-container {
-    width: 800px;
-    border-radius: 25px;
-    text-align: center;
-    overflow: hidden; /* Zapobieganie pojawianiu się paska przewijania poziomego */
+  position: relative;
+}
+
+.card-icon {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100px; /* Dostosuj rozmiar ikony według potrzeb */
+  height: 100px; /* Dostosuj rozmiar ikony według potrzeb */
+  background-image: url('../../../assets/ticket.png'); /* Ścieżka do ikony PNG */
+  background-size: cover;
+  z-index: 999; /* Ustaw wysoki indeks warstwy, aby ikona była na wierzchu */
+  margin-top: 10px;
+  margin-left: 10px;
 }
 
 .seating-header {
     text-align: center;
     margin-bottom: 10px;
-    font-size: 24px;
+    font-size: 22px;
 }
 
 .movie-info {
-    background-color: #fff;
-    padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    margin-bottom: 20px;
+  text-align: center;
+  font-size: 22px;
 }
 
-.movie-info h3 {
-    margin-top: 0;
-    font-size: 20px;
+.info-container {
+  font-size: 18px;
+  display: flex;
+  justify-content: space-between;
+  margin-top: 10px; /* Adjust as needed */
+}
+
+.left-column, .right-column {
+  flex-grow: 1;
+}
+
+.left-column {
+  text-align: left;
+}
+
+.right-column {
+  text-align: right;
 }
 
 .seating-rectangle {
     display: flex;
     flex-direction: column;
     align-items: center;
-    background-color: #f0f0f0; /* Kolor tła kontenera */
+    background-color: #494949; /* Kolor tła kontenera */
     padding: 20px; /* Wewnętrzny odstęp */
-    border: 2px solid #ccc; /* Grubość i styl obramowania */
+    border: 2px solid #ffffff; /* Grubość i styl obramowania */
     border-radius: 20px; /* Zaokrąglenie krawędzi */
     margin-bottom: 20px;
-    margin-top: 20px
+    margin-top: 10px
 }
 
 .legend {
@@ -101,29 +146,33 @@ body {
 }
 
 .seat img {
-    width: 80%; /* Dopasowanie obrazka do rozmiaru kontenera */
-    height: 80%;
-    object-fit: contain; /* Dopasowanie obrazka zachowując proporcje */
+  width: 80%; /* Dopasowanie obrazka do rozmiaru kontenera */
+  height: 80%;
+  object-fit: contain; /* Dopasowanie obrazka zachowując proporcje */
+  scale: 1;
 }
 
+
 .seat:hover {
-    background-color: #f8acf2; /* Kolor tła podczas najeżdżania */
+    background-color: #ffffff; /* Kolor tła podczas najeżdżania */
 }
 
 .seat.clicked {
-    background-color: #f74141; /* Kolor tła po kliknięciu */
+    background-color: #ff5d73; /* Kolor tła po kliknięciu */
 }
 
 .table-container {
     width: 100%; /* Szerokość tabeli będzie równa szerokości karty */
     margin: auto; /* Wyśrodkowanie tabeli */
     overflow-x: auto; /* Dodaj pasek przewijania poziomego w razie potrzeby */
+    border-radius: 20px;
 }
 
 .table-container .p-table {
     border-collapse: collapse;
     table-layout: fixed;
     width: auto;
+    background-color: #494949;
 }
 
 .table-container .p-table th,
@@ -224,7 +273,7 @@ body {
     border-radius: 8px;
     letter-spacing: 0.7px;
     background-color: 
-  #464e8b;
+  #ff5d73;
     color: 
   #fff;
     font-size: 21px;
@@ -232,6 +281,7 @@ body {
     cursor: pointer;
     box-shadow: 
   rgba(0, 9, 61, 0.2) 0px 4px 8px 0px;
+    font-weight: 550;
   }
   
   .btnwallet .button:active {
@@ -245,3 +295,93 @@ body {
     right: 0.2rem;
     height: 140%;
   }
+
+  /* Dodanie efektu powiększenia po najechaniu */
+.btnwallet .button:hover {
+  transform: scale(1.05); /* Zwiększenie przycisku o 5% */
+}
+
+
+/* Stylizacja ogólna tabeli */
+.p-datatable {
+  background-color: #494949; /* Szare tło dla całej tabeli */
+  border-radius: 20px; /* Zaokrąglone rogi */
+  color: #ff5d73; /* Kolor tekstu */
+  border: 1.5px solid #ffffff; /* Białe obramowanie dla całej tabeli */
+  overflow: hidden; /* Ukryj nadmiar, aby zaokrąglić rogi */
+}
+
+/* Stylizacja nagłówka tabeli */
+.p-datatable-thead th {
+  background-color: #494949; /* Szare tło dla nagłówków */
+  color: #ff5d73; /* Kolor tekstu w nagłówkach */
+  border-bottom: 1px solid #ffffff; /* Brak obramowania dla nagłówków */
+  padding: 10px; /* Odstępy wewnętrzne w nagłówkach */
+  text-align: left; /* Wyrównanie tekstu do lewej */
+}
+
+/* Stylizacja wierszy tabeli */
+.p-datatable-tbody tr {
+  border-bottom: 0 none; /* Brak obramowania między wierszami */
+}
+
+.p-datatable .p-datatable-tbody tr:hover td {
+  background-color: #7c7a7a !important; /* Szare tło dla wiersza po najechaniu */
+}
+
+
+
+/* Stylizacja komórek tabeli */
+.p-datatable-tbody td {
+  background-color: #494949; /* Szare tło dla komórek */
+  color: #fff; /* Kolor tekstu w komórkach */
+  border: 0 none; /* Brak obramowania dla komórek */
+  padding: 10px; /* Odstępy wewnętrzne w komórkach */
+  text-align: left; /* Wyrównanie tekstu do lewej */
+}
+
+/* Stylizacja stopki tabeli */
+.p-datatable-footer {
+  background-color: #494949; /* Szare tło dla stopki */
+  color: #ff5d73; /* Kolor tekstu w stopce */
+  border-top: 2px solid #ffffff; /* Białe obramowanie dla górnej krawędzi stopki */
+  padding: 10px; /* Odstępy wewnętrzne w stopce */
+  border-radius: 0 0 20px 20px; /* Zaokrąglone dolne rogi */
+  overflow: hidden; /* Ukryj nadmiar, aby zaokrąglić rogi */
+}
+
+/* Stylizacja dla kontenera wewnątrz stopki */
+.p-datatable-footer .flex-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* Stylizacja dla lewego i prawego kontenera w stopce */
+.p-datatable-footer .left-content,
+.p-datatable-footer .right-content {
+  flex: 1;
+}
+
+.p-button.p-button-danger.p-button-outlined, .p-button-group.p-button-danger > .p-button.p-button-outlined, .p-splitbutton.p-button-danger > .p-button.p-button-outlined {
+  background-color: transparent;
+  color: #ffffff;
+  border: 2px solid;
+}
+
+.p-button.p-button-danger.p-button-outlined:hover,
+.p-button-group.p-button-danger > .p-button.p-button-outlined:hover,
+.p-splitbutton.p-button-danger > .p-button.p-button-outlined:hover {
+  background-color: #ff5d73;
+  color: #ffffff;
+  border: 2px solid #ffffff; /* Dodanie koloru obramowania */
+  transform: scale(1.1);
+}
+
+
+.p-dialog {
+  border-radius: 20px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+  border: 0 none;
+  color: #ff5d73;
+}

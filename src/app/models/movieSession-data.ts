@@ -3,5 +3,8 @@ export interface MovieSession {
     dateOfSession: string;
     timeOfSession: string;
     sessionTypeName: string;
+    hallName: string;
+    availableSeat: number;
+    allSeats: number;
     subtitles: boolean;
   }

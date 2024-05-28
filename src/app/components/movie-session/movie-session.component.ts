@@ -89,8 +89,10 @@ export class MovieSessionComponent implements OnInit {
     this.goToMovieSessions(event, date);
 }
 
-  formatDate(date: Date, format: string): string {
-    return formatDate(date, format, 'en-US');
+  formatDate(date: Date): string {
+    const day = date.getDate();
+    const month = date.toLocaleString('en-US', { month: 'short' });
+    return `${day}\n${month}.`;
   }
 
   findSelectedCinema(cinemaId: number): void {
