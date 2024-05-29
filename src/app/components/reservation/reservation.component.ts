@@ -35,10 +35,22 @@ export class ReservationComponent implements OnInit {
   bookingNumber: number = -1;
   errorMessage: string = '';
   messages: any[] = [];
+  bookingId: number = -1;
   @ViewChild('confirmation') confirmation: any;
 
 
   ngOnInit(): void {
+    this.bookingId = Number(localStorage.getItem('editingBookingId'));
+    this.bookingNumber = Number(localStorage.getItem('editingBookingNumber'));
+
+    if (this.bookingId == null || this.bookingNumber == null ) {
+      this.bookingId = -1;
+      this.bookingNumber = -1;
+    }
+    else {
+      localStorage.removeItem('editingBookingId');
+      localStorage.removeItem('editingBookingNumber');
+    }
     this.loadMovieSessionInfo();
     this.loadCinemaHallSeats();
     const successMessage = localStorage.getItem('successMessage');
@@ -68,17 +80,28 @@ export class ReservationComponent implements OnInit {
         for (const seat of row.seats) {
           console.log(seat.seatClass)
           if (seat.available == false){
-            seatsClass.push(this.seatImages[0]); // Losujemy obrazek z tablicy
+            seatsClass.push(this.seatImages[0]);
           }
           else if (seat.seatClass == 'VIP'){
-            seatsClass.push(this.seatImages[2]); // Losujemy obrazek z tablicy
+            seatsClass.push(this.seatImages[2]);
           }
           else if (seat.seatClass == 'Premium'){
-            seatsClass.push(this.seatImages[1]); // Losujemy obrazek z tablicy
+            seatsClass.push(this.seatImages[1]);
           }
           else {
-            seatsClass.push(this.seatImages[3]); // Losujemy obrazek z tablicy
+            seatsClass.push(this.seatImages[3]);
 
+          }
+
+          if (seat.inBooking == true) {
+            setTimeout(() => {
+              this.selectedSeats.push(seat);
+              const rowIndex = row.rowName.toLowerCase().charCodeAt(0) - 97;
+              const seatElement = document.querySelector(`.row:nth-child(${rowIndex + 1}) .seat:nth-child(${seat.column})`);
+              if (seatElement) {
+                seatElement.classList.add('clicked');
+              }
+            }, 0);
           }
         }
         layout.push(seatsClass);
@@ -142,7 +165,7 @@ export class ReservationComponent implements OnInit {
     this.route.paramMap.subscribe(params => {
       this.movieSessionId = Number(params.get('sessionId'));
 
-      this.reservationService.getCinemaHallSeats(this.movieSessionId).subscribe(
+      this.reservationService.getCinemaHallSeats(this.movieSessionId, this.bookingId).subscribe(
         (response: any) => {
           this.cinemaHallSeats = response as CinemaHallRowsSeat;
           this.seatingLayout = this.generateSeatingLayout();
