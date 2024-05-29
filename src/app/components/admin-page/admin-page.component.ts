@@ -1,11 +1,12 @@
-import { Component, ViewEncapsulation } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+import { Router, NavigationEnd } from '@angular/router';
 
 @Component({
   selector: 'app-admin-page',
   templateUrl: './admin-page.component.html',
-  styleUrl: './admin-page.component.css',
+  styleUrls: ['./admin-page.component.css'],
   encapsulation: ViewEncapsulation.None,
 })
-export class AdminPageComponent {
+export class AdminPageComponent  {
 
 }

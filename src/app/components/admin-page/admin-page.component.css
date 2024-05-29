@@ -67,3 +67,10 @@
   cursor: pointer;
   background-color: #7c7a7a;
 }
+
+.grayed-out {
+  color: gray;
+  pointer-events: none; /* opcjonalne: wyłącza interakcję */
+  opacity: 0.5; /* opcjonalne: dodaje efekt półprzezroczystości */
+}
+

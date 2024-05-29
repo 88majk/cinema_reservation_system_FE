@@ -11,6 +11,7 @@ import { UserOrdersComponent } from './components/user-orders/user-orders.compon
 import { AdminPageComponent } from './components/admin-page/admin-page.component';
 import { MoviesComponent } from './components/admin-components/movies/movies.component';
 import { CinemasComponent } from './components/admin-components/cinemas/cinemas.component';
+import { AccessComponent } from './components/admin-components/access/access.component';
 
 
 const routes: Routes = [
@@ -58,6 +59,10 @@ const routes: Routes = [
       {
         path: 'cinemas',
         component: CinemasComponent
+      },
+      {
+        path: 'access',
+        component: AccessComponent
       }
     ]
   }
