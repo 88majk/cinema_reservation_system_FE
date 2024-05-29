@@ -33,6 +33,8 @@ import { FieldsetModule } from 'primeng/fieldset';
 import { DialogModule } from 'primeng/dialog';
 import { ConfirmationService } from 'primeng/api';
 import { TagModule } from 'primeng/tag';
+import { CheckboxModule } from 'primeng/checkbox';
+import { FloatLabelModule } from 'primeng/floatlabel';
 import { PanelModule } from 'primeng/panel';
 import { DataViewModule } from 'primeng/dataview';
 import { ImageModule } from 'primeng/image';
@@ -42,10 +44,11 @@ import { InputTextareaModule } from 'primeng/inputtextarea';
 import { InputNumberModule } from 'primeng/inputnumber';
 import { MultiSelectModule } from 'primeng/multiselect';
 import { CinemasComponent } from './components/admin-components/cinemas/cinemas.component';
+import { AccessComponent } from './components/admin-components/access/access.component';
 
 
 @NgModule({
-  declarations: [AppComponent, RegisterPageComponent, LoginPageComponent, HomePageComponent, MovieSessionComponent, UserOrdersComponent, UserProfileComponent, ReservationComponent, AdminPageComponent, MoviesComponent, CinemasComponent],
+  declarations: [AppComponent, RegisterPageComponent, LoginPageComponent, HomePageComponent, MovieSessionComponent, UserOrdersComponent, UserProfileComponent, ReservationComponent, AdminPageComponent, MoviesComponent, CinemasComponent, AccessComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
@@ -75,7 +78,9 @@ import { CinemasComponent } from './components/admin-components/cinemas/cinemas.
     ImageModule,
     InputTextareaModule,
     InputNumberModule,
-    MultiSelectModule
+    MultiSelectModule,
+    CheckboxModule,
+    FloatLabelModule,
   ],
   providers: [provideHttpClient(), provideAnimations(), ConfirmationService],
   bootstrap: [AppComponent],

@@ -1,0 +1,51 @@
+<p-messages [value]="messages" [enableService]="false" [closable]="true" 
+    [showTransitionOptions]="'500ms'" 
+    [hideTransitionOptions]="'500ms'" 
+    class="error-message"></p-messages>
+
+<div class="access-container">
+    <p-card header="Access">
+        <div>
+            <p-tabView styleClass="admin-tabview">
+                <p-tabPanel header="Add">
+                    <form [formGroup]="newAccess" id="addAccess">
+                        <div class="form-group" style="align-items: center;">
+                            <label for="userEmail">User Email:</label>
+                            <input formControlName="email" type="text" pInputText>
+                        </div>
+                        <div class="form-group" style="align-items: center;">
+                            <label for="admin">Admin for all cinemas</label>
+                            <p-checkbox formControlName="isAdmin" binary="true" inputId="admin" class="custom-checkbox" (click)="onIsAdminChange()"></p-checkbox>
+                        </div>
+                        <div class="form-group" *ngIf="!newAccess?.get('isAdmin')?.value" style="align-items: center;">
+                          <p-floatLabel>
+                            <p-dropdown 
+                              [options]="fullCinemas"
+                              formControlName="selectedCinema"
+                              optionLabel="name" 
+                              inputId="float-label" />
+                            <label for="float-label">Select a cinema</label>
+                          </p-floatLabel>
+                        </div>
+                        <div class="error-message">{{ errorMessage }}</div> <!-- Display error message -->
+                        <div class="add-button-container">
+                            <button type="button" class="add-button" pButton (click)="addAccess()">Add Access</button>
+                        </div>
+                    </form>                    
+                </p-tabPanel>
+                <p-tabPanel header="Delete">
+                    <form [formGroup]="deleteAccess" id="deleteAccess">
+                        <div class="form-group" style="align-items: center;">
+                            <label for="userEmail">User Email:</label>
+                            <input formControlName="email" type="text" pInputText>
+                        </div>
+                        <div class="error-message">{{ errorMessage }}</div> <!-- Display error message -->
+                        <div class="add-button-container">
+                            <button type="button" class="add-button" pButton (click)="deleteAdmin()">Delete Access</button>
+                        </div>
+                    </form>   
+                </p-tabPanel>
+            </p-tabView>
+        </div>
+    </p-card>
+</div>

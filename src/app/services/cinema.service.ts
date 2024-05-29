@@ -32,4 +32,5 @@ export class CinemaService {
   updateCinemaById(cinemaId: number, cinema: Cinema): Observable<string> {
     return this.http.put(`${this.baseUrl}/update/${cinemaId}`, cinema, {responseType: 'text'});
   }
+
 }

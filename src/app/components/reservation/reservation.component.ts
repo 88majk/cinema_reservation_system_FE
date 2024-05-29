@@ -57,6 +57,10 @@ export class ReservationComponent implements OnInit {
     if (successMessage) {
         this.messages.push({severity:'success', summary:'Success', detail: successMessage});
         localStorage.removeItem('successMessage'); // Usuń komunikat po wyświetleniu
+        
+        setTimeout(() => {
+          this.messages = [];
+        }, 5000);
     }
     this.authService.checkTokenExpiration();
 
