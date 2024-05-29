@@ -6,4 +6,5 @@ export interface Seat {
     available: boolean;
     price: number;
     bookingStatus: string;
+    inBooking: boolean;
 }

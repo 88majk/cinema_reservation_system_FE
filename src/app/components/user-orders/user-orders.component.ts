@@ -105,10 +105,11 @@ export class UserOrdersComponent {
     }
   }  
 
-  editBooking(bookingId: number | undefined, movieSessionId: number | undefined) {
-    if (bookingId !== undefined) {
+  editBooking(bookingId: number | undefined, movieSessionId: number | undefined, bookingNumber: number | undefined) {
+    if (bookingId !== undefined && bookingNumber !== undefined) {
       localStorage.setItem('editingBookingId', bookingId.toString());
-  
+      localStorage.setItem('editingBookingNumber', bookingNumber.toString());
+
       this.router.navigate(['booking/movieSession/', movieSessionId]);
     }
   }

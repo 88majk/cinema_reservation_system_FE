@@ -14,24 +14,23 @@ export class ReservationService {
 
   constructor(private http: HttpClient) { }
 
-  getCinemaHallSeats(movieSessionId: number): Observable<any> {
+  getCinemaHallSeats(movieSessionId: number, bookingId: number): Observable<any> {
     const url = `${this.baseUrl}/seats/movieSession/${movieSessionId}`;
-    const params = new HttpParams()
-      .set('movieSessionId', movieSessionId.toString())
-      return this.http.get<CinemaHallRowsSeat>(url, { params }).pipe(
-        catchError(error => {
-          let errorMessage: string;
-          if (error.error instanceof ErrorEvent) {
-            // Błąd klienta
-            errorMessage = `An error occurred: ${error.error.message}`;
-          } else {
-            // Błąd serwera
-            errorMessage = `Server returned code ${error.status}: ${error.error}`;
-          }
-          // Zwraca błąd jako string
-          return throwError(errorMessage);
-        })
-      );
+    const body = { bookingId: bookingId };
+    return this.http.post<CinemaHallRowsSeat>(url, body).pipe(
+      catchError(error => {
+        let errorMessage: string;
+        if (error.error instanceof ErrorEvent) {
+          // Client-side error
+          errorMessage = `An error occurred: ${error.error.message}`;
+        } else {
+          // Server-side error
+          errorMessage = `Server returned code ${error.status}: ${error.error}`;
+        }
+        // Return error as string
+        return throwError(errorMessage);
+      })
+    );
     }
 
     postNewBooking(bookingData: any){    
