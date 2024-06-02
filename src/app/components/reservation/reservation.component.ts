@@ -215,8 +215,7 @@ export class ReservationComponent implements OnInit {
         error: (error) => {
           console.log(error.error)
           this.messages = [];
-          this.messages.push({severity:'error', summary:'Error', detail:`${error.error}. Please reload page.`});
-                
+          this.messages.push({severity:'error', summary:'Error', detail:`${error.error}.`}); 
         }
       });
     }
