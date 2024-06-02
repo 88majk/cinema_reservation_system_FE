@@ -88,6 +88,11 @@ body {
   background-color: #000000;
 }
 
+.p-datepicker .p-datepicker-header .p-datepicker-title .p-datepicker-year,
+.p-datepicker .p-datepicker-header .p-datepicker-title .p-datepicker-month {
+  color: #ff5d73;
+}
+
 .register-button {
   margin-top: 5px;
   height: 50px;

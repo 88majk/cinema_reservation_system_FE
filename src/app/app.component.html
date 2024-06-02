@@ -15,7 +15,7 @@
 
   @if (authService.isLogged$ | async) {
   <div style="display: flex; flex-direction: row; float: right; font-size: 20px;">
-    @if(authService.decodedToken.role == 'Administrator'){
+    @if(authService.decodedToken.role == 'Administrator' || authService.decodedToken.role == 'Cinema manager'){
       <a class="a-header1" routerLink="admin">
         <i class="pi pi-cog" style="padding-right: 5px;"></i>Admin page
       </a>

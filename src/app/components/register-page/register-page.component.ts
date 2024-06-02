@@ -71,6 +71,10 @@ export class RegisterPageComponent {
     return this.registerForm.get('date_of_birth');
   }
 
+  get passwordsFormField() {
+    return this.registerForm.get('password');
+  }
+
   getFormattedDate(inputDate: string | undefined): string {
     if (!inputDate) return '';
     const dateObj = new Date(inputDate);
@@ -84,6 +88,23 @@ export class RegisterPageComponent {
   }
 
   validateForm(): boolean {
+    const password = this.registerForm.value.password;
+    if (this.registerForm.invalid) {
+      if(this.registerForm.get('email')?.invalid) {
+        this.errorMessage = 'Email is not valid.'
+        this.clearMessageAfterTimeout();
+        return false;
+      }
+      
+      this.errorMessage = 'You cannot leave empty forms.'
+      this.clearMessageAfterTimeout();
+    } else if (password.length < 8 || password.length > 32) {
+      this.errorMessage =
+        'Password must be between 8 and 32 characters.';
+      this.clearMessageAfterTimeout();
+      return false;
+    }
+    
     return (
       this.registerForm.valid &&
       this.registerForm.value.password === this.registerForm.value.retPassword
@@ -95,5 +116,11 @@ export class RegisterPageComponent {
     setTimeout(() => {
       this.isRegistering = false;
     }, 1200);
+  }
+
+  clearMessageAfterTimeout(): void {
+    setTimeout(() => {
+      this.errorMessage = '';
+    }, 5000);
   }
 }
