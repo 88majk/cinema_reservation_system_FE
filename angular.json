@@ -58,12 +58,17 @@
             "development": {
               "optimization": false,
               "extractLicenses": false,
-              "sourceMap": true
+              "sourceMap": false
             }
           },
           "defaultConfiguration": "production"
         },
         "serve": {
+          "options":{
+            // "ssl": true,
+            // "sslKey": "src/assets/security/server.key",
+            // "sslCert": "src/assets/security/server.crt"
+          },
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
@@ -94,6 +99,8 @@
               "src/assets"
             ],
             "styles": [
+              "node_modules/primeng/resources/themes/lara-light-blue/theme.css",
+              "node_modules/primeng/resources/primeng.min.css",
               "src/styles.css"
             ],
             "scripts": []
@@ -101,5 +108,8 @@
         }
       }
     }
+  },
+  "cli": {
+    "analytics": "61b5b3ae-55fb-4483-8275-9e6cd1666c93"
   }
 }

@@ -1,0 +1,28 @@
+<div class="background">
+  <div class="container">
+  <form class="form-container" [formGroup]="homePageForm">
+      <p-card>
+          <div class="select-container">
+              <label>Select Cinema:</label>
+              <select id="cinemaSelect" class="selectCinemaButton"
+              (change)="goToMovieSessions($event, selectedDate)">
+                <option value="" disabled selected></option>
+                <option *ngFor="let cinema of cinemas" [value]="cinema.name">{{ cinema.name }}</option>
+              </select>
+          </div>
+          
+          <div class="date-container">
+              <label>Select Date:</label>
+              <div class="date-tiles">
+                <div *ngFor="let date of dates" 
+                     class="date-tile" 
+                     [class.selected]="date === selectedDate"
+                     (click)="selectDate(date)">
+                    {{ formatDate(date) }}
+                </div>
+              </div>
+            </div>
+      </p-card>
+  </form>
+</div>
+</div>

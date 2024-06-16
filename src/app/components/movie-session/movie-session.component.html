@@ -1,0 +1,87 @@
+<div class="background">
+    <div class="container">
+        <form *ngIf="selectedCinema" class="form-container" [formGroup]="homePageForm">
+            <p-card>
+                <div class="select-container">
+                    <label>Select Cinema:</label>
+                    <select id="cinemaSelect" class="selectCinemaButton"
+                        (change)="goToMovieSessions($event, selectedDate)">
+                        <option [value]="selectedCinema.name">{{ selectedCinema.name }}</option>
+                        <option *ngFor="let cinema of cinemas" [value]="cinema.name" [hidden]="cinema.name === selectedCinema.name">{{ cinema.name }}</option>
+                    </select>
+                    
+                </div>
+                
+                <div class="date-container">
+                    <label>Select Date:</label>
+                        <div class="date-tiles">
+                            <div *ngFor="let date of dates" 
+                            class="date-tile" 
+                            [class.selected]="date === selectedDate"
+                            (click)="selectDateEvent($event, date)">
+                        {{ formatDate(date) }}
+                        </div>
+                    </div>
+                </div>
+                <p-accordion *ngIf="movieAndSessions && movieAndSessions.length > 0" [multiple]="true" expandIcon="pi pi-plus" collapseIcon="pi pi-minus">
+                    <p-accordionTab *ngFor="let movie of movieAndSessions let first = first" [header]=movie.name [selected]="first">
+                        <div class="accordion-tab-content">
+                            <div class="header-container">
+                                <p class="choose-session-text"><strong>Choose Movie Session</strong></p>
+                                <div class="sidebar-button-container">
+                                    <p-button class="sidebar-button" (click)="showSidebar(movie)">
+                                        <span class="button-icon-text">
+                                            <i class="pi pi-arrow-right"></i>
+                                            Read about movie
+                                        </span>
+                                    </p-button>
+                                </div>
+                            </div>
+
+                            <p-tabView [scrollable]="true">
+                                <p-tabPanel *ngFor="let session of movie.movieSessionList" [header]="session.timeOfSession.split(':').slice(0, 2).join(':')">
+                                    <div class="session-details">
+                                        <h3>Information about movie session</h3>
+                                        <div class="session-info">
+                                            <p><strong>Type of session:</strong> {{ session.sessionTypeName}}</p>
+                                            <p><strong>With subtitles:</strong> {{ session.subtitles ? 'Yes' : 'No' }} </p>
+                                            <p><strong>Min. age:</strong> {{movie.minimumAge}}</p>
+                                            <p><strong>Duration:</strong> {{ movie.duration }}</p>
+                                            <p><strong>Available seats:</strong> {{session.availableSeat}}/{{session.allSeats}}</p>
+                                            <p><strong>Hall:</strong> {{session.hallName}}</p>
+                                        </div>
+                                    </div>
+                                    <div class="button-buy-ticket-container">
+                                        <p-button class="button-buy-ticket" label="Buy Ticket" (click)="goToReservationPage(session.movieSessionId)"></p-button>
+                                    </div>
+                                </p-tabPanel>
+                            </p-tabView>
+                        </div>
+                    </p-accordionTab>
+                </p-accordion>
+                
+                
+                <p-sidebar *ngIf="selectedMovie" [(visible)]="sidebarVisible" styleClass="w-30rem" [blockScroll]="false">
+                    <div class="sidebar-content">
+                        <h3>{{ selectedMovie.name }}</h3>
+                        <p><strong>Description:</strong><br> {{ selectedMovie.description }}</p>
+                        <p><strong>Release Date:</strong><br> {{ selectedMovie.releaseDate }}</p>
+                        <p><strong>Minimum Age:</strong><br> {{ selectedMovie.minimumAge }}</p>
+                        <p><strong>Duration:</strong><br> {{ selectedMovie.duration }}</p>
+                        <p><strong>Production Country:</strong><br> {{ selectedMovie.productionCountry }}</p>
+                        <p><strong>Director:</strong><br> {{ selectedMovie.director }}</p>
+                        <p><strong>Genres:</strong><br> {{ getGenresNames() }}</p>
+                    </div>
+                </p-sidebar>
+                <div *ngIf="!movieAndSessions || movieAndSessions.length === 0" class="no-movies-message">
+                    <p>No movies available for this day.</p>
+                </div>
+                
+            </p-card>
+        </form>
+    </div>
+</div>
+
+<div *ngIf="!cinemasLoaded" class="error-container">
+    <p>An error occurred while loading cinemas. Please try again later.</p>
+</div>

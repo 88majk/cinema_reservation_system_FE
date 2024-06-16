@@ -1,0 +1,76 @@
+.admin-container {
+  display: flex;
+  justify-content: space-between;
+  animation: fadeIn 0.5s ease-in-out;
+  height: 100vh;
+}
+
+.p-card {
+  border-radius: 25px;
+  color: #ff5d73;
+  background: rgb(14, 14, 14);
+  background: linear-gradient(
+    135deg,
+    rgba(14, 14, 14, 1) 0%,
+    rgba(73, 73, 73, 1) 100%
+  );
+}
+
+.sidebar-div {
+    width: 200px;
+    margin-top: 100px;
+    padding: 10px;
+    box-sizing: border-box;
+    position: fixed;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    display: flex;
+    justify-content: center;
+}
+
+.router-div {
+    flex-grow: 1;
+    display: flex;
+    justify-content: center;
+    padding: 20px;
+}
+
+.tiles-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.tile {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin: 5px;
+  margin-bottom: 15px;
+  background-color: #494949;
+  color: #ffffff;
+  border: #000000 solid 1px;
+  border-radius: 25px;
+  transition: 0.2s ease-in-out;
+  padding: 10px;
+}
+
+.tile i {
+  margin-bottom: 10px;
+  font-size: 1.5rem;
+}
+
+.tile:hover {
+  transform: scale(1.06);
+  cursor: pointer;
+  background-color: #7c7a7a;
+}
+
+.grayed-out {
+  color: gray;
+  pointer-events: none; /* opcjonalne: wyłącza interakcję */
+  opacity: 0.5; /* opcjonalne: dodaje efekt półprzezroczystości */
+}
+

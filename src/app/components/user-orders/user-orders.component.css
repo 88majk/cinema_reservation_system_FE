@@ -1,0 +1,125 @@
+.form-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  animation: fadeIn 0.5s ease-in-out;
+}
+
+.p-card {
+  border-radius: 25px;
+  color: #ff5d73;
+  background: rgb(14, 14, 14);
+  background: linear-gradient(
+    165deg,
+    rgba(0, 0, 0, 1) 0%,
+    rgba(73, 73, 73, 1) 100%
+  );
+}
+
+.p-card .p-card-content {
+  padding: 0px;
+}
+
+
+.p-datatable .p-datatable-tbody > tr {
+  color: #ffffff;
+  background-color: transparent;
+}
+
+.p-datatable .p-datatable-tbody > tr > td {
+  border: 1px solid #ff5d73;
+  border-width: 0 0 1px 0;
+  background-color: transparent;
+}
+
+.p-datatable .p-datatable-tfoot > tr > td {
+    color: #ffffff;
+    border: 1px solid #ff5d73;
+    border-width: 0;
+    background-color: transparent;
+  }
+
+.p-datatable .p-datatable-thead > tr > th {
+  border: 1px solid #ff5d73;
+  border-width: 0 0 1px 0;
+  color: #ffffff;
+  background-color: transparent;
+}
+
+.p-datatable-table {
+  border-color: #ff5d73;
+}
+
+.p-datatable .p-paginator-bottom {
+  color: #ffffff;
+  border-width: 0px;
+  background-color: transparent;
+}
+
+.details-button {
+  height: 30px;
+  color: #ffffff;
+  background-color: #ff5d73;
+  border: #ff5d73;
+  transition: transform 0.2s ease-in-out;
+}
+
+.details-button:hover {
+  transform: scale(1.04);
+}
+
+.p-dialog {
+  border: 2px #ff5d73 solid;
+}
+
+.p-dialog-header {
+  width: 750px;
+  color: #ff5d73;
+  background-color: #000000;
+  padding-bottom: 0px;
+}
+
+.p-dialog-content {
+  width: 750px;
+  color: #ff5d73;
+  background: rgb(0, 0, 0);
+  background: linear-gradient(
+    180deg,
+    rgba(0, 0, 0, 1) 0%,
+    rgba(73, 73, 73, 1) 100%
+  );
+}
+
+.edit-button:hover {
+  transform: scale(1.06);
+}
+
+.cancel-button:hover {
+  transform: scale(1.06);
+}
+
+.edit-button,
+.confirm-button,
+.cancel-button {
+  margin-left: 15px;
+    margin-top: 5px;
+    border-color: rgb(214, 213, 213);
+    background-color: white;
+    transition: transform 0.2s ease-in-out;
+}
+
+.edit-button {
+  background-color: #494949;
+}
+
+.confirm-button {
+  background-color: #009000;
+}
+
+.cancel-button {
+  background-color: #ff5d73;
+}
+
+.confirm-button:hover {
+  transform: scale(1.06);
+}

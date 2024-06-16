@@ -1,0 +1,67 @@
+<form class="form-container" [formGroup]="registerForm" (ngSubmit)="sendRegisterData()">
+    <!-- <p-card [style]="{'width': '950px', 'border':'0px', 'background': 'rgb(14, 14, 14)', 'opacity':'50%'}">
+        <ng-template pTemplate="header">
+            <div>
+                <h2 style="padding-top: 10px;">Coming soon</h2>
+            </div>
+        </ng-template>
+        <div>
+            
+        </div>
+    </p-card> -->
+    <p-card header="Register your account">
+        <div class="field">
+            <label>E-mail</label>
+            <input type="text" formControlName="email" pInputText>
+        </div>
+        <div style="display: flex; flex-direction: row; justify-content: space-between;">
+            <div class="field">
+                <label>Name</label>
+                <input type="text" formControlName="name" pInputText>
+            </div>
+            <div class="field">
+                <label>Surname</label>
+                <input type="text" formControlName="surname" pInputText>
+            </div>
+        </div>
+        <div class="field">
+            <label>Date of birth</label>
+            <p-calendar formControlName="date_of_birth" [dateFormat]="'yy-mm-dd'" [showIcon]="true"
+                [iconDisplay]="'input'" [style]="{'width': '100%'}" />
+        </div>
+        <div style="display: flex; flex-direction: row; justify-content: space-between;">
+            <div class="field">
+                <label>Password</label>
+                <p-password type="text" formControlName="password" [toggleMask]="true"
+                    inputStyleClass="register-passwordarea" styleClass="register-passwordarea" />
+            </div>
+            <div class="field">
+                <label>Confirm password</label>
+                <p-password type="text" formControlName="retPassword" [feedback]="false" [toggleMask]="true"
+                    inputStyleClass="register-passwordarea" styleClass="register-passwordarea" />
+            </div>
+        </div>
+        <div style="padding-bottom: 15px; color: #eb0202;">
+            @if (this.registerForm.value.password != this.registerForm.value.retPassword &&
+            this.registerForm.get('password')?.dirty &&
+            this.registerForm.get('retPassword')?.dirty
+            ){
+            <small>Passwords do not match.</small>
+            }
+            @if (errorMessage.length > 0) {
+            <small>{{errorMessage}}</small>
+            }
+        </div>
+        <button (click)="registerClick()" type="submit" class="register-button" pButton>
+            @if(!isRegistering)
+            {<span class="p-button-label">Register account</span>}
+            @else
+            {<span class="p-button-label">Registering <i class="pi pi-spin pi-spinner"
+                    style="font-size: 1rem"></i></span>}
+        </button>
+        <p-divider align="center" type="solid" styleClass="custom-divider">
+            <b>Already have an account?</b>
+        </p-divider>
+        <button label="Log in" class="login-button" routerLink="/login" pButton></button>
+    </p-card>
+</form>

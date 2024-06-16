@@ -1,0 +1,178 @@
+.cinema-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  animation: fadeIn 0.5s ease-in-out;
+  width: 900px;
+}
+
+.p-card {
+  border-radius: 25px;
+  color: #ff5d73;
+  background: rgb(14, 14, 14);
+  background: linear-gradient(
+    135deg,
+    rgba(14, 14, 14, 1) 0%,
+    rgba(73, 73, 73, 1) 100%
+  );
+}
+
+.p-tabview .p-tabview-nav {
+  background-color: transparent;
+  border-color: #ff5d73;
+}
+
+.p-tabview .p-tabview-nav li .p-tabview-nav-link {
+  background-color: transparent;
+  color: #ffffff;
+  border-color: #ff5d73;
+  transition: 0.2s ease-in-out;
+}
+
+.p-tabview .p-tabview-nav li .p-tabview-nav-link:hover {
+  transform: scale(1.06);
+  color: #ff5d73;
+}
+
+.p-tabview .p-tabview-nav li.p-highlight .p-tabview-nav-link {
+  color: #ff5d73;
+}
+
+.p-tabview .p-tabview-panels {
+  background-color: transparent;
+  color: #ffffff;
+}
+
+.group-form-group {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  margin-bottom: 10px;
+  padding: 10px;
+}
+
+.form-group label {
+  margin-bottom: 5px;
+}
+
+.form-group input {
+  width: 300px;
+  background-color: #494949;
+  color: #ff5d73;
+  border-color: #000000;
+  border-radius: 5px;
+}
+
+.add-button {
+  background-color: #ff5d73;
+  color: #ffffff;
+  border: 1px solid #ff5d73;
+  transition: 0.2s ease-in-out;
+}
+
+.add-button:hover {
+  transform: scale(1.06);
+  background-color: #ff4f67;
+}
+
+.p-tabview .p-tabview-nav {
+  background-color: transparent;
+  border-color: #ff5d73;
+}
+
+.p-tabview .p-tabview-nav li .p-tabview-nav-link {
+  background-color: transparent;
+  color: #ffffff;
+  border-color: #ff5d73;
+  transition: 0.2s ease-in-out;
+}
+
+.p-tabview .p-tabview-nav li .p-tabview-nav-link:hover {
+  transform: scale(1.06);
+  color: #ff5d73;
+}
+
+.p-tabview .p-tabview-nav li.p-highlight .p-tabview-nav-link {
+  color: #ff5d73;
+}
+
+.p-tabview .p-tabview-panels {
+  background-color: transparent;
+  color: #ffffff;
+}
+
+.p-datatable .p-datatable-tbody > tr {
+  color: #ffffff;
+  background-color: transparent;
+}
+
+.p-datatable .p-datatable-tbody > tr > td {
+  border: 1px solid #ffffff;
+  border-width: 0 0 1px 0;
+  background-color: transparent;
+}
+
+.p-datatable .p-datatable-tfoot > tr > td {
+  color: #ffffff;
+  border: 1px solid #ffffff;
+  border-width: 0;
+  background-color: transparent;
+}
+
+.p-datatable .p-datatable-thead > tr > th {
+  border: 1px solid #ffffff;
+  border-width: 0 0 1px 0;
+  color: #ffffff;
+  background-color: transparent;
+}
+
+.p-datatable-table {
+  border-color: #ff5d73;
+}
+
+.p-datatable .p-paginator-bottom {
+  color: #ffffff;
+  border-width: 0px;
+  background-color: transparent;
+}
+
+.edit-button {
+  height: 35px;
+  color: #ffffff;
+  border-color: #ff5d73;
+  background-color: #ff5d73;
+  border-radius: 50px;
+  transition: transform 0.2s ease-in-out;
+}
+
+.edit-button:hover {
+  transform: scale(1.04);
+}
+
+.p-dialog {
+  border: 2px #ff5d73 solid;
+}
+
+.p-dialog-header {
+  width: 750px;
+  color: #ff5d73;
+  background-color: #000000;
+  padding-bottom: 0px;
+}
+
+.p-dialog-content {
+  width: 750px;
+  color: #ff5d73;
+  background: rgb(0, 0, 0);
+  background: linear-gradient(
+    180deg,
+    rgba(0, 0, 0, 1) 0%,
+    rgba(73, 73, 73, 1) 100%
+  );
+}

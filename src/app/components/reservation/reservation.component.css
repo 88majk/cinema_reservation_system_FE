@@ -1,0 +1,417 @@
+.error-message {
+  position: fixed;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 98%;
+  margin-top: 65px;
+  z-index: 9999; /* Upewnij się, że komunikat będzie zawsze na wierzchu */
+}
+
+.background {
+  background-image: url("/assets/cover.jpg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+}
+
+.container {
+  position: relative;
+  overflow-y: hidden;
+  height: 100vh;
+}
+
+.form-container {
+  padding-right: 10px;
+  overflow-y: auto; /* Przewijanie treści wewnątrz kontenera */
+  height: calc(
+    100vh - 80px
+  ); /* Wysokość kontenera pomniejszona o wysokość paska przewijania */
+}
+
+.p-card {
+  background: rgb(14, 14, 14);
+  background: linear-gradient(
+    135deg,
+    rgba(14, 14, 14, 1) 0%,
+    rgba(73, 73, 73, 1) 100%
+  );
+  width: 800px;
+  margin: 20px auto; /* Odległość od góry */
+  border-radius: 25px;
+  border: 2px #ff5d73 solid;
+  color: #ff5d73;
+  position: relative;
+  z-index: 2;
+  text-align: center;
+}
+
+.card-container {
+  position: relative;
+}
+
+.card-icon {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100px; /* Dostosuj rozmiar ikony według potrzeb */
+  height: 100px; /* Dostosuj rozmiar ikony według potrzeb */
+  background-image: url("../../../assets/ticket.png"); /* Ścieżka do ikony PNG */
+  background-size: cover;
+  z-index: 999; /* Ustaw wysoki indeks warstwy, aby ikona była na wierzchu */
+  margin-top: 10px;
+  margin-left: 10px;
+}
+
+.seating-header {
+  text-align: center;
+  margin-bottom: 10px;
+  font-size: 22px;
+}
+
+.movie-info {
+  text-align: center;
+  font-size: 22px;
+}
+
+.info-container {
+  font-size: 18px;
+  display: flex;
+  justify-content: space-between;
+  margin-top: 10px; /* Adjust as needed */
+}
+
+.left-column,
+.right-column {
+  flex-grow: 1;
+}
+
+.left-column {
+  text-align: left;
+}
+
+.right-column {
+  text-align: right;
+}
+
+.seating-rectangle {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: #494949; /* Kolor tła kontenera */
+  padding: 20px; /* Wewnętrzny odstęp */
+  border: 2px solid #ffffff; /* Grubość i styl obramowania */
+  border-radius: 20px; /* Zaokrąglenie krawędzi */
+  margin-bottom: 20px;
+  margin-top: 10px;
+}
+
+.legend {
+  display: flex;
+  justify-content: space-between; /* Rozłożenie równomiernie */
+  margin-bottom: 20px;
+}
+
+.legend-item {
+  display: flex;
+  align-items: center;
+  flex-grow: 1; /* Każdy element legendy ma flex-grow: 1 */
+  margin-right: 10px; /* Dodajemy odstęp między elementami */
+}
+
+.legend-color {
+  width: 20px;
+  height: 20px;
+  margin-right: 5px;
+}
+
+.legend-text {
+  font-size: 14px;
+}
+
+.row {
+  display: flex;
+  justify-content: center;
+}
+
+.seat {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 25px; /* Szerokość prostokąta */
+  height: 25px; /* Wysokość prostokąta */
+  margin: 0 0px; /* Marginesy między siedzeniami */
+}
+
+.seat img {
+  width: 80%; /* Dopasowanie obrazka do rozmiaru kontenera */
+  height: 80%;
+  object-fit: contain; /* Dopasowanie obrazka zachowując proporcje */
+  scale: 1;
+}
+
+.seat:hover {
+  background-color: #ffffff; /* Kolor tła podczas najeżdżania */
+}
+
+.seat.clicked {
+  background-color: #ff5d73; /* Kolor tła po kliknięciu */
+}
+
+.table-container {
+  width: 100%; /* Szerokość tabeli będzie równa szerokości karty */
+  margin: auto; /* Wyśrodkowanie tabeli */
+  overflow-x: auto; /* Dodaj pasek przewijania poziomego w razie potrzeby */
+  border-radius: 20px;
+}
+
+.table-container .p-table {
+  border-collapse: collapse;
+  table-layout: fixed;
+  width: auto;
+  background-color: #494949;
+}
+
+.table-container .p-table th,
+.table-container .p-table td {
+  padding: 8px;
+  text-align: center;
+  width: 25%; /* Dzielimy dostępną przestrzeń na cztery kolumny */
+}
+
+.table-container .p-table th:last-child,
+.table-container .p-table td:last-child {
+  width: auto; /* Ostatnia kolumna zajmuje pozostałą przestrzeń */
+}
+
+.table-container .p-button {
+  margin: 0;
+}
+
+.flex-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.flex-container .left-content {
+  text-align: left;
+}
+
+.flex-container .right-content {
+  text-align: right;
+}
+
+.btnwallet {
+  margin-top: 20px; /* Dodaj odstęp na górze przycisku */
+  margin-bottom: 20px; /* Dodaj odstęp na dole przycisku */
+}
+
+@media (hover: hover) {
+  .info-text {
+    color: red; /* Ustawienie koloru tekstu na czerwony */
+    margin-top: 10px; /* Dodatkowy margines na górę, aby oddzielić od przycisku */
+    font-size: 14px; /* Rozmiar czcionki */
+  }
+
+  #creditcard {
+    /*  set start position */
+    transform: translateY(110px);
+    transition: transform 0.1s ease-in-out;
+    /*  set transition for mouse enter & exit */
+  }
+
+  #money {
+    /*  set start position */
+    transform: translateY(180px);
+    transition: transform 0.1s ease-in-out;
+    /*  set transition for mouse enter & exit */
+  }
+
+  .btnwallet button:hover #creditcard {
+    transform: translateY(0px);
+    transition: transform 0.2s ease-in-out;
+    /*  overide transition for mouse enter */
+  }
+
+  .btnwallet button:hover #money {
+    transform: translateY(0px);
+    transition: transform 0.3s ease-in-out;
+    /*  overide transition for mouse enter */
+  }
+}
+
+@keyframes bounce {
+  0% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-0.25rem);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+
+.btnwallet .button:hover .btnwallet .button__text span {
+  transform: translateY(-0.25rem);
+  transition: transform 0.2s ease-in-out;
+}
+
+/* styling */
+
+.btnwallet .button {
+  border: none;
+  outline: none;
+  background-color: purple;
+  padding: 1rem 90px 1rem 2rem;
+  position: relative;
+  border-radius: 8px;
+  letter-spacing: 0.7px;
+  background-color: #ff5d73;
+  color: #fff;
+  font-size: 21px;
+  font-family: "Lato", sans-serif;
+  cursor: pointer;
+  box-shadow: rgba(0, 9, 61, 0.2) 0px 4px 8px 0px;
+  font-weight: 550;
+}
+
+.btnwallet .button:active {
+  transform: translateY(1px);
+}
+
+.btnwallet .button__svg {
+  position: absolute;
+  overflow: visible;
+  bottom: 6px;
+  right: 0.2rem;
+  height: 140%;
+}
+
+/* Dodanie efektu powiększenia po najechaniu */
+.btnwallet .button:hover {
+  transform: scale(1.05); /* Zwiększenie przycisku o 5% */
+}
+
+/* Stylizacja ogólna tabeli */
+.p-datatable {
+  background-color: #494949; /* Szare tło dla całej tabeli */
+  border-radius: 20px; /* Zaokrąglone rogi */
+  color: #ff5d73; /* Kolor tekstu */
+  border: 1.5px solid #ffffff; /* Białe obramowanie dla całej tabeli */
+  overflow: hidden; /* Ukryj nadmiar, aby zaokrąglić rogi */
+}
+
+/* Stylizacja nagłówka tabeli */
+.p-datatable-thead th {
+  background-color: #494949; /* Szare tło dla nagłówków */
+  color: #ff5d73; /* Kolor tekstu w nagłówkach */
+  border-bottom: 1px solid #ffffff; /* Brak obramowania dla nagłówków */
+  padding: 10px; /* Odstępy wewnętrzne w nagłówkach */
+  text-align: left; /* Wyrównanie tekstu do lewej */
+}
+
+/* Stylizacja wierszy tabeli */
+.p-datatable-tbody tr {
+  border-bottom: 0 none; /* Brak obramowania między wierszami */
+}
+
+.p-datatable .p-datatable-tbody tr:hover td {
+  background-color: #7c7a7a !important; /* Szare tło dla wiersza po najechaniu */
+}
+
+/* Stylizacja komórek tabeli */
+.p-datatable-tbody td {
+  background-color: #494949; /* Szare tło dla komórek */
+  color: #fff; /* Kolor tekstu w komórkach */
+  border: 0 none; /* Brak obramowania dla komórek */
+  padding: 10px; /* Odstępy wewnętrzne w komórkach */
+  text-align: left; /* Wyrównanie tekstu do lewej */
+}
+
+/* Stylizacja stopki tabeli */
+.p-datatable-footer {
+  background-color: #494949; /* Szare tło dla stopki */
+  color: #ff5d73; /* Kolor tekstu w stopce */
+  border-top: 2px solid #ffffff; /* Białe obramowanie dla górnej krawędzi stopki */
+  padding: 10px; /* Odstępy wewnętrzne w stopce */
+  border-radius: 0 0 20px 20px; /* Zaokrąglone dolne rogi */
+  overflow: hidden; /* Ukryj nadmiar, aby zaokrąglić rogi */
+}
+
+/* Stylizacja dla kontenera wewnątrz stopki */
+.p-datatable-footer .flex-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* Stylizacja dla lewego i prawego kontenera w stopce */
+.p-datatable-footer .left-content,
+.p-datatable-footer .right-content {
+  flex: 1;
+}
+
+.p-button.p-button-danger.p-button-outlined,
+.p-button-group.p-button-danger > .p-button.p-button-outlined,
+.p-splitbutton.p-button-danger > .p-button.p-button-outlined {
+  background-color: transparent;
+  color: #ffffff;
+  border: 2px solid;
+}
+
+.p-button.p-button-danger.p-button-outlined:hover,
+.p-button-group.p-button-danger > .p-button.p-button-outlined:hover,
+.p-splitbutton.p-button-danger > .p-button.p-button-outlined:hover {
+  background-color: #ff5d73;
+  color: #ffffff;
+  border: 2px solid #ffffff; /* Dodanie koloru obramowania */
+  transform: scale(1.1);
+}
+
+.p-dialog-header {
+  color: #ff5d73;
+  background: rgb(0, 0, 0);
+  background: linear-gradient(
+    180deg,
+    rgba(0, 0, 0, 1) 0%,
+    rgba(16, 16, 16, 1) 100%
+  );
+}
+
+.p-dialog-content {
+  color: #ffffff;
+  background: rgb(16, 16, 16);
+  background: linear-gradient(
+    180deg,
+    rgba(16, 16, 16, 1) 0%,
+    rgba(32, 32, 32, 1) 100%
+  );
+}
+.p-dialog-footer {
+  color: #ff5d73;
+  background: rgb(32, 32, 32);
+  background: linear-gradient(
+    180deg,
+    rgba(32, 32, 32, 1) 0%,
+    rgba(48, 48, 48, 1) 100%
+  );
+}
+
+.p-dialog .p-dialog-footer button {
+  margin-top: 5px;
+  margin-left: 5px;
+  border-color: #ff5d73;
+  color: #ffffff;
+  background-color: #ff5d73;
+  transition: transform 0.2s ease-in-out;
+}
+
+.p-dialog .p-dialog-footer button:hover {
+  transform: scale(1.06);
+}

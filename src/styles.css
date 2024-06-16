@@ -1,1 +1,45 @@
-/* You can add global styles to this file, and also import other style files */
+@import "primeng/resources/themes/lara-light-blue/theme.css";
+@import "primeng/resources/primeng.css";
+@import "primeicons/primeicons.css";
+@import url("https://fonts.googleapis.com/css2?family=Ubuntu+Sans:ital,wght@0,100..800;1,100..800&display=swap");
+
+@font-face {
+  font-family: "Ubuntu Sans", sans-serif;
+  src: url("https://fonts.googleapis.com/css2?family=Ubuntu+Sans:ital,wght@0,100..800;1,100..800&display=swap")
+    format("truetype");
+  font-weight: normal;
+  font-style: normal;
+}
+
+html,
+body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  font-family: "Ubuntu Sans";
+
+  background: rgb(16,16,16);
+    background: linear-gradient(180deg, rgba(16,16,16,1) 0%, rgba(73,73,73,1) 100%);
+    background-attachment: fixed;
+
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes slideIn {
+  from {
+    margin-left: 70px;
+  }
+
+  to {
+    margin-left: 0%;
+  }
+  
+}

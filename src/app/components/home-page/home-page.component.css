@@ -1,0 +1,136 @@
+.background {
+    background-image: url("/assets/cover.jpg");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+}
+
+.container {
+    position: relative; 
+    overflow-y: hidden; 
+    height: 100vh; 
+}
+
+.form-container {
+    padding-right: 10px; 
+    overflow-y: auto; /* Przewijanie treści wewnątrz kontenera */
+    height: calc(100vh - 80px); /* Wysokość kontenera pomniejszona o wysokość paska przewijania */
+}
+
+.p-card {
+    background: rgb(14, 14, 14);
+    background: linear-gradient(
+        135deg,
+        rgba(14, 14, 14, 1) 0%,
+        rgba(73, 73, 73, 1) 100%
+    );
+    width: 800px;
+    margin: 20px auto; /* Odległość od góry */
+    border-radius: 25px;
+    border: 2px #ff5d73 solid;
+    color: #ff5d73;
+    position: relative;
+    z-index: 2;
+    text-align: center;
+}
+  
+.select-container {
+    position: relative;
+    display: inline-block;
+    border-radius: 4px;
+    padding: 4px;
+    width: 100%; /* Szerokość 100% */
+    margin-top: 10px; /* 10px odstępu z góry */
+    margin-bottom: 10px;
+}
+
+/* Styl dla samego selecta */
+.select-container select {
+    position: relative; /* Dodane, aby umożliwić pozycjonowanie strzałki */
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    width: calc(100% - 24px); /* Szerokość 100% minus 24px na uwzględnienie paddingu i miejsca dla strzałki */
+    padding: 8px 12px; /* Dostosowanie paddingu dla miejsca na strzałkę */
+    font-size: 16px; /* Większy rozmiar tekstu */
+    line-height: 1.5;
+    color: #ff5d73; /* Kolor tekstu na białym tle */
+    border: 1.5px solid #ffffff;
+    border-radius: 8px; /* Zaokrąglenie krawędzi */
+    background-color: #494949;
+    cursor: pointer;
+    outline: none;
+    text-align: center; /* Tekst na środku */
+    margin-bottom: 16px;
+}
+
+.select-container label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 10px; /* Zwiększenie odstępu od płytek daty */
+    font-size: 26px; /* Zwiększenie rozmiaru etykiety */
+}
+
+/* Styl po najechaniu na select */
+.select-container:hover select {
+    border-color: #ff5d73;
+}
+
+/* Styl dla opcji selecta */
+.select-container select option {
+    padding: 8px 12px;
+    background-color: #494949;
+    transition: border-color 0.3s ease; /* Dodajemy płynny efekt przejścia dla koloru obramowania */
+    border-bottom: 1px solid transparent; /* Dodajemy transparentną krawędź dolną */
+}
+
+.select-container select option:hover {
+    background-color: #7c7a7a; /* Zmiana koloru tła przy najechaniu */
+    cursor: pointer; /* Zmiana kursora myszy na wskaźnik przy najechaniu */
+    border: 1px solid #ff5d73; /* Dodanie obramowania przy najechaniu */
+}
+
+
+.date-container label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 10px; /* Zwiększenie odstępu od płytek daty */
+    font-size: 26px; /* Zwiększenie rozmiaru etykiety */
+}
+
+.date-tiles {
+    display: flex;
+}
+
+.date-tile {
+    display: inline-block;
+    background-color: #494949;
+    padding: 14px 20px;
+    margin-right: 10px;
+    cursor: pointer;
+    border-radius: 8px;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    width: 90%;
+    margin-bottom: 20px;
+    border: 1.5px solid #ffffff; /* Dodajemy obramowanie */
+    white-space: pre-line; /* Umożliwia wyświetlanie wielu linii tekstu */
+
+}
+
+.date-tile:last-child {
+    margin-right: 0;
+}
+
+.selected {
+    background-color: #7c7a7a;
+    color: #ff5d73;
+}
+
+.date-tile:hover {
+    transform: scale(1.1); /* Lekkie powiększenie po najechaniu myszką */
+    border-color: #ff5d73; /* Zmiana koloru obramowania po najechaniu myszką */
+}
