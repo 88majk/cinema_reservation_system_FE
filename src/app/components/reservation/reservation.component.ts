@@ -82,7 +82,6 @@ export class ReservationComponent implements OnInit {
       for (const row of this.cinemaHallSeats.rows) {
         const seatsClass = [];
         for (const seat of row.seats) {
-          console.log(seat.seatClass)
           if (seat.available == false){
             seatsClass.push(this.seatImages[0]);
           }
@@ -111,7 +110,6 @@ export class ReservationComponent implements OnInit {
         layout.push(seatsClass);
       }
     }
-    console.log(layout)
     return layout;
   }
 
@@ -144,14 +142,12 @@ export class ReservationComponent implements OnInit {
         img?.classList.add('clicked');
     }
 
-    console.log(this.selectedSeats);
 }
 
 
   deleteButtonClick(event: MouseEvent, seat: Seat){
     const rowIndex = seat.row.toLowerCase().charCodeAt(0) - 97;
 
-    console.log("Usuwam siedzenie z rzędu", rowIndex, "i kolumny", seat.column);
 
     const seatToRemoveIndex = this.selectedSeats.findIndex(selectedSeat => selectedSeat.seatId === seat.seatId);
     if (seatToRemoveIndex !== -1) {
@@ -173,13 +169,11 @@ export class ReservationComponent implements OnInit {
         (response: any) => {
           this.cinemaHallSeats = response as CinemaHallRowsSeat;
           this.seatingLayout = this.generateSeatingLayout();
-          console.log(response);
           this.isDataLoaded = true; // Ustaw flagę na true po załadowaniu danych
 
         },
         (error) => {
           // Obsłuż błąd
-          console.error(error);
         }
       );
     });
@@ -205,15 +199,12 @@ export class ReservationComponent implements OnInit {
     else{
       this.isSeatsSelected = true;
       const createBookingRequestData = this.createBookingRequestData(bookingStatus);
-      console.log(createBookingRequestData)
       this.reservationService.postNewBooking(createBookingRequestData).subscribe({
         next: (response) => {
           this.bookingNumber = Number(response.reservationNumber);
           this.showConfirmationDialog();
-          console.log(this.bookingNumber)
         },
         error: (error) => {
-          console.log(error.error)
           this.messages = [];
           this.messages.push({severity:'error', summary:'Error', detail:`${error.error}.`}); 
         }
@@ -261,14 +252,12 @@ export class ReservationComponent implements OnInit {
       accept: () => {
           // Akcja po zaakceptowaniu dialogu
           this.handleButtonClick(2);
-          console.log('Accepted');
           //this.selectedSeats = []
           localStorage.setItem('successMessage', `You have completed the payment. Your reservation number is ${this.bookingNumber}.`);
           window.location.reload();
                 },
       reject: () => {
           // Akcja po odrzuceniu dialogu
-          console.log('Rejected');
           this.messages = [];
           this.messages.push({severity:'info', summary:'Info', detail:`You reject the payment. Your temporary reservation number is ${this.bookingNumber}.
            You can change your booking here and confirm your payment or do it in the my orders tab. `});
@@ -283,11 +272,9 @@ export class ReservationComponent implements OnInit {
       this.reservationService.getMovieSessionInfo(this.movieSessionId).subscribe(
         (response: any) => {
           this.movieSessionInfo = response as MovieSessionInfo;
-          console.log(response);
         },
         (error) => {
           // Obsłuż błąd
-          console.error(error);
         }
       );
     });

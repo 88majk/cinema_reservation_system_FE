@@ -35,10 +35,8 @@ export class HomePageComponent implements OnInit {
     this.cinemaService.getAllCinemas().subscribe(
       (response: Cinema[]) => { // Użyj stworzonego interfejsu w odpowiedzi
         this.cinemas = response;
-        console.log('Cinemas loaded successfully:', this.cinemas);
       },
       (error) => {
-        console.error('Error while loading cinemas:', error);
       }
     );
   }
@@ -75,7 +73,6 @@ export class HomePageComponent implements OnInit {
       const cinemaId = selectedCinema.id;
       this.router.navigate(['/homePage/cinemas', cinemaId, 'movieSession', formattedDate]);
     } else {
-      console.error('Selected cinema not found:', selectedCinemaName);
     }
   }
 }

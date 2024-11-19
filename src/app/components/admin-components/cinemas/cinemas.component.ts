@@ -54,10 +54,8 @@ export class CinemasComponent {
     if (this.newCinemaForm.valid) {
       this.cinemaService.sendNewCinema(data).subscribe(
         (response) => {
-          console.log(response);
         },
         (error) => {
-          console.log(error);
           this.addCinemaMessage = error.error;
           this.clearMessageAfterTimeout();
         }
@@ -71,13 +69,10 @@ export class CinemasComponent {
   updateCinemaById(cinemaId: number) {
     if (this.updateCinemaForm.valid) {
       const data = this.updateCinemaForm.value;
-      console.log(data)
       this.cinemaService.updateCinemaById(cinemaId, data).subscribe(
         (response) => {
-          console.log(response);
         },
         (error) => {
-          console.log(error);
           this.addCinemaMessage = error.error;
           this.clearMessageAfterTimeout();
         }
@@ -89,7 +84,6 @@ export class CinemasComponent {
     this.updCinemaId = cinemaId;
     this.cinemaService.getCinemaById(cinemaId).subscribe(
       (response) => {
-        console.log(response);
         this.cinemaById = response;
         this.updateCinemaForm.patchValue({
           name: this.cinemaById.name,
@@ -100,7 +94,6 @@ export class CinemasComponent {
         });
       },
       (error) => {
-        console.log(error);
       }
     );
   }
@@ -108,11 +101,9 @@ export class CinemasComponent {
   getAllCinemasFull() {
     this.cinemaService.getAllCinemasFull().subscribe(
       (response) => {
-        console.log(response);
         this.fullCinemas = response;
       },
       (error) => {
-        console.log(error);
       }
     );
   }

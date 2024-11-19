@@ -10,10 +10,7 @@
         </div>
     </p-card> -->
     <p-card header="Register your account">
-        <div class="field">
-            <label>E-mail</label>
-            <input type="text" formControlName="email" pInputText>
-        </div>
+        
         <div style="display: flex; flex-direction: row; justify-content: space-between;">
             <div class="field">
                 <label>Name</label>
@@ -27,7 +24,11 @@
         <div class="field">
             <label>Date of birth</label>
             <p-calendar formControlName="date_of_birth" [dateFormat]="'yy-mm-dd'" [showIcon]="true"
-                [iconDisplay]="'input'" [style]="{'width': '100%'}" />
+                [iconDisplay]="'input'"  [style]="{'width': '100%'}" />
+        </div>
+        <div class="field">
+            <label>E-mail</label>
+            <input type="text" formControlName="email" pInputText>
         </div>
         <div style="display: flex; flex-direction: row; justify-content: space-between;">
             <div class="field">
