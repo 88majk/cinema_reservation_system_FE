@@ -41,23 +41,18 @@ export class RegisterPageComponent {
       ...this.registerForm.value,
       dateOfBirth: this.getFormattedDate(this.birthDateFormField?.value),
     };
-    console.log(registerData);
     const loginData: LoginData = { email, password };
     
     if (this.validateForm()) {
       setTimeout(() => {
         this.registerService.postRegisterData(registerData).subscribe(
           (response) => {
-            console.log(response);
-            console.log(loginData);
             this.authService.authorization(loginData).subscribe(
               (response) => {
-                console.log(response);
                 this.router.navigate(['/homePage']);
               })
           },
           (error) => {
-            console.log(error);
             this.errorMessage = error.error;
             this.clearErrorAfterTimeout();
           }

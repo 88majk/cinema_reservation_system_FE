@@ -39,10 +39,8 @@ export class UserOrdersComponent {
     this.ordersService.getBookingsByUserId().subscribe(
       (response: Order[]) => {
         this.userBookings = response;
-        console.log(this.userBookings);
       },
       (error) => {
-        console.log(error);
       }
     );
   }
@@ -52,7 +50,6 @@ export class UserOrdersComponent {
       (response: OrderDetails[]) => {
         this.orderDetails = response;
         this.downloadedOrderDetails = true;
-        console.table(this.orderDetails);
 
         this.totalOrderPrice = this.orderDetails.reduce(
           (acc, order) => acc + order.price,
@@ -62,7 +59,6 @@ export class UserOrdersComponent {
         this.selectedBookingDetails = booking;
       },
       (error) => {
-        console.log(error);
       }
     );
   }
@@ -72,7 +68,6 @@ export class UserOrdersComponent {
 
     const bookingDateTime = new Date(date);
     bookingDateTime.setHours(time.hours, time.minutes - 15, 0, 0);
-    console.log('sprawdzam');
     return bookingDateTime > currentDateTime;
   }
 
@@ -96,10 +91,10 @@ export class UserOrdersComponent {
     if (bookingId !== undefined) {
       this.ordersService.changeBookingStatus(bookingId, status).subscribe(
         () => {
-          window.location.reload();
+          this.getBookingsByUserId();
+          this.visible = !this.visible;
         },
         (error) => {
-          console.log(error);
         }
       );
     }

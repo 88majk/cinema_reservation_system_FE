@@ -14,10 +14,12 @@ import { UserData } from '../../models/user-data';
 export class UserProfileComponent {
   isDisabled: boolean = true;
   visible: boolean = false;
+  visibleConfirm: boolean = false;
   userUpdateErrorMessage: string = '';
   userUpdateResponseMessage: string = '';
   passwordUpdateErrorMessage: string = '';
   passwordUpdateResponseMessage: string = '';
+  messages: any[] = [];
   userData: UserData = {
     name: '',
     surname: '',
@@ -71,7 +73,6 @@ export class UserProfileComponent {
         });
       },
       (error) => {
-        console.log(error);
       }
     );
   }
@@ -81,12 +82,10 @@ export class UserProfileComponent {
       const data = { ...this.updateForm.value };
       this.userService.updateUserData(data).subscribe(
         (response) => {
-          console.log(response);
           this.userUpdateResponseMessage = 'Your account has been updated.';
           this.clearMessageAfterTimeout();
         },
         (error) => {
-          console.log(error);
           this.userUpdateErrorMessage = error.error;
           this.clearMessageAfterTimeout();
         }
@@ -104,13 +103,11 @@ export class UserProfileComponent {
       const password = this.updatePasswordForm.value.password;
       this.userService.updateUserPassword(password).subscribe(
         (response) => {
-          console.log(response);
           this.passwordUpdateResponseMessage =
             'Password has been updated successfully.';
           this.clearMessageAfterTimeout();
         },
         (error) => {
-          console.log(error);
         }
       );
     } else {
@@ -125,8 +122,24 @@ export class UserProfileComponent {
     }
   }
 
+  deleteUserAccount(): void {
+    this.userService.deleteAccount().subscribe(
+      (response) => {
+        this.authService.loggingOut();
+        this.messages = [];
+          this.messages.push({severity:'info', summary:'Warning', detail:`You reject the payment. Your temporary reservation numbe
+           You can change your booking here and confirm your payment or do it in the my orders tab. `});
+    }, 
+    (error) => {
+    });
+  }
+
   showDialog() {
     this.visible = !this.visible;
+  }
+
+  showDialogConfirm(): void {
+    this.visibleConfirm =!this.visibleConfirm;
   }
 
   toggleDisabled(): void {

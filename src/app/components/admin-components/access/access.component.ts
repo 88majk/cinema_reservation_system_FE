@@ -29,10 +29,8 @@ export class AccessComponent implements OnInit {
     private location: Location
   ) {}
   ngOnInit() {
-    console.log("admin page0")
     const successMessage = localStorage.getItem('successMessage');
     if (successMessage) {
-      console.log("admin page1")
 
       localStorage.removeItem('successMessage');
       this.messages.push({ severity: 'success', summary: 'Success', detail: successMessage });
@@ -62,9 +60,6 @@ export class AccessComponent implements OnInit {
         return;
       }
       const formValue = this.newAccess.value;
-      console.log('User Email:', formValue.email);
-      console.log('Admin Access for All Cinemas:', formValue.isAdmin ? 'Yes' : 'No');
-      console.log('Cinema:', formValue.selectedCinema);
 
       const body = {
         token: token,
@@ -72,17 +67,14 @@ export class AccessComponent implements OnInit {
         allCinema: formValue.isAdmin,
         cinemaId: formValue.isAdmin ? 0 : formValue.selectedCinema.id
       };
-      console.log(body);
       this.accessService.sendNewAdmin(body).subscribe(
         response => {
-            console.log('Success: New admin created successfully.');
             this.messages = []
             localStorage.setItem('successMessage', 'Success: New admin created successfully.');
             window.location.reload();
 
           },
         error => {
-          console.log(error.error)
           this.messages = []
           this.messages.push({severity:'error', summary:'Error', detail:`${error.error}.`});
           setTimeout(() => {
@@ -100,11 +92,9 @@ export class AccessComponent implements OnInit {
   getAllCinemasFull() {
     this.cinemaService.getAllCinemasFull().subscribe(
       (response) => {
-        console.log(response);
         this.fullCinemas = response;
       },
       (error) => {
-        console.log(error);
       }
     );
   }
@@ -126,24 +116,20 @@ export class AccessComponent implements OnInit {
         return;
       }
       const formValue = this.deleteAccess.value;
-      console.log('User Email:', formValue.email);
 
 
       const body = {
         token: token,
         email: formValue.email,
       };
-      console.log(body);
       this.accessService.deleteAdmin(body).subscribe(
         response => {
-            console.log('Success: Admin successfully deleted.');
             this.messages = []
             localStorage.setItem('successMessage', 'Success: Admin successfully deleted.');
             window.location.reload();
 
           },
         error => {
-          console.log(error.error)
           this.messages = []
           this.messages.push({severity:'error', summary:'Error', detail:`${error.error}.`});
           setTimeout(() => {

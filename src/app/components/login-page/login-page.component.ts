@@ -41,11 +41,9 @@ export class LoginPageComponent {
     if(this.loginForm.valid) {
       setTimeout(() => {
         this.authService.authorization(data).subscribe((response) => {
-          console.log(response);
           this.router.navigate(['/homePage']);
         },
         error => {
-          console.log(error.error);
           this.errorMessage = error.error;
           this.clearErrorAfterTimeout();
         }

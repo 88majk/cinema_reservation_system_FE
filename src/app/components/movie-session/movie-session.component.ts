@@ -45,7 +45,6 @@ export class MovieSessionComponent implements OnInit {
       (response: Cinema[]) => {
         this.cinemas = response;
         this.cinemasLoaded = true;
-        console.log('Cinemas loaded successfully:', this.cinemas);
         
         // Po załadowaniu kin, pobierz daty i znajdź odpowiedni kafelek dla daty ze ścieżki
         this.generateDateTiles();
@@ -58,12 +57,10 @@ export class MovieSessionComponent implements OnInit {
             this.findSelectedCinema(cinemaId);
             this.findSelectedDateTile(dateFromParams);
           } else {
-            console.log('Waiting for cinemas data to load...');
           }
         });
       },
       (error) => {
-        console.error('Error while loading cinemas:', error);
       }
     );
   }
@@ -101,7 +98,6 @@ export class MovieSessionComponent implements OnInit {
       this.selectedCinema = cinema;
       this.selectedCinemaName = cinema.name;
     } else {
-      console.error('Cinema not found for id:', cinemaId);
     }
   }
 
@@ -131,7 +127,6 @@ export class MovieSessionComponent implements OnInit {
       const cinemaId = selectedCinema.id;
       this.router.navigate(['/homePage/cinemas', cinemaId, 'movieSession', formattedDate]);
     } else {
-      console.error('Selected cinema not found:', selectedCinemaName);
     }
   }
 
@@ -143,19 +138,15 @@ export class MovieSessionComponent implements OnInit {
       const formattedDate = formatDate(dateFromParams, 'yyyy-MM-dd', 'en-US');
       this.movieSessionService.getMovieSessions(cinemaId, formattedDate).subscribe(
         (response: any) => {
-          console.log('Response received:', response);
           if (response && response.movieAndSessions && response.movieAndSessions.length > 0) {
             this.movieAndSessions = response.movieAndSessions; // Zapisanie odpowiedzi do zmiennej movieAndSessions
-            console.log('a:', this.movieAndSessions); // Wyświetlenie 'a' w konsoli
 
           } else {
             // Obsłuż brak filmów
-            console.log('No movies available for this day.');
           }
         },
         (error) => {
           // Obsłuż błąd
-          console.error(error);
         }
       );
     });
@@ -177,7 +168,6 @@ export class MovieSessionComponent implements OnInit {
       this.router.navigate(['booking/movieSession/', movieAndSessionId]);
     }
     catch(error) {
-      console.error('Selected session not found: ', movieAndSessionId);
     }
   }
 }

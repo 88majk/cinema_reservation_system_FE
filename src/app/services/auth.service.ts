@@ -58,7 +58,6 @@ export class AuthService {
     const user_token = localStorage.getItem('user_token');
     if (user_token) {
       this.decodedToken = JSON.parse(atob(user_token.split('.')[1]));
-      console.log('decoding token...');
     } else {
       this.decodedToken = null;
     }

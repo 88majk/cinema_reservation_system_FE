@@ -55,14 +55,11 @@ export class MoviesComponent {
   sendNewMovie(): void {
     if (this.movieForm.valid) {
       const data = { ...this.movieForm.value };
-      console.log(data);
       this.movieService.sendNewMovie(data).subscribe(
         (response) => {
-          console.log(response);
           this.getListOfMovies();
         },
         (error) => {
-          console.log(error);
         }
       );
     } else {
@@ -80,13 +77,10 @@ export class MoviesComponent {
   updateMovieById(movieId: number): void {
     if (this.updateMovieForm.valid) {
       const data = this.updateMovieForm.value;
-      console.log(data);
       this.movieService.updateMovieById(movieId, data).subscribe(
         (response) => {
-          console.log(response);
         },
         (error) => {
-          console.log(error);
         }
       );
     } else {
@@ -113,21 +107,17 @@ export class MoviesComponent {
   getListOfMovies() {
     this.movieService.getAllMovies().subscribe(
       (response) => {
-        console.log(response);
         this.movies = response;
       },
       (error) => {
-        console.log(error);
       }
     );
   }
 
   getMovieById(id: number) {
-    console.log(id);
     this.movieId = id;
     this.movieService.getMovieById(id).subscribe(
       (response) => {
-        console.log(response);
         this.movieById = response;
         this.updateMovieForm.patchValue({
           name: this.movieById.name,
@@ -142,7 +132,6 @@ export class MoviesComponent {
         this.updateMovieForm.enable();
       },
       (error) => {
-        console.log(error);
       }
     );
   }
@@ -150,11 +139,9 @@ export class MoviesComponent {
   getListOfGenres() {
     this.movieService.getAllGenres().subscribe(
       (response) => {
-        console.log(response);
         this.genres = response;
       },
       (error) => {
-        console.log(error);
       }
     );
   }

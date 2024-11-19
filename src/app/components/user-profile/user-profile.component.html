@@ -16,12 +16,12 @@
                                 <div class="field">
                                     <label>Name</label>
                                     <input type="text" formControlName="name" value="{{userData.name}}" pInputText
-                                         class="input-area">
+                                        class="input-area">
                                 </div>
                                 <div class="field">
                                     <label>E-mail</label>
                                     <input type="text" formControlName="email" value="{{userData.email}}"
-                                         class="input-area" pInputText>
+                                        class="input-area" pInputText>
                                 </div>
 
                             </div>
@@ -29,14 +29,13 @@
                                 <div class="field">
                                     <label>Surname</label>
                                     <input type="text" formControlName="surname" value="{{userData.surname}}"
-                                         class="input-area" pInputText>
+                                        class="input-area" pInputText>
                                 </div>
                                 <div class="field">
                                     <label>Birth date</label>
                                     <p-calendar [style]="{'width':'400px'}" formControlName="dateOfBirth"
-                                        [inputStyle]="{'width':'100%',}"
-                                        [dateFormat]="'yy-mm-dd'" [showIcon]="true" [iconDisplay]="'input'"
-                                        [(ngModel)]="userData.dateOfBirth" />
+                                        [inputStyle]="{'width':'100%',}" [dateFormat]="'yy-mm-dd'" [showIcon]="true"
+                                        [iconDisplay]="'input'" [(ngModel)]="userData.dateOfBirth" />
                                 </div>
                             </div>
                         </div>
@@ -73,11 +72,13 @@
                         <form [formGroup]="updatePasswordForm" (submit)="updateUserPassword()">
                             <div style="display: flex; flex-direction: column;">
                                 <label style="margin-bottom: 5px;">Password</label>
-                                <p-password formControlName="password" [feedback]="false" [toggleMask]="true"></p-password>
+                                <p-password formControlName="password" [feedback]="false"
+                                    [toggleMask]="true"></p-password>
                             </div>
                             <div style="display: flex; flex-direction: column; margin-top: 15px;">
                                 <label style="margin-bottom: 5px;">Confirm password</label>
-                                <p-password formControlName="retPassword" [feedback]="false" [toggleMask]="true"></p-password>
+                                <p-password formControlName="retPassword" [feedback]="false"
+                                    [toggleMask]="true"></p-password>
                             </div>
                             <div
                                 style="display: flex; justify-content: space-between; margin-top: 25px; padding-right: 15px;">
@@ -107,10 +108,21 @@
                     <span>If you delete the account, the data assigned to it will be irretrievably lost.</span>
                 </div>
                 <div style="margin-top: 15px;">
-                    <button pButton class="delete-button">
+                    <button pButton class="delete-button" (click)="showDialogConfirm()">
                         <i class="pi pi-trash" style="margin-right: 5px;"></i> <span class="p-button-label">Delete
                             account</span>
                     </button>
+                    <p-dialog header="Are you sure you want do delete your account?" [modal]="true"
+                        [(visible)]="visibleConfirm">
+                        <span style="margin-left: 10px; color: #ffffff;">You cannot undo this action.</span>
+                        <div
+                            style="display: flex; justify-content: space-around; margin-top: 25px; padding-right: 15px;">
+                            <button pButton label="No" severity="secondary" (click)="visible = false"
+                                style="width: 120px;" class="edit-button"></button>
+                            <button pButton label="Yes" (click)="deleteUserAccount()" style="width: 120px;"
+                                class="delete-button"></button>
+                        </div>
+                    </p-dialog>
                 </div>
             </p-fieldset>
         </div>
