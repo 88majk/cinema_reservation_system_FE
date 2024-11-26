@@ -1,3 +1,19 @@
+@media (max-width: 900px) {
+  .update-profile-div {
+    display: flex; 
+    justify-content: space-between; 
+    flex-direction: column;
+  }
+}
+
+/* Styl dla ekranów o szerokości powyżej 768px (np. tablety i większe urządzenia) */
+@media (min-width: 901px) {
+  .update-profile-div {
+    display: flex; 
+    justify-content: space-between; 
+  }
+}
+
 .form-container {
   display: flex;
   flex-direction: column;
@@ -8,6 +24,8 @@
 .p-card {
   border-radius: 25px;
   color: #ff5d73;
+  min-width: 480px;
+  margin: 30px;
   background: rgb(14, 14, 14);
   background: linear-gradient(
     135deg,
@@ -39,6 +57,7 @@
   background-color: transparent;
   border-color: #ff5d73;
   color: #ffffff;
+  
 }
 
 .p-fieldset-legend{

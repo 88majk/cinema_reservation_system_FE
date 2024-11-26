@@ -3,6 +3,7 @@ import { Injectable, inject } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Order } from '../models/order-data';
 import { OrderDetails } from '../models/order-details';
+import { environment } from '../enviroment';
 
 @Injectable({
   providedIn: 'root'
@@ -10,18 +11,20 @@ import { OrderDetails } from '../models/order-details';
 export class OrdersService {
   private http = inject(HttpClient);
 
+  private baseUrl = environment.apiUrl;
+
   constructor() { }
 
   getBookingsByUserId(): Observable<Order[]> {
-    return this.http.get<Order[]>('http://localhost:8080/booking/userBookings/' + localStorage.getItem('user_token'));
+    return this.http.get<Order[]>( this.baseUrl + '/booking/userBookings/' + localStorage.getItem('user_token'));
   }
 
   getBookingDetails(bookingId: number): Observable<OrderDetails[]> {
-    return this.http.get<OrderDetails[]>(`http://localhost:8080/booking/userBookings/bookingDetails/${bookingId}`);
+    return this.http.get<OrderDetails[]>(this.baseUrl + `/booking/userBookings/bookingDetails/${bookingId}`);
   }
 
   changeBookingStatus(bookingId: number, newStatus: string) {
-    const url = `http://localhost:8080/booking/changeStatus/${bookingId}`;
+    const url = this.baseUrl + `/booking/changeStatus/${bookingId}`;
     const body = { newStatus: newStatus };
     const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
 

@@ -3,6 +3,7 @@ import { Injectable, inject } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Movie } from '../models/movies-data';
 import { GenreDto } from '../models/genre-data';
+import { environment } from '../enviroment';
 
 @Injectable({
   providedIn: 'root'
@@ -10,8 +11,10 @@ import { GenreDto } from '../models/genre-data';
 export class MovieService {
   private http = inject(HttpClient);
 
-  private baseUrl = 'http://localhost:8080/movie/';
-  private genreUrl = 'http://localhost:8080/genre/';
+  private apiUrl = environment.apiUrl;
+
+  private baseUrl = this.apiUrl + '/movie/';
+  private genreUrl = this.apiUrl + 'genre/';
 
   constructor() { }
 

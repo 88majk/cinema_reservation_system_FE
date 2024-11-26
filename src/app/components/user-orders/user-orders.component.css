@@ -7,6 +7,8 @@
 
 .p-card {
   border-radius: 25px;
+  min-width: 480px;
+  margin: 30px;
   color: #ff5d73;
   background: rgb(14, 14, 14);
   background: linear-gradient(
@@ -18,6 +20,7 @@
 
 .p-card .p-card-content {
   padding: 0px;
+  min-width: 480px;
 }
 
 

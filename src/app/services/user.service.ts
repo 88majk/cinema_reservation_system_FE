@@ -4,6 +4,7 @@ import { UpdateUserData } from '../models/user-update-data';
 import { Observable, tap } from 'rxjs';
 import { AuthService } from './auth.service';
 import { UserData } from '../models/user-data';
+import { environment } from '../enviroment';
 
 @Injectable({
   providedIn: 'root'
@@ -11,14 +12,15 @@ import { UserData } from '../models/user-data';
 export class UserService {
   private http = inject(HttpClient);
   private authService = inject(AuthService);
+  private baseUrl = environment.apiUrl;
   constructor() { }
 
   getUserData(): Observable<UserData> {
-    return this.http.get<UserData>(`http://localhost:8080/users/${localStorage.getItem('user_token')}`);
+    return this.http.get<UserData>(this.baseUrl + `/users/${localStorage.getItem('user_token')}`);
   }
 
   updateUserData(updateData: UpdateUserData): Observable<any> {
-    return this.http.put(`http://localhost:8080/users/update/` + localStorage.getItem('user_token'), updateData)
+    return this.http.put(this.baseUrl + `/users/update/` + localStorage.getItem('user_token'), updateData)
     .pipe(
       tap((response: any) => {
           localStorage.removeItem('user_token');
@@ -29,11 +31,11 @@ export class UserService {
   }
 
   updateUserPassword(passsword: string): Observable<string> {
-    return this.http.post(`http://localhost:8080/users/changePassword/` +
+    return this.http.post(this.baseUrl + `/users/changePassword/` +
      localStorage.getItem('user_token'), passsword, {responseType: 'text'});
   }
 
   deleteAccount(): Observable<string> {
-    return this.http.delete(`http://localhost:8080/users/deleteAccount/` + localStorage.getItem('user_token'), {responseType: 'text'});
+    return this.http.delete(this.baseUrl + `/users/deleteAccount/` + localStorage.getItem('user_token'), {responseType: 'text'});
   }
 }
