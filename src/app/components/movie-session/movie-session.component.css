@@ -28,7 +28,9 @@
         rgba(14, 14, 14, 1) 0%,
         rgba(73, 73, 73, 1) 100%
     );
-    width: 800px;
+    min-width: 480px;
+    width: 70%;
+    max-width: 1000px;
     margin: 20px auto; /* Odległość od góry */
     border-radius: 25px;
     border: 2px #ff5d73 solid;
@@ -109,12 +111,13 @@
 .date-tile {
     display: inline-block;
     background-color: #494949;
-    padding: 14px 20px;
+    padding: 10px 10px;
     margin-right: 10px;
     cursor: pointer;
     border-radius: 8px;
     transition: background-color 0.3s ease, transform 0.2s ease;
     width: 90%;
+    min-width: 30px;
     margin-bottom: 20px;
     border: 1.5px solid #ffffff; /* Dodajemy obramowanie */
     white-space: pre-line; /* Umożliwia wyświetlanie wielu linii tekstu */
@@ -221,6 +224,9 @@
     background-color: #494949; /* Szare tło */
     color: #ff5d73; /* Czerwony kolor czcionki */
     margin-bottom: 5px;
+    min-width: 450px;
+    width: 100%;
+    max-width: 1050px;
 }
 
 /* Opcjonalnie: styl dla nagłówka podczas najechania */
@@ -235,6 +241,9 @@
     background: #494949;
     color: #ff5d73;
     border-top: 0;
+    min-width: 450px;
+    width: 100%;
+    max-width: 1050px;
     border-top-right-radius: 0px;
     border-top-left-radius: 0px;
     border-bottom-right-radius: 20px;

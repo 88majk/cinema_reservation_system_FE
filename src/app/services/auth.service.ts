@@ -23,6 +23,12 @@ export class AuthService {
     this.decodeToken();
   }
 
+  isAuthenticated(): boolean {
+    const token = localStorage.getItem('user_token');
+    return !!token; 
+  }
+
+
   authorization(data: LoginData){
     return this.loginService.postLoginData(data).pipe(
       tap((response: any) => {

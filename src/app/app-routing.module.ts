@@ -12,6 +12,7 @@ import { AdminPageComponent } from './components/admin-page/admin-page.component
 import { MoviesComponent } from './components/admin-components/movies/movies.component';
 import { CinemasComponent } from './components/admin-components/cinemas/cinemas.component';
 import { AccessComponent } from './components/admin-components/access/access.component';
+import { authGuard } from './guard/auth.guard';
 
 
 const routes: Routes = [
@@ -34,23 +35,24 @@ const routes: Routes = [
   },
   { 
     path: 'homePage/cinemas/:cinemaId/movieSession/:date', 
-    component: MovieSessionComponent 
+    component: MovieSessionComponent, canActivate: [authGuard]
   },
   { 
     path: 'booking/movieSession/:sessionId', 
-    component: ReservationComponent 
+    component: ReservationComponent , canActivate: [authGuard]
   },
   {
     path: 'user/profile',
-    component: UserProfileComponent
+    component: UserProfileComponent, canActivate: [authGuard]
   },
   {
     path: 'user/orders',
-    component: UserOrdersComponent
+    component: UserOrdersComponent, canActivate: [authGuard]
   },
   {
     path: 'admin',
     component: AdminPageComponent,
+    canActivate: [authGuard],
     children: [
       {
         path: 'movies',

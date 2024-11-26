@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { MovieAndSessions } from '../models/movieAndSession-data';
 import { Observable, throwError, catchError } from 'rxjs';
+import { environment } from '../enviroment';
 
 
 @Injectable({
@@ -9,7 +10,7 @@ import { Observable, throwError, catchError } from 'rxjs';
 })
 export class MovieSessionService {
 
-  private baseUrl = 'http://localhost:8080/cinemas';
+  private baseUrl = environment.apiUrl + '/cinemas';
 
   constructor(private http: HttpClient) { }
 

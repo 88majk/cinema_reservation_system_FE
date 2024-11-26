@@ -1,3 +1,40 @@
+@media (max-width: 500px) {
+  .a-header {
+    display: none;
+  }
+}
+
+/* Styl dla ekranów o szerokości powyżej 768px (np. tablety i większe urządzenia) */
+@media (min-width:501px) {
+  .a-header {
+    color: #ff5d73;
+    margin-right: 20px;
+    transition: 0.2s ease-in-out;
+    display: flex; 
+    align-items: center;
+  }
+}
+
+html, body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.container {
+  flex-grow: 1;
+}
+
+
+
+
+
 header {
   position: fixed;
   background-color: #181717;
@@ -95,4 +132,17 @@ img {
 .a-header1:hover {
   transform: scale(1.06);
   cursor: pointer;
+}
+
+
+footer {
+  width: 100%; 
+  text-align: center; 
+  position: fixed; 
+  bottom: 0; 
+  left: 0;
+  background-color: #181717;
+  padding: 10px;
+  color: #ff5d73;
+  z-index: 1000;
 }

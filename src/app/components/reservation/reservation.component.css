@@ -40,7 +40,9 @@
     rgba(14, 14, 14, 1) 0%,
     rgba(73, 73, 73, 1) 100%
   );
-  width: 800px;
+  min-width: 480px;
+  width: 70%;
+  max-width: 1000px;
   margin: 20px auto; /* Odległość od góry */
   border-radius: 25px;
   border: 2px #ff5d73 solid;

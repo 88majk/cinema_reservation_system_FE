@@ -3,6 +3,7 @@ import { HttpClient, HttpParams } from '@angular/common/http';
 import { CinemaHallRowsSeat } from '../models/cinemaHallRowsSeat-data';
 import { Observable, throwError, catchError } from 'rxjs';
 import { MovieSessionInfo } from '../models/movieSessionInfo-data';
+import { environment } from '../enviroment';
 
 
 @Injectable({
@@ -10,7 +11,7 @@ import { MovieSessionInfo } from '../models/movieSessionInfo-data';
 })
 export class ReservationService {
 
-  private baseUrl = 'http://localhost:8080';
+  private baseUrl = environment.apiUrl;
 
   constructor(private http: HttpClient) { }
 

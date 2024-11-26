@@ -2,13 +2,14 @@ import { Injectable, inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Cinema } from '../models/cinema-data';
+import { environment } from '../enviroment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class CinemaService {
 
-  private baseUrl = 'http://localhost:8080/cinema';
+  private baseUrl = environment.apiUrl + '/cinema';
 
   private http = inject(HttpClient)
 
